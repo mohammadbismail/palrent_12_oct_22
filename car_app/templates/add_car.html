@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<style>
+    .container {
+        display: flex;
+    }
+</style>
+<div class="container">
+    <a href="/provider_dashboard/">
+        <button type="submit" class="btn-outline">My garage</button>
+    </a>
+    <a href="/delete/">
+        <button class="btn btn-primary">Log Out</button>
+    </a>
+    <div class="col" id="form_body">
+        <h4>Add New car to list</h4>
+        <div class="col car_form">
+            <div class="row car_details">
+                <form action="/my_dashboard/insert_car/" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3 mb-md-0 col-md-3">
+                        <label for="brand" class="form-label">Select Brand</label>
+                        <select name="brand" id="brand" class="custom-select form-control">
+                            <option value="null">Select Brand</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Obel">Obel</option>
+                            <option value="Mazda">Mazda</option>
+                        </select>
+                    </div>
+                    <div class="row-sm-6">
+                        <label for="model" class="form-label">Model</label>
+                        <input type="text" class="form-control" name="model" id="model" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Model is required.
+                        </div>
+                    </div>
+                    <div class="row-sm-6">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="text" class="form-control" name="color" id="color" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Color is required.
+                        </div>
+                    </div>
+                    <div class="row-6">
+                        <label for="production_year" class="form-label">Production year</label>
+                        <input type="number" class="form-control" name="production_year" id="production_year" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Production Year is required.
+                        </div>
+                    </div>
+                    <div class="row-6">
+                        <label for="plate_number" class="form-label">Plate Number</label>
+                        <input type="number" class="form-control" name="plate_number" id="production_year" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Plate Number is required.
+                        </div>
+                    </div>
+                    <div class="row-6">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" name="price" id="production_year" placeholder="NIS" required>
+                        <div class="invalid-feedback">
+                            Production Year is required.
+                        </div>
+                    </div>
+                    <button class="btn btn-dark" type="submit">Add Car</button>
+                </form>
+            </div>
+                <!-- <div class="row-6">
+                    <label for="" class="form-label">Car insurance</label>
+                    <input type="file" class="form-control" id="car_insurance" placeholder="" required>
+                    <div class="invalid-feedback">
+                        Car insurance Year is required.
+                    </div>
+                </div>
+                <div class="row-6">
+                    <label for="" class="form-label">Car Permit</label>
+                    <input type="file" class="form-control" id="car_permit" placeholder="" required>
+                    <div class="invalid-feedback">
+                        Car Permit Year is required.
+                    </div>
+                </div>
+            </div>
+            <article class="card-group-item car_utilities">
+                <header class="card-header">
+                    <h6 class="title">Car Utilities</h6>
+                </header>
+                <form>
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-label">
+                        Full option
+                        </span>
+                    </label> 
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-label">
+                        loud speakers
+                        </span>
+                    </label>
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-label">
+                        Automatic
+                        </span>
+                    </label> 
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-label">
+                        Leather seats 
+                        </span>
+                    </label>
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <span class="form-check-label">
+                        Brand new
+                        </span>
+                    </label>  form-check.//
+                </form> -->
+            </article>
+        
+    </div>
+    <div class="all_cars">
+        <h5>All my cars</h5>
+        <table class="table">
+            <thead class="position">
+                <tr>
+                    <th scope="col">Car</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in garage %}
+                <tr class="display">
+                    <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
+                    <td>
+                        <input type="hidden" name="car_id" value="{{ car.id }}">
+                        <a href="/my_dashboard/edit_car/{{car.id}}/">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

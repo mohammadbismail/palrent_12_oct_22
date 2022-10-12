@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+#form_body {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.all_cars {
+    width: 40%;
+    text-align: center;
+}
+
+
+.car_form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.car_details {
+    width: 50%;
+}
+
+
+.car_utilities {
+    width: 40%;
+}

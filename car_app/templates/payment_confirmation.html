@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content%}
+<a href="/delete/">
+    <button class="btn btn-primary">Log Out</button>
+</a>
+<div class="container py-5">
+    <div class="pt-2">
+        <div class="d-flex pb-2">
+            <div>
+                <p>
+                    <b> Booking for BMW m305 <span class="text-success">$1500.00</span></b>
+                </p>
+            </div>
+            <div class="ms-auto">
+                <p class="text-primary">
+                    <i class="fas fa-plus-circle text-primary pe-1"></i>Add payment card
+                </p>
+            </div>
+        </div>
+        <p>
+            Please inform that the due charges will be on hold till car provider make the final payment_confirmation.
+        </p>
+        <p>
+            In case rejection of booking, the paid amount will be back in your balance.
+        </p>
+        <p>
+            Please keep an eye on your email inbox; You will receive and eamil wheather for confirmation or rejection.
+        </p>
+        <form action="/confirm_book/" method="post" class="pb-3">
+            {% csrf_token %}
+            <div class="d-flex flex-row pb-3">
+                <div class="d-flex align-items-center pe-2">
+                    <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
+                    value="" aria-label="..." checked />
+                </div>
+                <div class="rounded border d-flex w-100 p-3 align-items-center">
+                    <p class="mb-0">
+                    <i class="fab fa-cc-visa fa-lg text-primary pe-2"></i>Visa Debit
+                    Card
+                    </p>
+                    <div class="ms-auto">************3456</div>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <div class="d-flex align-items-center pe-2">
+                    <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2"
+                    value="" aria-label="..." />
+                </div>
+                <div class="rounded border d-flex w-100 p-3 align-items-center">
+                    <p class="mb-0">
+                    <i class="fab fa-cc-mastercard fa-lg text-dark pe-2"></i>Mastercard
+                    Office
+                    </p>
+                    <div class="ms-auto">************1038</div>
+                </div>
+            </div>
+            <button class="btn btn-dark" type="submit">Make payment</button>
+        </form>
+    </div>
+    <div class="col-md-5 col-xl-4 offset-xl-1">
+        <div class="py-4 d-flex justify-content-end">
+            <h6><a href="/my_dashboard/">Cancel and return to website</a></h6>
+        </div>
+        <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
+            <div class="p-2 me-3">
+                <h4>Booking Recap</h4>
+            </div>
+            <div class="p-2 d-flex">
+                <div class="col-8">Car Brand</div>
+                <div class="ms-auto">BMW m305</div>
+            </div>
+            <div class="p-2 d-flex">
+                <div class="col-8">Pick up date</div>
+                <div class="ms-auto">10/10/2022</div>
+            </div>
+            <div class="p-2 d-flex">
+                <div class="col-8">Drop off date</div>
+                <div class="ms-auto">20/10/2022</div>
+            </div>
+            <div class="p-2 d-flex">
+                <div class="col-8">Total days</div>
+                <div class="ms-auto">10 days</div>
+            </div>
+            <div class="border-top px-2 mx-2"></div>
+            <div class="p-2 d-flex pt-3">
+                <div class="col-8">Price per day</div>
+                <div class="ms-auto">$150.00</div>
+            </div>
+            <div class="p-2 d-flex pt-3">
+                <div class="col-8">Discount</div>
+                <div class="ms-auto">%0.0</div>
+            </div>
+            <div class="border-top px-2 mx-2"></div>
+            <div class="p-2 d-flex pt-3">
+                <div class="col-8"><b>Total</b></div>
+                <div class="ms-auto"><b class="text-success">$1500.00</b></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+.photo {
+    width: 100%;
+}
+
+#details {
+    display: flex;
+    background-color: aqua;
+}
+
+
+#body {
+    display: flex;
+}
+
+#pay_details {
+    width: 80%;
+}

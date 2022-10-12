@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <a href="/delete/">
+        <button class="btn btn-primary">Log Out</button>
+    </a>
+    <div class="container">
+        <a href="/my_dashboard/provider_dashboard/">
+            <button type="submit" class="btn-outline">My garage</button>
+        </a>
+        <div class="col" id="form_body">
+            <h4>Edit account</h4>
+            <div class="col-md-6">
+                <h2 class="text-center">Provider Account</h2>
+                <hr class="border border-2 border-primary">
+                <!-- TODO: start of registeration section -->
+                <!-- FIXME: add action -->
+                <form action="/my_dashboard/provider_account_edit/{{provider_id}}/" class="needs-validation" novalidate method="post">
+                    {% csrf_token %}
+                    <!-- TODO: first name  & last name inputs  -->
+                    <div class="row g-3">
+                        <div class="col-sm-7">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="{{provider.name}}"
+                                value="" required>
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="location" class="form-label">Location</label>
+                            <select name="location" id="location" class="custom-select form-control">
+                                <option value="All">All</option>
+                                <option value="Ramallah">Ramallah</option>
+                                <option value="Nablus">Nablus</option>
+                                <option value="Jenin">Jenin</option>
+                                <option value="Bethlahm">Bethlahm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- TODO: end of name & location -->
+                    <!-- TODO: start of email-->
+                    <div class="row">
+                        <div class="col-lg">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="{{provider.email}}">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO: end of email-->
+                    <!-- TODO: start of password-->
+                    <div class="row">
+                        <div class="col">
+                            <label for="password" class="form-label">Old Password</label>
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid password is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="new_password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" name="new_password" id="password"
+                                placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid password is required.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO: end of password-->
+                    <!-- TODO: start of password-->
+                    <div class="row">
+                        <div class="col">
+                            <label for="confp" class="form-label">Confirm PW</label>
+                            <input type="password" class="form-control" name="confp" id="confp" placeholder=""
+                                value="" required>
+                            <div class="invalid-feedback">
+                                Valid password is required.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO: end of password-->
+                    <!-- TODO: start of permit-->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="permit" class="form-label">Permit</label>
+                            <input type="text" class="form-control" name="permit" id="permit" placeholder="{{provider.permit}}">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="mobile" class="form-label">Mobile</label>
+                            <input type="tel" class="form-control" name="mobile" id="mobile" required placeholder="{{provider.mobile}}">
+                        </div>
+                    </div>
+                    <!-- TODO: End of age and national id -->
+                    <!-- TODO: end of registration section -->
+                    <div class="my-5 text-center">
+                        <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+</body>
+</html>

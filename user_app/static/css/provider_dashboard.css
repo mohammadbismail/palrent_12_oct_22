@@ -1,0 +1,57 @@
+* {
+    margin: 0 auto;
+}
+
+.container {
+    width: 80%;
+    /* border: 1px solid black; */
+}
+
+.dashboard {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.car_list {
+    display: flex;
+}
+
+.nav_bar {
+    display: flex;
+    text-align: center;
+}
+
+
+.car_pic {
+    width: 80px;
+    height: 80px;
+}
+
+.search_result {
+    width: 80%;
+}
+
+.sorting {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.car_box {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.btn {
+    height: 50px;
+}
+
+

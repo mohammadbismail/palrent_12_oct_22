@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>PalRent</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+  {% load static%}
+  <script src="{% static 'js/main.js' %}" defer></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}" defer></script>
+  <script src="{% static 'js/popper.min.js' %}" defer></script>
+  <script src="{% static 'js/bootstrap.min.js' %}" defer></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}" defer></script>
+  <script src="{% static 'js/jquery.sticky.js' %}" defer></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}" defer></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}" defer></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}" defer></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}" defer></script>
+  <script src="{% static 'js/bootstrap-datepicker.min.js' %}" defer></script>
+  <script src="{% static 'js/aos.js' %}" defer></script>
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+
+  <div class="site-wrap" id="home-section">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    <div id="login-form" class="login-form">
+      <form action="/login/" method="post">
+        {% csrf_token %}
+        <!-- Email input -->
+        {% for error in messages%}
+        <ul>
+          <li>
+            {{error}}
+          </li>
+        </ul>
+        {% endfor %}
+        <div class="form-outline mb-4">
+          <label class="form-label" for="email">Email address</label>
+          <input type="email" id="email" name="email" class="form-control" />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" />
+        </div>
+
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row mb-4">
+          <div class="col d-flex justify-content-center">
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="checkbox" />
+              <label class="form-check-label" for="checkbox"> Remember me </label>
+            </div>
+          </div>
+
+          <div class="col">
+            <!-- Simple link -->
+            <a href="#!">Forgot password?</a>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+      </form>
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>Not a member? <a href="/register/">Register</a></p>
+      </div>
+    </div>
+
+
+
+    <header class="site-navbar site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center position-relative">
+
+          <div class="col-3">
+            <div class="site-logo">
+              <a href="index.html"><strong>PalRent</strong></a>
+              <p class="slogan-header">Car rental in Palestine</p>
+            </div>
+          </div>
+
+          <div class="col-9  text-right">
+            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
+                  class="icon-menu h3 text-black"></span></a></span>
+            <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                <li class="active"><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
+                <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
+              </ul>
+            </nav>
+          </div>
+
+
+        </div>
+      </div>
+
+    </header>
+
+    <div class="hero" style="background-image: url('./static/images/hero_1_a.jpg') ;">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-10">
+
+            <div class="row mb-5">
+              <div class="col-lg-7 intro">
+                <h1><strong>Rent a car</strong> is within your finger tips.</h1>
+              </div>
+            </div>
+
+            <form class="trip-form" action="/search_result/" method="POST">
+              {% csrf_token %}
+              <div class="row align-items-center">
+
+                <div class="col-sm-5">
+                  <label for="location" class="form-label">Location</label>
+                  <select name="location" id="location" class="custom-select form-control">
+                    <option value="All">All</option>
+                    <option value="Ramallah">Ramallah</option>
+                    <option value="Nablus">Nablus</option>
+                    <option value="Jenin">Jenin</option>
+                    <option value="Bethlahm">Bethlahm</option>
+                  </select>
+                </div>
+                <div class="mb-3 mb-md-0 col-md-3">
+                  <div class="form-control-wrap">
+                    <input type="date" id="cf-3" placeholder="Pick up" name="pick_up_date"
+                      class="form-control datepicker px-3">
+                    <span class="icon icon-date_range"></span>
+
+                  </div>
+                </div>
+                <div class="mb-3 mb-md-0 col-md-3">
+                  <div class="form-control-wrap">
+                    <input type="date" id="cf-4" placeholder="Drop off" name="drop_off_date"
+                      class="form-control datepicker px-3">
+                    <span class="icon icon-date_range"></span>
+                  </div>
+                </div>
+                <div class="mb-3 mb-md-0 col-md-3">
+                  <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3">
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <h2 class="section-heading"><strong>How it works?</strong></h2>
+        <p class="mb-5">Easy steps to get you started</p>
+        <div class="row mb-5">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="step">
+              <span>1</span>
+              <div class="step-inner">
+                <span class="number text-primary">01.</span>
+                <h3>Select a car</h3>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="step">
+              <span>2</span>
+              <div class="step-inner">
+                <span class="number text-primary">02.</span>
+                <h3>Fill up form</h3>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="step">
+              <span>3</span>
+              <div class="step-inner">
+                <span class="number text-primary">03.</span>
+                <h3>Payment</h3>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 mx-auto">
+            <a href="#" class="d-flex align-items-center play-now mx-auto">
+              <span class="icon">
+                <span class="icon-play"></span>
+              </span>
+              <span class="caption">Video how it works</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 text-center order-lg-2">
+            <div class="img-wrap-1 mb-5">
+              <img src="images/feature_01.png" alt="Image" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-lg-4 ml-auto order-lg-1">
+            <h3 class="mb-4 section-heading"><strong>Are you a company that provides car rental service?</strong></h3>
+            <p class="mb-5">Now with PalRent we can make it easier for you to rent your cars! Our service is fast, easy,
+              and reliable!</p>
+
+            <p><a href="/register/" class="btn btn-primary">Join Us!</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h2 class="section-heading"><strong>Most Trending Cars</strong></h2>
+            <p class="mb-5">Check out our most populars cars!</p>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_6.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Mitsubishi Pajero</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-warning btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_5.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Nissan Moco</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_4.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Honda Fitta</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_3.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Skoda Laura</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_2.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Mazda LaPuta</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="listing d-block  align-items-stretch">
+              <div class="listing-img h-100 mr-4">
+                <img src="images/car_1.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-contents h-100">
+                <h3>Buick LaCrosse</h3>
+                <div class="rent-price">
+                  <strong>NIS 250.00</strong><span class="mx-1">/</span>day
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Luggage:</span>
+                    <span class="number">8</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Doors:</span>
+                    <span class="number">4</span>
+                  </div>
+                  <div class="listing-feature pr-4">
+                    <span class="caption">Passenger:</span>
+                    <span class="number">4</span>
+                  </div>
+                </div>
+                <div>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="site-section bg-primary py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 mb-4 mb-md-0">
+            <h2 class="mb-0 text-white">What are you waiting for?</h2>
+            <p class="mb-0 opa-7">We make it easier!</p>
+          </div>
+          <div class="col-lg-5 text-md-right">
+            <a href="/register/" class="btn btn-primary btn-white">Rent a car now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-3">
+            <h2 class="footer-heading mb-4">About Us</h2>
+            <p>PalRent is number one car renting website in Palestine </p>
+            <ul class="list-unstyled social">
+              <li><a href="#"><span class="icon-facebook"></span></a></li>
+              <li><a href="#"><span class="icon-instagram"></span></a></li>
+              <li><a href="#"><span class="icon-twitter"></span></a></li>
+              <li><a href="#"><span class="icon-linkedin"></span></a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h2 class="footer-heading mb-4">Quick Links</h2>
+            <ul class="list-unstyled">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+
+</body>
+
+</html>
