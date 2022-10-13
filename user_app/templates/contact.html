@@ -2,31 +2,18 @@
 <html lang="en">
 
 <head>
-  <title>CarRental &mdash; Free Website Template by Colorlib</title>
+  <title>PalRent</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
-
   {% load static%}
-  <script src="{% static 'js/main.js' %}" defer></script>
-  <script src="{% static 'js/jquery-3.3.1.min.js' %}" defer></script>
-  <script src="{% static 'js/popper.min.js' %}" defer></script>
-  <script src="{% static 'js/bootstrap.min.js' %}" defer></script>
-  <script src="{% static 'js/owl.carousel.min.js' %}" defer></script>
-  <script src="{% static 'js/jquery.sticky.js' %}" defer></script>
-  <script src="{% static 'js/jquery.waypoints.min.js' %}" defer></script>
-  <script src="{% static 'js/jquery.animateNumber.min.js' %}" defer></script>
-  <script src="{% static 'js/jquery.fancybox.min.js' %}" defer></script>
-  <script src="{% static 'js/jquery.easing.1.3.js' %}" defer></script>
-  <script src="{% static 'js/bootstrap-datepicker.min.js' %}" defer></script>
-  <script src="{% static 'js/aos.js' %}" defer></script>
-
-
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  
   <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
   <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -34,14 +21,18 @@
   <link rel="stylesheet" href="{% static 'css/aos.css' %}">
   <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+  <script src="/static/js/main.js"></script>
 </head>
-
 <body>
-
+  
+  <div class="popup" id="popup">
+    <img src="/static/images/tick.png">
+    <h3>Thank you!</h3>
+    <p>We received your message! Your feedback will be taken into consideration.</p>
+    <button type="button" onclick="closePopup()">OK</button>
+  </div>
 
   <div class="site-wrap" id="home-section">
-
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -50,8 +41,6 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
-
 
     <header class="site-navbar site-navbar-target" role="banner">
 
@@ -81,24 +70,19 @@
     </header>
 
 
-    <div class="hero inner-page" style="background-image: url('images/hero_1_a.jpg');">
+    <div class="hero inner-page" style="background-image: url('/static/images/hero_1.jpg');">
 
       <div class="container">
         <div class="row align-items-end ">
           <div class="col-lg-5">
-
             <div class="intro">
               <h1><strong>Contact Us</strong></h1>
-              <div class="custom-breadcrumbs"><a href="/">Home</a> <span class="mx-2">/</span> <strong>Contact
-                  Us</strong></div>
+              <div class="custom-breadcrumbs"><a href="/">Home</a> <span class="mx-2">/</span> <strong>Contact Us</strong></div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-
-
 
     <div class="site-section bg-light" id="contact-section">
       <div class="container">
@@ -109,34 +93,43 @@
         </div>
         <div class="row">
           <div class="col-lg-8 mb-5">
-            <form action="#" method="post">
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input required type="text" class="form-control" placeholder="First name">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name">
+                  <input required type="text" class="form-control" placeholder="Last name">
                 </div>
               </div>
-
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
+                  <input required type="text" class="form-control" placeholder="Email address">
                 </div>
               </div>
-
               <div class="form-group row">
                 <div class="col-md-12">
                   <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
+              <input type="radio" id="male" name="gender" value="male"> Male
+              <input type="radio" id="female" name="gender" value="female"> Female
+              <br><br>
               <div class="form-group row">
-                <div class="col-md-6 mr-auto">
-                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message">
+              <div class="col-md-6 mr-auto">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Send me monthly car rental offers
+                  </label>
                 </div>
               </div>
-            </form>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 mr-auto">
+                  <button type="submit" class="btn btn-primary" onclick="displayPopup()">Send your message</button>
+                </div>
+              </div>
           </div>
           <div class="col-lg-4 ml-auto">
             <div class="bg-white p-3 p-md-5">
