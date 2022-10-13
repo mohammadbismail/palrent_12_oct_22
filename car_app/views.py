@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from user_app.models import Provider, Customer
+from user_app.models import Provider, Customer, Customer_payment, Provider_payment
 from .models import Car
 import bcrypt
 
@@ -64,8 +64,23 @@ def car_book(request):
     return redirect("/my_dashboard/payment_confirmation")
 
 
-def payment_method(request):
-    return render(request, "payment_method.html")
+def customer_payment_method(request, customer_id):
+
+    context = {
+        "customer": Customer.objects.get(id=customer_id),
+        "link": "/my_dashboard/customer_add_payment/"+customer_id+"/",
+    }
+    return render(request, "payment_method.html", context)
+
+
+def Provider_payment_method(request, provider_id):
+
+    context = {
+        "provider": Provider.objects.get(id=provider_id),
+        "link": "/my_dashboard/provider_add_payment/"+provider_id+"/"
+    }
+
+    return render(request, "payment_method.html", context)
 
 
 def payment_confirmation(request, car_id):
@@ -114,7 +129,6 @@ def edit_my_car(request, car_id):
 
     print("this works here")
 
-    # car_id = request.POST['car_id']
     c = Car.objects.get(id=car_id)
     c.brand = request.POST["brand"]
     c.model = request.POST["model"]
@@ -130,9 +144,9 @@ def edit_my_car(request, car_id):
 def provider_account(request, provider_id):
     print("this works here")
     context = {
-        # 'garage': Provider.objects.filter(provider=request.session["provider_id"]),
         "provider_id": provider_id,
         "provider": Provider.objects.get(id=provider_id),
+        "cards": Provider_payment.objects.filter(provider_payment=provider_id),
     }
 
     return render(request, "provider_account.html", context)
@@ -174,6 +188,7 @@ def customer_account(request, customer_id):
     context = {
         "customer_id": customer_id,
         "customer": Customer.objects.get(id=customer_id),
+        "cards": Customer_payment.objects.filter(customer_payment=customer_id),
     }
 
     return render(request, "customer_account.html", context)
@@ -214,3 +229,59 @@ def delete_car(request, car_id):
     c.delete()
 
     return redirect("/my_dashboard/add_car")
+
+
+def customer_add_payment(request, customer_id):
+
+    # card_number_from_form = request.POST["card_number"]
+    # car_number_hash = bcrypt.hashpw(card_number_from_form.encode(), bcrypt.gensalt()).decode()
+    # cvv_from_form = request.POST["cvv"]
+    # cvv_hash = bcrypt.hashpw(cvv_from_form.encode(), bcrypt.gensalt()).decode()
+
+    Customer_payment.objects.create(
+        card_owner=request.POST["card_owner"],
+        card_number=request.POST["card_number"],
+        expiration_mm=request.POST["expiration_mm"],
+        expiration_yyyy=request.POST["expiration_yyyy"],
+        cvv=request.POST["cvv"],
+        customer_payment=Customer.objects.get(id=customer_id),
+    )
+
+    return redirect("/my_dashboard/customer_account/"+customer_id)
+
+
+def provider_add_payment(request, provider_id):
+
+    # card_number_from_form = request.POST["card_number"]
+    # car_number_hash = bcrypt.hashpw(card_number_from_form.encode(), bcrypt.gensalt()).decode()
+    # cvv_from_form = request.POST["cvv"]
+    # cvv_hash = bcrypt.hashpw(cvv_from_form.encode(), bcrypt.gensalt()).decode()
+
+    Provider_payment.objects.create(
+        card_owner=request.POST["card_owner"],
+        card_number=request.POST["card_number"],
+        expiration_mm=request.POST["expiration_mm"],
+        expiration_yyyy=request.POST["expiration_yyyy"],
+        cvv=request.POST["cvv"],
+        provider_payment=Provider.objects.get(id=request.session["provider_id"]),
+    )
+
+    return redirect("/my_dashboard/provider_account/"+provider_id)
+
+
+def customer_delete_card(request, card_id, customer_id):
+
+    # customer_id = customer
+    c = Customer_payment.objects.get(id=card_id)
+    c.delete()
+
+    return redirect("/my_dashboard/customer_account/"+customer_id)
+
+
+def provider_delete_card(request, card_id, provider_id):
+
+    # customer_id = customer
+    c = Provider_payment.objects.get(id=card_id)
+    c.delete()
+
+    return redirect("/my_dashboard/provider_account/"+provider_id)
