@@ -8,6 +8,7 @@ class Car(models.Model):
     production_year = models.IntegerField()
     plate_number = models.CharField(max_length=45)
     price = models.IntegerField()
+    photo = models.FileField(blank=True)
     provider = models.ForeignKey(Provider, related_name="cars", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
