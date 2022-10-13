@@ -115,7 +115,7 @@ class Provider(models.Model):
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=255)
     mobile = models.IntegerField()
-    permit = models.IntegerField()
+    permit = models.FileField(blank=True)
     location = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
