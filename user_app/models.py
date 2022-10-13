@@ -87,7 +87,7 @@ class ProviderManager(models.Manager):
             return errors
         provider = Provider.objects.filter(email=data["email"])
         if not provider:
-            errors["wrong_email"] = "email is not found"
+            errors["wrong_email_c"] = "email is not found"
             return errors
         if not bcrypt.checkpw(data["password"].encode(), provider[0].password.encode()):
             errors["wrong_password"] = "Invalid password"
@@ -119,26 +119,31 @@ class Provider(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ProviderManager()
-
+    # cars
 
 
 class Customer_payment(models.Model):
     card_owner = models.CharField(max_length=100)
-    card_number= models.IntegerField()
+    card_number = models.IntegerField()
     expiration_mm = models.IntegerField()
     expiration_yyyy = models.IntegerField()
     cvv = models.IntegerField()
-    customer_payment = models.ForeignKey(Customer, related_name="customer_cards", on_delete=models.CASCADE)
+    customer_payment = models.ForeignKey(
+        Customer, related_name="customer_cards", on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Provider_payment(models.Model):
     card_owner = models.CharField(max_length=100)
-    card_number= models.IntegerField()
+    card_number = models.IntegerField()
     expiration_mm = models.IntegerField()
     expiration_yyyy = models.IntegerField()
     cvv = models.IntegerField()
-    provider_payment = models.ForeignKey(Provider, related_name="provider_cars", on_delete=models.CASCADE)
+    provider_payment = models.ForeignKey(
+        Provider, related_name="provider_cars", on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -147,7 +152,6 @@ class Website_review(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    message= models.TextField()
+    message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-

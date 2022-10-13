@@ -21,72 +21,70 @@ def search(request):
 
 
 def search_result(request):
-
     context = {
-        "searched_cars": Provider.objects.filter(location=request.POST["location"])
+        "location_filter_provider": Provider.objects.filter(
+            location=request.POST["location"]
+        ),
     }
-
+    provider = Provider.objects.filter(location=request.POST["location"])
+    print(provider)
     return render(request, "search_result.html", context)
 
 
-def car_select(request, car_id):
-
-    if "customer_id" in request.session:
-        return redirect("/my_dashboard/car_details/" + car_id)
-
-    return redirect("/car_details/" + car_id)
+def car_select(request):
+    # TODO: hidden input is going and car id
+    return render(request, "car_details.html")
 
 
-def car_details(request, car_id):
-    context = {"selected_car": Car.objects.get(id=car_id)}
+def car_details(request):
+    # TODO: car id is coming as hidden, user is coming as session, need to add them to make booking
+    context = {
+        # coming from hidden input
+        "selected_car": Car.objects.get(id=request.POST["car_id"]),
+        "selected_customer": Customer.objects.get(id=request.session["customer_id"]),
+    }
     return render(request, "car_details.html", context)
 
 
 def car_book(request, car_id):
     if "customer_id" in request.session:
-        return redirect("/my_dashboard/payment_confirmation/" + car_id)
+        return redirect("/my_dashboard/payment_confirmation/")
     return redirect("/register")
 
 
 def login(request):
 
-    customer = Customer.objects.filter(email=request.POST["email"])
-    if customer:
-        errors = Customer.objects.customer_login_validator(request.POST)
-        if len(errors) > 0:
-            for key, val in errors.items():
-                messages.error(request, val)
-            return redirect("/")
-
-        logged_customer = customer[0]
-        if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_customer.password.encode()
-        ):
-            request.session["customer_id"] = logged_customer.id
-            request.session["customer_first_name"] = logged_customer.first_name
-            request.session["sign_out"] = "Sign Out"
-            print(request.session["customer_id"])
+    errors = Provider.objects.provider_login_validator(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
         return redirect("/")
-
+    print("you are here")
     provider = Provider.objects.filter(email=request.POST["email"])
     if provider:
-        errors = Provider.objects.provider_login_validator(request.POST)
-        if len(errors) > 0:
-            for key, val in errors.items():
-                messages.error(request, val)
-            return redirect("/")
-
-        logged_provider = provider[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_provider.password.encode()
+            request.POST["password"].encode(), provider[0].password.encode()
         ):
-            request.session["provider_id"] = logged_provider.id
-            request.session["provider_name"] = logged_provider.name
+            request.session["provider_id"] = provider[0].id
+            request.session["provider_name"] = provider[0].name
             request.session["sign_out"] = "Sign Out"
-            print(request.session["provider_id"])
+        return redirect("/my_dashboard/provider_dashboard/")
 
+    customer = Customer.objects.filter(email=request.POST["email"])
+    errors = Customer.objects.customer_login_validator(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect("/")
 
-        return redirect("/my_dashboard/provider_dashboard")
+    if customer:
+        if bcrypt.checkpw(
+            request.POST["password"].encode(), customer[0].password.encode()
+        ):
+            request.session["customer_id"] = customer[0].id
+            request.session["customer_first_name"] = customer[0].first_name
+            request.session["sign_out"] = "Sign Out"
+        return redirect("/")
 
 
 def register(request):
@@ -151,6 +149,8 @@ def provider_register(request):
     )
     request.session["provider_id"] = provider.id
     request.session["provider_name"] = provider.name
+    request.session["sign_out"] = "Sign Out"
+
     return redirect("/my_dashboard/provider_dashboard")
 
 

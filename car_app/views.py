@@ -41,7 +41,9 @@ def car_select(request, car_id):
 
 
 def car_details(request, car_id):
-    context = {"selected_car": Car.objects.get(id=car_id)}
+    context = {
+        "selected_car": Car.objects.get(id=car_id),
+    }
     return render(request, "car_details.html", context)
 
 
