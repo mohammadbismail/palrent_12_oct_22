@@ -1,12 +1,12 @@
-
 from django.shortcuts import render, redirect
 from .models import Customer, Provider
 from car_app.models import Car
 import bcrypt
 from django.contrib import messages
 
+
 def dashboard(request):
-    return render(request,"dashboard.html")
+    return render(request, "dashboard.html")
 
 
 def search(request):
@@ -20,30 +20,28 @@ def search(request):
 def search_result(request):
 
     context = {
-        'searched_cars': Provider.objects.filter(location=request.POST["location"])
+        "searched_cars": Provider.objects.filter(location=request.POST["location"])
     }
 
-    return render(request,"search_result.html", context)
+    return render(request, "search_result.html", context)
 
 
 def car_select(request, car_id):
 
     if "customer_id" in request.session:
-        return redirect("/my_dashboard/car_details/"+car_id)
+        return redirect("/my_dashboard/car_details/" + car_id)
 
-    return redirect("/car_details/"+car_id)
+    return redirect("/car_details/" + car_id)
 
 
 def car_details(request, car_id):
-    context = {
-        'selected_car': Car.objects.get(id=car_id)
-    }
-    return render(request,"car_details.html", context)
+    context = {"selected_car": Car.objects.get(id=car_id)}
+    return render(request, "car_details.html", context)
 
 
 def car_book(request, car_id):
     if "customer_id" in request.session:
-        return redirect("/my_dashboard/payment_confirmation/"+car_id)
+        return redirect("/my_dashboard/payment_confirmation/" + car_id)
     return redirect("/register")
 
 
@@ -63,8 +61,8 @@ def login(request):
         ):
             request.session["customer_id"] = logged_customer.id
             request.session["customer_first_name"] = logged_customer.first_name
-        print("this is customer name", request.session["customer_first_name"])
-        return redirect("/my_dashboard")
+            request.session["sign_out"] = "Sign Out"
+        return redirect("/")
 
     provider = Provider.objects.filter(email=request.POST["email"])
     if provider:
@@ -80,12 +78,14 @@ def login(request):
         ):
             request.session["provider_id"] = logged_provider.id
             request.session["provider_name"] = logged_provider.name
+            request.session["sign_out"] = "Sign Out"
 
         return redirect("/my_dashboard/provider_dashboard")
 
 
 def register(request):
-    return render(request,"register.html")
+    return render(request, "register.html")
+
 
 def customer_register(request):
 
@@ -98,7 +98,7 @@ def customer_register(request):
     password = request.POST["password"]
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-    Customer.objects.create(
+    customer = Customer.objects.create(
         first_name=request.POST["firstName"],
         last_name=request.POST["lastName"],
         email=request.POST["email"],
@@ -107,7 +107,11 @@ def customer_register(request):
         birthday=request.POST["birthday"],
         national_id=request.POST["national_id"],
     )
-    return redirect("/my_dashboard")
+    request.session["customer_id"] = customer.id
+    request.session["customer_first_name"] = customer.first_name
+    request.session["sign_out"] = "Sign Out"
+    return redirect("/")
+
 
 def provider_register(request):
 
@@ -128,34 +132,28 @@ def provider_register(request):
         permit=request.POST["permit"],
         location=request.POST["location"],
     )
-    request.session['provider_id']=provider.id
-    request.session['provider_name']=provider.name
+    request.session["provider_id"] = provider.id
+    request.session["provider_name"] = provider.name
     return redirect("/my_dashboard/provider_dashboard")
 
 
 def delete(request):
-    print("logout works")
-    if "customer_id" in request.session:
 
+    if "customer_id" in request.session:
         del request.session["customer_id"]
         del request.session["customer_first_name"]
+        del request.session["sign_out"]
 
         return redirect("/")
 
     if "provider_id" in request.session:
-    
+
         del request.session["provider_id"]
         del request.session["provider_name"]
+        del request.session["sign_out"]
 
-        return redirect("/")
-
-    else:
         return redirect("/")
 
 
 def contact(request):
-    return render(request, 'contact.html')
-
-
-
-
+    return render(request, "contact.html")

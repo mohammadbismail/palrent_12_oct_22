@@ -114,8 +114,30 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
+                {% if "provider_id" in request.session %}
+                <li>
+                  <a href="my_dashboard/provider_dashboard/">
+                    <button class="btn btn-primary">My Dashboard</button>
+                  </a>
+                </li>
+                {% endif %}
+                {% if "sign_out" not in request.session %}
                 <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
+                {% else %}
+                <button class="btn btn-primary" onclick="toggleLoginForm()"><span><a href="/delete/"
+                      style="color: white;">Sign Out</a></span></button>
+                {% endif %}
               </ul>
+              <div class="row">
+                <div class="col-10">
+                  {% if "customer_id" in request.session %}
+                  <h2>Welcome {{request.session.customer_first_name}}</h2>
+                  {% endif %}
+                  {% if "provider_id" in request.session %}
+                  <h2>Welcome {{request.session.provider_name}}</h2>
+                  {% endif %}
+                </div>
+              </div>
             </nav>
           </div>
 
@@ -141,7 +163,7 @@
               {% csrf_token %}
               <div class="row align-items-center">
 
-                <div class="col-sm-5">
+                <div class="col-md-3">
                   <label for="location" class="form-label">Location</label>
                   <select name="location" id="location" class="custom-select form-control">
                     <option value="All">All</option>
@@ -151,23 +173,25 @@
                     <option value="Bethlahm">Bethlahm</option>
                   </select>
                 </div>
-                <div class="mb-3 mb-md-0 col-md-3">
+                <div class="col-md-3">
                   <div class="form-control-wrap">
+                    <label for="cf-3" class="form-label">Pick-up Date</label>
                     <input type="date" id="cf-3" placeholder="Pick up" name="pick_up_date"
-                      class="form-control datepicker px-3">
+                      class="form-control datepicker px-4">
                     <span class="icon icon-date_range"></span>
 
                   </div>
                 </div>
-                <div class="mb-3 mb-md-0 col-md-3">
+                <div class="col-md-3">
                   <div class="form-control-wrap">
+                    <label for="cf-4" class="form-label">Drop-off Date</label>
                     <input type="date" id="cf-4" placeholder="Drop off" name="drop_off_date"
-                      class="form-control datepicker px-3">
+                      class="form-control datepicker px-4">
                     <span class="icon icon-date_range"></span>
                   </div>
                 </div>
-                <div class="mb-3 mb-md-0 col-md-3">
-                  <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3">
+                <div class="col-md-3 py-1">
+                  <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3 my-3">
                 </div>
               </div>
 
@@ -214,25 +238,15 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 mx-auto">
-            <a href="#" class="d-flex align-items-center play-now mx-auto">
-              <span class="icon">
-                <span class="icon-play"></span>
-              </span>
-              <span class="caption">Video how it works</span>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
 
     <div class="site-section">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-7 text-center order-lg-2">
+          <div class="col-lg-8 text-center order-lg-2">
             <div class="img-wrap-1 mb-5">
-              <img src="images/feature_01.png" alt="Image" class="img-fluid">
+              <img src="{% static 'images/feature_02.png' %}" alt="image" class="img-fluid">
             </div>
           </div>
           <div class="col-lg-4 ml-auto order-lg-1">
@@ -245,8 +259,6 @@
         </div>
       </div>
     </div>
-
-
 
     <div class="site-section bg-light">
       <div class="container">
@@ -263,7 +275,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_6.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_6.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Mitsubishi Pajero</h3>
@@ -285,7 +297,7 @@
                   </div>
                 </div>
                 <div>
-                  <p><a href="/register/" class="btn btn-warning btn-sm">Rent Now</a></p>
+                  <p><a href="/register/" class="btn btn-primary btn-sm">Rent Now</a></p>
                 </div>
               </div>
 
@@ -296,7 +308,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_5.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_5.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Nissan Moco</h3>
@@ -330,7 +342,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_4.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_4.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Honda Fitta</h3>
@@ -363,7 +375,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_3.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_3.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Skoda Laura</h3>
@@ -396,7 +408,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_2.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_2.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Mazda LaPuta</h3>
@@ -430,7 +442,7 @@
 
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src="images/car_1.jpg" alt="Image" class="img-fluid">
+                <img src="{% static 'images/car_1.jpg' %}" alt="Image" class="img-fluid">
               </div>
               <div class="listing-contents h-100">
                 <h3>Buick LaCrosse</h3>
@@ -483,10 +495,15 @@
             <h2 class="footer-heading mb-4">About Us</h2>
             <p>PalRent is number one car renting website in Palestine </p>
             <ul class="list-unstyled social">
-              <li><a href="#"><span class="icon-facebook"></span></a></li>
-              <li><a href="#"><span class="icon-instagram"></span></a></li>
-              <li><a href="#"><span class="icon-twitter"></span></a></li>
-              <li><a href="#"><span class="icon-linkedin"></span></a></li>
+              <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2504/2504903.png" alt="fb"
+                    height="40px"></span></a>
+              </li>
+              <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="inst"
+                    height="40px"></a></li>
+              <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png" alt="tw"
+                    height="40px"></a></li>
+              <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="in"
+                    height="40px"></a></li>
             </ul>
           </div>
           <div class="col-lg-3">
