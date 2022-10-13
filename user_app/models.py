@@ -77,8 +77,6 @@ class ProviderManager(models.Manager):
             errors["password"] = "Password does not match!"
         if len(data["mobile"]) > 10 or len(data["mobile"]) < 1:
             errors["mobile"] = "Mobile can't exceed 10 numbers and can't be empty"
-        if len(data["permit"]) < 5:
-            errors["permit"] = "Permit has to be more 5 characters "
         return errors
 
     def provider_login_validator(self, data):
