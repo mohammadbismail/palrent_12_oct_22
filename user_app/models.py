@@ -125,8 +125,8 @@ class Provider(models.Model):
 
 class Payment_Method(models.Model):
     card_owner = models.CharField(max_length=100)
-    card_number= models.IntegerField(max_length=16)
-    CVV = models.IntegerField(max_length=3)
+    card_number= models.IntegerField()
+    CVV = models.IntegerField()
     expiration_date = models.DateField()
     customer_payment = models.ForeignKey(Customer, related_name="customer_cards", on_delete=models.CASCADE)
     provider_payment = models.ForeignKey(Provider, related_name="provider_cars", on_delete=models.CASCADE)
