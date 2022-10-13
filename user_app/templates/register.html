@@ -99,8 +99,8 @@
                                     <input type="date" class="form-control" name="birthday" id="birthday">
                                 </div>
                                 <div class="col-lg-8">
-                                    <label for="national_id" class="form-label">National ID</label>
-                                    <input type="text" class="form-control" name="national_id" id="national_id"
+                                    <label for="driving_license" class="form-label">Driving License</label>
+                                    <input type="file" class="form-control" name="driving_license" id="driving_license"
                                         required>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <label for="location" class="form-label">Location</label>
-                                    <input type="text" class="form-control" name="location" id="name">
+                                    <input type="text" class="form-control" name="location" id="location">
                                 </div>
                             </div>
                             <!-- TODO: end of name & location -->
@@ -180,6 +180,16 @@
                                 <div class="col-lg-6">
                                     <label for="mobile" class="form-label">Mobile</label>
                                     <input type="tel" class="form-control" name="mobile" id="mobile" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <label for="logo" class="form-label">Logo</label>
+                                    <input type="file" class="form-control" name="logo" id="logo"
+                                        placeholder="you@example.com">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address
+                                    </div>
                                 </div>
                             </div>
                             <!-- TODO: End of age and national id -->
