@@ -8,7 +8,8 @@
         </a>
     </div>
     <div class="row gy-5 m-5 ">
-        <h4 class="text-center">Welcome {{request.session.provider_name}}, please fill below form to add your car</h4>
+        <h4 class="text-center">Welcome, {{request.session.provider_name}}</h4>
+        <h5>Please fill below form to add your car</h5>
         <div class="col car_form">
             <div class="row car_details">
                 <form action="/my_dashboard/insert_car/" method="post">

@@ -96,19 +96,21 @@ class ProviderManager(models.Manager):
 
 
 class Customer(models.Model):
+    profile = models.FileField(blank=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=255)
     mobile = models.IntegerField()
     birthday = models.DateField()
-    national_id = models.IntegerField()
+    driving_license = models.FileField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = CustomerManager()
 
 
 class Provider(models.Model):
+    logo = models.FileField(blank=True)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=255)
@@ -118,3 +120,16 @@ class Provider(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ProviderManager()
+
+
+
+class Payment_Method(models.Model):
+    card_owner = models.CharField(max_length=100)
+    card_number= models.IntegerField(max_length=16)
+    CVV = models.IntegerField(max_length=3)
+    expiration_date = models.DateField()
+    customer_payment = models.ForeignKey(Customer, related_name="customer_cards", on_delete=models.CASCADE)
+    provider_payment = models.ForeignKey(Provider, related_name="provider_cars", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
