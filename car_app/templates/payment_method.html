@@ -38,8 +38,11 @@
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="credit-card" class="tab-pane fade show active pt-3">
-                            <form role="form" onsubmit="event.preventDefault()">
-                                <form action="add_payment" method="post">
+                            <!-- <form role="form" onsubmit="event.preventDefault()"> -->
+                                <input type="hidden" name="customer_id" value="{{customer.id}}">
+                                
+                                <form action="{{link}}" method="post">
+                                {% csrf_token %}
                                 <div class="form-group"> <label for="card_owner">
                                         <h6>Card Owner</h6>
                                     </label> <input type="text" name="card_owner" placeholder="Card Owner Name" required
@@ -73,10 +76,10 @@
                                             </label> <input type="number" required name="cvv" class="form-control" placeholder="XXX"> </div>
                                     </div>
                                 </div>
-                                <div class="card-footer"> <button type="button"
+                                <div class="card-footer"> <button type="submit"
                                         class="subscribe btn btn-primary btn-block shadow-sm">Add Payment</button>
                                 </form>
-                            </form>
+                            <!-- </form> -->
                         </div>
                     </div> <!-- End -->
                     <!-- Paypal info -->

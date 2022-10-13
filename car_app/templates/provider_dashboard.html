@@ -110,7 +110,7 @@
                                         class="icon-menu h3 text-black"></span></a></span>
                             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                                    <a href="/"><button class="btn btn-primary">Home</button></a>
+                                    <a href="/my_dashboard/provider_dashboard/"><button class="btn btn-primary">Home</button></a>
                                     </li>
                                     <li>
                                         <a href="/my_dashboard/provider_account/{{request.session.provider_id}}/">
@@ -122,7 +122,7 @@
                                             <button class="btn btn-primary">Add Car</button>
                                         </a>
                                     </li>
-                                    {% if "sign_out" not in request.session %}
+                                    {% if "provider_id" not in request.session %}
                                     <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
                                     {% else %}
                                     <button class="btn btn-primary" onclick="toggleLoginForm()"><span><a href="/delete/"

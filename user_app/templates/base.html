@@ -151,19 +151,22 @@
 
           <div class="col-3">
             <div class="site-logo">
-              <a href="index.html"><strong>PalRent</strong></a>
+              <a href="/"><strong>PalRent</strong></a>
               <p class="slogan-header">Car rental in Palestine</p>
             </div>
           </div>
-
           <div class="col-9  text-right">
             <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
                   class="icon-menu h3 text-black"></span></a></span>
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                {% if "customer_id" in request.session %}
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
+                {% else %}
+                <li class="active"><a href="/my_dashboard/provider_dashboard/" class="nav-link">Home</a></li>
+                {% endif %}
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
-                {% if "sign_out" not in request.session %}
+                {% if "customer_id" not in request.session and "provider_id" not in request.session %}
                 <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
                 {% else %}
                 <button class="btn btn-primary" onclick="toggleLoginForm()"><span><a href="/delete/"
