@@ -206,3 +206,11 @@ def customer_account_edit(request, customer_id):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def delete_car(request, car_id):
+
+    c = Car.objects.get(id=car_id)
+    c.delete()
+
+    return redirect("/my_dashboard/add_car")

@@ -22,5 +22,6 @@ urlpatterns = [
     path("customer_account_edit/<customer_id>/", views.customer_account_edit),
     path("provider_car_details/<car_id>/", views.provider_car_details),
     path("contact/", views.contact),
+    path("delete_car/<car_id>/", views.delete_car),
 
 ]
