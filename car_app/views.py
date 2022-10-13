@@ -11,8 +11,10 @@ def my_dashboard(request):
 
     customer_id = request.session["customer_id"]
 
-    context = {"customer_id": customer_id}
-
+    context = {
+        "customer_id": customer_id,
+        # "all_providers": Provider.objects.all(),
+    }
     return render(request, "my_dashboard.html", context)
 
 

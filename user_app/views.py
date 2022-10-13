@@ -6,7 +6,10 @@ from django.contrib import messages
 
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    context = {
+        "all_providers": Provider.objects.all(),
+    }
+    return render(request, "dashboard.html", context)
 
 
 def search(request):
@@ -46,7 +49,7 @@ def car_book(request, car_id):
 
 
 def login(request):
-    print("this is customer name")
+
     customer = Customer.objects.filter(email=request.POST["email"])
     if customer:
         errors = Customer.objects.customer_login_validator(request.POST)
@@ -62,6 +65,7 @@ def login(request):
             request.session["customer_id"] = logged_customer.id
             request.session["customer_first_name"] = logged_customer.first_name
             request.session["sign_out"] = "Sign Out"
+            print(request.session["customer_id"])
         return redirect("/")
 
     provider = Provider.objects.filter(email=request.POST["email"])
@@ -79,6 +83,8 @@ def login(request):
             request.session["provider_id"] = logged_provider.id
             request.session["provider_name"] = logged_provider.name
             request.session["sign_out"] = "Sign Out"
+            print(request.session["provider_id"])
+
 
         return redirect("/my_dashboard/provider_dashboard")
 

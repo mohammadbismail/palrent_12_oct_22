@@ -165,12 +165,11 @@
 
                 <div class="col-md-3">
                   <label for="location" class="form-label">Location</label>
-                  <select name="location" id="location" class="custom-select form-control">
-                    <option value="All">All</option>
-                    <option value="Ramallah">Ramallah</option>
-                    <option value="Nablus">Nablus</option>
-                    <option value="Jenin">Jenin</option>
-                    <option value="Bethlahm">Bethlahm</option>
+                  <!-- FIXME: send a id as jinja -->
+                  <select name="location" class="custom-select form-control">
+                    {% for provider in all_providers%}
+                    <option value="{{provider.id}}">{{provider.location}}</option>
+                    {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-3">
