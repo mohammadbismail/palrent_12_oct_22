@@ -111,7 +111,7 @@ def customer_register(request):
         password=pw_hash,
         mobile=request.POST["mobile"],
         birthday=request.POST["birthday"],
-        national_id=request.POST["national_id"],
+        # national_id=request.POST["national_id"],
     )
     request.session["customer_id"] = customer.id
     request.session["customer_first_name"] = customer.first_name
@@ -135,7 +135,7 @@ def provider_register(request):
         email=request.POST["email"],
         password=pw_hash,
         mobile=request.POST["mobile"],
-        permit=request.POST["permit"],
+        # permit=request.POST["permit"],
         location=request.POST["location"],
     )
     request.session["provider_id"] = provider.id
