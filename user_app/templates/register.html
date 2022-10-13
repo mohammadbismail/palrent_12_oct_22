@@ -30,7 +30,7 @@
                         <h2 class="text-center">Customer Registration</h2>
                         <hr class="border border-2 border-primary">
                         <!-- FIXME:FIXME: form -->
-                        <form action="/customer_register/" method="post" class="needs-validation" novalidate>
+                        <form action="/customer_register/" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
                             {% csrf_token %}
                             <!-- TODO: first name  & last name inputs  -->
                             <div class="row g-3">
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <label for="driving_license" class="form-label">Driving License</label>
-                                    <input type="file" class="form-control" name="driving_license" id="driving_license"
+                                    <input type="file" class="form-control" enctype="multipart/form-data" name="driving_license" id="driving_license"
                                         required>
                                 </div>
                             </div>

@@ -111,12 +111,23 @@ def customer_register(request):
         password=pw_hash,
         mobile=request.POST["mobile"],
         birthday=request.POST["birthday"],
-        # national_id=request.POST["national_id"],
+        driving_license = request.FILES["driving_license"],
+        # if driving_license.is_valid():
+        # driving_license(request.FILES['driving_license']),
     )
     request.session["customer_id"] = customer.id
     request.session["customer_first_name"] = customer.first_name
     request.session["sign_out"] = "Sign Out"
     return redirect("/")
+
+
+# driving_license = UploadFileForm(request.POST, request.FILES)
+# if driving_license.is_valid():
+#     handle_uploaded_file(request.FILES['file'])
+#     return HttpResponseRedirect('/success/url/')
+
+
+
 
 
 def provider_register(request):

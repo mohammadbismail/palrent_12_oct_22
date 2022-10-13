@@ -190,8 +190,15 @@ def customer_account(request, customer_id):
         "customer": Customer.objects.get(id=customer_id),
         "cards": Customer_payment.objects.filter(customer_payment=customer_id),
     }
+    # allimages: Customer.objects.all()
 
     return render(request, "customer_account.html", context)
+
+# def display_images(request): 
+
+#     # getting all the objects of hotel. 
+#     allimages = Customer.objects.all()  
+#     return render(request, 'customer_account.html',{'images' : allimages})
 
 
 def customer_account_edit(request, customer_id):
@@ -214,6 +221,7 @@ def customer_account_edit(request, customer_id):
     c.password = pw_hash
     c.national_id = request.POST["national_id"]
     c.mobile = request.POST["mobile"]
+    c.driving_license = request.FILES["driving_license"]
     c.save()
 
     return redirect("/my_dashboard/customer_account/" + customer_id)

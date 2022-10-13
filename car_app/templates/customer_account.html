@@ -26,22 +26,20 @@
                     <hr class="border border-2 border-primary">
                     <!-- TODO: start of registeration section -->
                     <!-- FIXME: add action -->
-                    <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" novalidate method="post">
+                    <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <!-- TODO: first name  & last name inputs  -->
                         <div class="row g-3">
                             <div class="col-sm-7">
                                 <label for="first_name" class="form-label">First name</label>
-                                <input type="text" class="form-control" name="first_name" id="name" placeholder="{{customer.first_name}}"
-                                    value="" required>
+                                <textarea name="first_name" class="form-control" id="first_name" cols="20" rows="1" required>{{customer.first_name}}</textarea>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <label for="last_name" class="form-label">Last name</label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="{{customer.last_name}}"
-                                    value="" required>
+                                <textarea name="last_name" class="form-control" id="last_name" cols="20" rows="1" required>{{customer.last_name}}</textarea>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
@@ -52,8 +50,7 @@
                         <div class="row">
                             <div class="col-lg">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="{{customer.email}}">
+                                <textarea name="email" class="form-control" id="email" cols="20" rows="1" required>{{customer.email}}</textarea>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address
                                 </div>
@@ -97,12 +94,13 @@
                         <!-- TODO: start of permit-->
                         <div class="row">
                             <div class="col-lg-6">
-                                <label for="national_id" class="form-label">National ID</label>
-                                <input type="text" class="form-control" name="national_id" id="national_id" placeholder="{{customer.national_id}}">
+                                <label for="driving_license" class="form-label">Driving License</label>
+                                <img src="{{customer.driving_license.url}}" alt="">
+                                <div name="driving_license" class="form-control" id="driving_license" cols="20" rows="1" required>{{customer.driving_license}}</div>
                             </div>
                             <div class="col-lg-6">
                                 <label for="mobile" class="form-label">Mobile</label>
-                                <input type="tel" class="form-control" name="mobile" id="mobile" required placeholder="{{customer.mobile}}">
+                                <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1" required>{{customer.mobile}}</textarea>
                             </div>
                         </div>
                         <!-- TODO: End of age and national id -->

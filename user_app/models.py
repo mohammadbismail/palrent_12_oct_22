@@ -2,6 +2,7 @@ from django.db import models
 import re
 import bcrypt
 from datetime import datetime, timedelta
+import os
 
 # from car_app.models import Car
 
@@ -101,7 +102,7 @@ class Customer(models.Model):
     password = models.CharField(max_length=255)
     mobile = models.IntegerField()
     birthday = models.DateField()
-    driving_license = models.FileField(blank=True)
+    driving_license = models.ImageField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = CustomerManager()

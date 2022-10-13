@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+# from django.contrib import admin
 
 urlpatterns = [
     path("", views.my_dashboard),
@@ -28,5 +29,4 @@ urlpatterns = [
     path("provider_car_details/<car_id>/", views.provider_car_details),
     path("contact/", views.contact),
     path("delete_car/<car_id>/", views.delete_car),
-
 ]
