@@ -1,4 +1,52 @@
 /* Our team styling */
+#duplicate-email {
+  color: red;
+  display: none;
+}
+.popup {
+  width: 40%;
+  background: rgb(228, 227, 227);
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0.1);
+  text-align: center;
+  padding: 0 5% 5%;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+.popup img {
+  width: 27%;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.popup button {
+  width: 100%;
+  margin-top: 3%;
+  padding: 2% 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+.open-popup {
+  visibility: visible;
+  top:50%;
+  transform: translate(-50%,-50%) scale(1);
+  z-index: 999;
+
+}
+.popup h3 {
+  font-weight: 500;
+  margin: 5% 0 3%;
+}
 .slogan-header {
   margin: 0px;
   padding: 0px;
