@@ -1,4 +1,13 @@
 // here is our updates
+function displayPopup(){
+	let popup = document.getElementById("popup");
+	   popup.classList.add("open-popup")
+	   window.scrollTo(0,0)
+	}
+	function closePopup(){
+	let popup = document.getElementById("popup");
+	  popup.classList.remove("open-popup")
+	}
 function toggleLoginForm() {
 	console.log("11111111111111111111111")
 	var formContainer = document.getElementById("login-form")
