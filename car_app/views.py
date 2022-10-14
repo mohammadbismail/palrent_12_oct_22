@@ -18,18 +18,6 @@ def my_dashboard(request):
     }
     return render(request, "dashboard.html", context)
 
-# def my_dashboard(request):
-
-#     if "customer_id" not in request.session:
-#         return redirect("/")
-
-#     customer_id = request.session["customer_id"]
-
-#     context = {
-#         "customer_id": customer_id,
-#         "customer": Customer.objects.get(id=request.session["customer_id"]),
-#     }
-#     return render(request, "dashboard.html", context)
 
 
 
@@ -308,7 +296,6 @@ def provider_add_payment(request, provider_id):
 
 def customer_delete_card(request, card_id, customer_id):
 
-    # customer_id = customer
     c = Customer_payment.objects.get(id=card_id)
     c.delete()
 
@@ -317,7 +304,6 @@ def customer_delete_card(request, card_id, customer_id):
 
 def provider_delete_card(request, card_id, provider_id):
 
-    # customer_id = customer
     c = Provider_payment.objects.get(id=card_id)
     c.delete()
 
