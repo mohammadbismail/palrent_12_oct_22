@@ -131,11 +131,13 @@
               <div class="row">
                 <div class="col-10">
                   {% if "customer_id" in request.session %}
-                  <h2>Welcome {{request.session.customer_first_name}}</h2>
-                  {% endif %}
-                  {% if "provider_id" in request.session %}
-                  <h2>Welcome {{request.session.provider_name}}</h2>
-                  {% endif %}
+                    <input type="hidden" name="customer_id" value="{{customer.id}}">
+                    <img src="{{customer.profile.url}}" alt="photo_test1" width="100px" height="100px">
+                    <h2>Welcome {{request.session.customer_first_name}}</h2>
+                    {% endif %}
+                    {% if "provider_id" in request.session %}
+                    <h2>Welcome {{request.session.provider_name}}</h2>
+                    {% endif %}
                 </div>
               </div>
             </nav>

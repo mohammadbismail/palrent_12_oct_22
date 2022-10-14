@@ -18,7 +18,7 @@
         <div class="col car_form">
             <div class="row car_details">
                 <input type="hidden" name="car_id" value="{{car.id}}">
-                <form action="/my_dashboard/edit_my_car/{{car.id}}/" method="post">
+                <form action="/my_dashboard/edit_my_car/{{car.id}}/" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3 mb-md-0 col-md-3">
                         <label for="brand" class="form-label">Select Brand: {{car.brand}}</label>
@@ -35,28 +35,28 @@
                     </div>
                     <div class="row-sm-6">
                         <label for="model" class="form-label">Model</label>
-                        <input type="text" class="form-control" name="model" id="model" placeholder="{{car.model}}" value="" required>
+                        <textarea name="model" class="form-control" id="model" cols="20" rows="1" required>{{car.model}}</textarea>
                         <div class="invalid-feedback">
                             Model is required.
                         </div>
                     </div>
                     <div class="row-sm-6">
                         <label for="color" class="form-label">Color</label>
-                        <input type="text" class="form-control" name="color" id="color" placeholder="{{car.color}}" value="" required>
+                        <textarea name="color" class="form-control" id="color" cols="20" rows="1" required>{{car.color}}</textarea>
                         <div class="invalid-feedback">
                             Color is required.
                         </div>
                     </div>
                     <div class="row-6">
                         <label for="production_year" class="form-label">Production year</label>
-                        <input type="number" class="form-control" name="production_year" id="production_year" placeholder="{{car.production_year}}" required>
+                        <textarea name="production_year" class="form-control" id="production_year" cols="20" rows="1" required>{{car.production_year}}</textarea>
                         <div class="invalid-feedback">
                             Production Year is required.
                         </div>
                     </div>
                     <div class="row-6">
                         <label for="plate_number" class="form-label">Plate Number</label>
-                        <input type="number" class="form-control" name="plate_number" id="production_year" placeholder="{{car.plate_number}}" required>
+                        <textarea name="plate_number" class="form-control" id="production_year" cols="20" rows="1" required>{{car.plate_number}}</textarea>
                         <div class="invalid-feedback">
                             Plate Number is required.
                         </div>
@@ -69,8 +69,9 @@
                         </div>
                     </div>
                     <div class="row-6">
-                        <label for="car_photo" class="form-label">Car Photo</label>
-                        <input type="file" class="form-control" name="car_photo" id="car_photo">
+                        <label for="photo" class="form-label">Car Photo</label>
+                        <img src="{{car.photo.url}}" alt="photo_test" width="100px" height="100px">
+                        <input type="file" class="form-control" name="photo" id="photo">
                     </div>
                     <button class="btn btn-dark" type="submit">Edit Car</button>
                 </form>
@@ -134,6 +135,7 @@
         <table class="table">
             <thead class="position">
                 <tr>
+                    <th scope="col">photo</th>
                     <th scope="col">Car</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -141,6 +143,7 @@
             <tbody>
                 {% for car in garage %}
                 <tr class="display">
+                    <td scope="row" name="photo"><img src="{{car.photo.url}}" alt="photo_test" width="20px" height="20px"></td>
                     <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
                     <td>
                         <input type="hidden" name="car_id" value="{{ car.id }}">

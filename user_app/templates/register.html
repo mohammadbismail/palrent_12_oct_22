@@ -30,7 +30,7 @@
                         <h2 class="text-center">Customer Registration</h2>
                         <hr class="border border-2 border-primary">
                         <!-- FIXME:FIXME: form -->
-                        <form action="/customer_register/" method="post" class="needs-validation" novalidate>
+                        <form action="/customer_register/" method="post" class="needs-validation" enctype="multipart/form-data">
                             {% csrf_token %}
                             <!-- TODO: first name  & last name inputs  -->
                             <div class="row g-3">
@@ -109,6 +109,11 @@
                             </div>
                             <!-- TODO: End of age and national id -->
                             <!-- TODO: end of registration section -->
+                            <div class="col-lg-16">
+                                <label for="profile" class="form-label">Profile Picture</label>
+                                <input type="file" class="form-control" name="profile" id="profile"
+                                    required>
+                            </div>
                             <div class="my-5 text-center">
                                 <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Register</button>
                             </div>
@@ -120,7 +125,7 @@
                         <hr class="border border-2 border-primary">
                         <!-- TODO: start of registeration section -->
                         <!-- FIXME: add action -->
-                        <form action="/provider_register/" class="needs-validation" novalidate method="post">
+                        <form action="/provider_register/" class="needs-validation" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <!-- TODO: first name  & last name inputs  -->
                             <div class="row g-3">

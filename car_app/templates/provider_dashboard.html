@@ -157,7 +157,7 @@
                                 <!-- TODO: for loop for filtered cars -->
                                 {% for car in provider_cars %}
                                 <div class="car_box">
-                                    <img class="car_pic" src="{% static 'img/car_pic.jpg' %}" alt="car pic">
+                                    <img src="{{car.photo.url}}" alt="photo_test" width="80px" height="80px">
                                     <div class="car_details">
                                         <h6>{{car.brand}}</h6>
                                         <h6>{{car.production_year}}</h6>
