@@ -25,15 +25,6 @@
         <div class="col-lg-6 mx-auto">
             <div class="card ">
                 <div class="card-header">
-                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
-                        <!-- Credit card form tabs -->
-                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                            <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i
-                                        class="fas fa-credit-card mr-2"></i> Credit Card </a> </li>
-                            <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i
-                                        class="fab fa-paypal mr-2"></i> Paypal </a> </li>
-                        </ul>
-                    </div> <!-- End -->
                     <!-- Credit card form content -->
                     <div class="tab-content">
                         <!-- credit card info-->
@@ -42,7 +33,14 @@
                                 <input type="hidden" name="customer_id" value="{{customer.id}}">
                                 
                                 <form action="{{link}}" method="post">
-                                {% csrf_token %}
+                                    {% csrf_token %}
+                                    <label for="card_type"><h6>Card Type</h6></label>
+                                    <select class="form-select" aria-label="Default select example" name="card_type">
+                                        <option value="Debit Card">Debit Card</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="MasterCard">MasterCard</option>
+                                        <option value="Paypal">Paypal</option>
+                                    </select>
                                 <div class="form-group"> <label for="card_owner">
                                         <h6>Card Owner</h6>
                                     </label> <input type="text" name="card_owner" placeholder="Card Owner Name" required
