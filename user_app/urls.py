@@ -17,6 +17,11 @@ urlpatterns = [
     path("delete/", views.delete),
     path("delete_account/", views.delete_account),
     path("contact/", views.contact),
+<<<<<<< HEAD
+    path("website_review/", views.website_review),
+]
+=======
+>>>>>>> 04659b98dd36bf3fb8f59ca94344e24b9e8f7304
 
     path('check_email/<email>', views.check_email),
 ]
