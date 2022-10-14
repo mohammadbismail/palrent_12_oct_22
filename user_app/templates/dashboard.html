@@ -110,7 +110,8 @@
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 {% if "customer_id" in request.session %}
-                <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My account</a></li>
+                <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My
+                    account</a></li>
                 {% endif %}
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
@@ -128,16 +129,23 @@
                       style="color: white;">Sign Out</a></span></button>
                 {% endif %}
               </ul>
-              <div class="row">
-                <div class="col-10">
+              <div class="row justify-content-center">
+                <div class="col-9">
                   {% if "customer_id" in request.session %}
-                    <input type="hidden" name="customer_id" value="{{customer.id}}">
-                    <img src="{{customer.profile.url}}" alt="photo_test1" width="100px" height="100px">
-                    <h2>Welcome {{request.session.customer_first_name}}</h2>
-                    {% endif %}
-                    {% if "provider_id" in request.session %}
-                    <h2>Welcome {{request.session.provider_name}}</h2>
-                    {% endif %}
+                  <div class="row">
+                    <div class="col-11">
+                      <input type="hidden" name="customer_id" value="{{customer.id}}">
+                      <h2>Welcome {{request.session.customer_first_name}}</h2>
+                    </div>
+                    <div class="col-1">
+                      <img src="{{customer.profile.url}}" class="rounded" alt="profile_photo" width="60px"
+                        height="80px">
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if "provider_id" in request.session %}
+                  <h2>Welcome {{request.session.provider_name}}</h2>
+                  {% endif %}
                 </div>
               </div>
             </nav>
@@ -149,7 +157,7 @@
 
     </header>
 
-    <div class="hero" style="background-image: url('./static/images/hero_1_a.jpg') ;">
+    <div class="hero" style="background-image: url(' /static/images/hero_1_a.jpg') ;">
 
       <div class="container">
         <div class="row align-items-center justify-content-center">

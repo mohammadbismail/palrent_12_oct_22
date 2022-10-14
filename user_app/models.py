@@ -130,8 +130,7 @@ class Customer_payment(models.Model):
     expiration_yyyy = models.IntegerField()
     cvv = models.IntegerField()
     customer_payment = models.ForeignKey(
-        Customer, related_name="customer_cards", on_delete=models.CASCADE
-    )
+        Customer, related_name="customer_cards", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

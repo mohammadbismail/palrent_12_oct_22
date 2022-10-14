@@ -9,11 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
   {% load static%}
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  
+
   <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
   <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -23,8 +27,9 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script src="/static/js/main.js"></script>
 </head>
+
 <body>
-  
+
   <div class="popup" id="popup">
     <img src="/static/images/tick.png">
     <h3>Thank you!</h3>
@@ -77,7 +82,8 @@
           <div class="col-lg-5">
             <div class="intro">
               <h1><strong>Contact Us</strong></h1>
-              <div class="custom-breadcrumbs"><a href="/">Home</a> <span class="mx-2">/</span> <strong>Contact Us</strong></div>
+              <div class="custom-breadcrumbs"><a href="/">Home</a> <span class="mx-2">/</span> <strong>Contact
+                  Us</strong></div>
             </div>
           </div>
         </div>
@@ -93,37 +99,24 @@
         </div>
         <div class="row">
           <div class="col-lg-8 mb-5">
-<<<<<<< HEAD
             <form action="/website_review/" method="post">
               {% csrf_token %}
-              <div class="form-group row">
-                <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name" name="first_name">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name" name="last_name">
-=======
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
                   <input required type="text" class="form-control" placeholder="First name">
                 </div>
                 <div class="col-md-6">
                   <input required type="text" class="form-control" placeholder="Last name">
->>>>>>> 04659b98dd36bf3fb8f59ca94344e24b9e8f7304
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-<<<<<<< HEAD
-                  <input type="email" class="form-control" placeholder="Email address" name="email">
-=======
                   <input required type="text" class="form-control" placeholder="Email address">
->>>>>>> 04659b98dd36bf3fb8f59ca94344e24b9e8f7304
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="message" id="" class="form-control" placeholder="Write your message." cols="30"
+                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
@@ -131,20 +124,21 @@
               <input type="radio" id="female" name="gender" value="female"> Female
               <br><br>
               <div class="form-group row">
-              <div class="col-md-6 mr-auto">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Send me monthly car rental offers
-                  </label>
+                <div class="col-md-6 mr-auto">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Send me monthly car rental offers
+                    </label>
+                  </div>
                 </div>
-              </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6 mr-auto">
                   <button type="submit" class="btn btn-primary" onclick="displayPopup()">Send your message</button>
                 </div>
               </div>
+            </form>
           </div>
           <div class="col-lg-4 ml-auto">
             <div class="bg-white p-3 p-md-5">

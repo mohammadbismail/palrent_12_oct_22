@@ -3,20 +3,20 @@
 <a href="/delete/">
     <button class="btn btn-primary">Log Out</button>
 </a>
+
 <div class="container py-5">
     <div class="pt-2">
         <div class="d-flex pb-2">
             <div>
                 <p>
-                    <input type="hidden" name="car_id" value="{{car.id}}">
-                    <b> Booking for {{car.brand}} <span class="text-success">$1500.00</span></b>
+                    <b> Booking for {{car_to_book.brand}} <span
+                            class="text-success">${{car_to_book.price}}.00</span></b>
                 </p>
             </div>
             <div class="ms-auto">
                 <p class="text-primary">
                     <i class="fas fa-plus-circle text-primary pe-1"></i>
-                    <input type="hidden" name="customer_id" value="{{customer.id}}">
-                    <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">Add payment card</a> 
+                    <input type="hidden" name="customer_id" value="{{customer.id}}"><br>
                 </p>
             </div>
         </div>
@@ -29,77 +29,96 @@
         <p>
             Please keep an eye on your email inbox; You will receive and eamil wheather for confirmation or rejection.
         </p>
-        <form action="/my_dashboard/confirm_book/{{car_id}}/" method="post" class="pb-3">
-            {% csrf_token %}
-            <div class="d-flex flex-row pb-3">
-                <div class="d-flex align-items-center pe-2">
-                    <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
-                    value="" aria-label="..." checked />
-                </div>
-                <div class="rounded border d-flex w-100 p-3 align-items-center">
-                    <p class="mb-0">
-                    <i class="fab fa-cc-visa fa-lg text-primary pe-2"></i>Visa Debit
-                    Card
-                    </p>
-                    <div class="ms-auto">************3456</div>
+        <div class="row my-5">
+            <div class="col-lg-6">
+                <div class="col col-lg-6">
+                    <div class="rounded d-flex flex-column" style="background-color: #f8f9fa;">
+                        <div class="p-2 me-3">
+                            <h4>Booking Receipt</h4>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Car Brand</div>
+                            <div class="ms-auto">{{car_to_book.brand}}</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Pick up date</div>
+                            <div class="ms-auto">10/10/2022</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Drop off date</div>
+                            <div class="ms-auto">20/10/2022</div>
+                        </div>
+                        <div class="p-2 d-flex">
+                            <div class="col-8">Total days</div>
+                            <div class="ms-auto">10 days</div>
+                        </div>
+                        <div class="border-top px-2 mx-2"></div>
+                        <div class="p-2 d-flex pt-3">
+                            <div class="col-8">Price per day</div>
+                            <div class="ms-auto">$150.00</div>
+                        </div>
+                        <div class="p-2 d-flex pt-3">
+                            <div class="col-8">Discount</div>
+                            <div class="ms-auto">%0.0</div>
+                        </div>
+                        <div class="border-top px-2 mx-2"></div>
+                        <div class="p-2 d-flex pt-3">
+                            <div class="col-8"><b>Total</b></div>
+                            <div class="ms-auto"><b class="text-success">${{car_to_book.price}}.00</b></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="d-flex flex-row">
-                <div class="d-flex align-items-center pe-2">
-                    <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2"
-                    value="" aria-label="..." />
-                </div>
-                <div class="rounded border d-flex w-100 p-3 align-items-center">
-                    <p class="mb-0">
-                    <i class="fab fa-cc-mastercard fa-lg text-dark pe-2"></i>Mastercard
-                    Office
-                    </p>
-                    <div class="ms-auto">************1038</div>
-                </div>
+            <div class="col-lg-6">
+                <form action="/my_dashboard/confirm_book/{{car_to_book.id}}/" method="post" class="pb-3">
+                    {% csrf_token %}
+                    {% if customer_cards.count > 0 %}
+                    {% for card in customer_cards %}
+                    <div class="col-lg-4 m-2 border border-1 rounded">
+                        <div class="d-flex align-items-center pe-2">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value=""
+                                aria-label="..." checked />
+                        </div>
+                        <p class="mb-0">
+                            <i class="fab fa-cc-visa fa-lg text-primary pe-2"></i>{{card.card_type}}
+                        </p>
+                        <div class="ms-auto">{{card.owner}}</div>
+                        <div class="ms-auto">{{card_number}}</div>
+                        <div class="ms-auto">{{card.expiration_mm}}</div>
+                        <div class="ms-auto">{{card.expiration_yyyy}}</div>
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-success m-2" type="submit">Confirm Booking</button>
+                    <button class="btn btn-secondary mx-2" type="submit"><a style="color: white;"
+                            href="/my_dashboard/">Cancel</a></button><br>
+                    <div class="row mx-1 my-4">
+                        <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">Add another card</a>
+                    </div>
+                    {% else %}
+
+                    <div class="font-weight-bold" style="color:green">
+                        <p>You didn't add any cards yet, please add card to proceed!</p>
+                        <button class="btn btn-secondary mx-2" type="submit"><a style="color: white;"
+                                href="/my_dashboard/customer_payment_method/{{customer_id}}/">Add payment method
+                            </a></button>
+                        <button class="btn btn-secondary mx-2 my-2" type="submit"><a style="color: white;"
+                                href="/my_dashboard/">Cancel</a></button><br>
+                    </div>
+
+                    {% endif %}
+                </form>
+
+
+
+
             </div>
-            <button class="btn btn-dark" type="submit">Make payment</button>
-        </form>
-    </div>
-    <div class="col-md-5 col-xl-4 offset-xl-1">
-        <div class="py-4 d-flex justify-content-end">
-            <h6><a href="/my_dashboard/">Cancel and return to website</a></h6>
+
         </div>
-        <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
-            <div class="p-2 me-3">
-                <h4>Booking Recap</h4>
-            </div>
-            <div class="p-2 d-flex">
-                <div class="col-8">Car Brand</div>
-                <div class="ms-auto">BMW m305</div>
-            </div>
-            <div class="p-2 d-flex">
-                <div class="col-8">Pick up date</div>
-                <div class="ms-auto">10/10/2022</div>
-            </div>
-            <div class="p-2 d-flex">
-                <div class="col-8">Drop off date</div>
-                <div class="ms-auto">20/10/2022</div>
-            </div>
-            <div class="p-2 d-flex">
-                <div class="col-8">Total days</div>
-                <div class="ms-auto">10 days</div>
-            </div>
-            <div class="border-top px-2 mx-2"></div>
-            <div class="p-2 d-flex pt-3">
-                <div class="col-8">Price per day</div>
-                <div class="ms-auto">$150.00</div>
-            </div>
-            <div class="p-2 d-flex pt-3">
-                <div class="col-8">Discount</div>
-                <div class="ms-auto">%0.0</div>
-            </div>
-            <div class="border-top px-2 mx-2"></div>
-            <div class="p-2 d-flex pt-3">
-                <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><b class="text-success">$1500.00</b></div>
-            </div>
-        </div>
+
     </div>
+
+
 </div>
 
 {% endblock %}
