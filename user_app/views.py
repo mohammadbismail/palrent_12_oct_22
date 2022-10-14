@@ -25,36 +25,33 @@ def search(request):
 def search_result(request):
 
     context = {
-        'searched_cars': Provider.objects.filter(location=request.POST["location"])
+        "searched_cars": Provider.objects.filter(location=request.POST["location"])
     }
 
-    return render(request,"search_result.html", context)
+    return render(request, "search_result.html", context)
 
 
 def car_select(request, car_id):
 
     if "customer_id" in request.session:
-        return redirect("/my_dashboard/car_details/"+car_id)
+        return redirect("/my_dashboard/car_details/" + car_id)
 
-    return redirect("/car_details/"+car_id)
+    return redirect("/car_details/" + car_id)
 
 
 def car_details(request, car_id):
-    context = {
-        'selected_car': Car.objects.get(id=car_id)
-    }
-    return render(request,"car_details.html", context)
+    context = {"selected_car": Car.objects.get(id=car_id)}
+    return render(request, "car_details.html", context)
 
 
 def car_book(request, car_id):
     if "customer_id" in request.session:
-        return redirect("/my_dashboard/payment_confirmation/"+car_id)
+        return redirect("/my_dashboard/payment_confirmation/" + car_id)
     return redirect("/register")
 
 
 def login(request):
 
-    print("this is customer name")
     customer = Customer.objects.filter(email=request.POST["email"])
     if customer:
         # errors = Customer.objects.customer_login_validator(request.POST)
@@ -65,7 +62,8 @@ def login(request):
 
         logged_customer = customer[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_customer.password.encode()):
+            request.POST["password"].encode(), logged_customer.password.encode()
+        ):
             request.session["customer_id"] = logged_customer.id
             request.session["customer_first_name"] = logged_customer.first_name
             request.session["sign_out"] = "Sign Out"
@@ -73,21 +71,21 @@ def login(request):
 
     provider = Provider.objects.filter(email=request.POST["email"])
     if provider:
-        errors = Provider.objects.provider_login_validator(request.POST)
-        if len(errors) > 0:
-            for key, val in errors.items():
-                messages.error(request, val)
-            return redirect("/")
+        # errors = Provider.objects.provider_login_validator(request.POST)
+        # if len(errors) > 0:
+        #     for key, val in errors.items():
+        #         messages.error(request, val)
+        #     return redirect("/")
 
         logged_provider = provider[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_provider.password.encode()):
+            request.POST["password"].encode(), logged_provider.password.encode()
+        ):
             request.session["provider_id"] = logged_provider.id
             request.session["provider_name"] = logged_provider.name
             request.session["sign_out"] = "Sign Out"
 
         return redirect("/my_dashboard/provider_dashboard")
-
 
 
 def register(request):
@@ -106,20 +104,19 @@ def customer_register(request):
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
     customer = Customer.objects.create(
-        profile = request.FILES["profile"],
+        profile=request.FILES["profile"],
         first_name=request.POST["firstName"],
         last_name=request.POST["lastName"],
         email=request.POST["email"],
         password=pw_hash,
         mobile=request.POST["mobile"],
         birthday=request.POST["birthday"],
-        driving_license = request.FILES["driving_license"],
+        driving_license=request.FILES["driving_license"],
     )
     request.session["customer_id"] = customer.id
     request.session["customer_first_name"] = customer.first_name
     request.session["sign_out"] = "Sign Out"
     return redirect("/")
-
 
 
 def provider_register(request):
@@ -131,8 +128,7 @@ def provider_register(request):
         return redirect("/register/")
 
     password_from_form = request.POST["password"]
-    pw_hash = bcrypt.hashpw(password_from_form.encode(),
-        bcrypt.gensalt()).decode()
+    pw_hash = bcrypt.hashpw(password_from_form.encode(), bcrypt.gensalt()).decode()
 
     provider = Provider.objects.create(
         name=request.POST["name"],
@@ -171,7 +167,7 @@ def delete(request):
 def delete_account(request):
 
     if "customer_id" in request.session:
-        c=Customer.objects.get(id=request.session["customer_id"])
+        c = Customer.objects.get(id=request.session["customer_id"])
         c.delete()
         del request.session["customer_id"]
         del request.session["customer_first_name"]
@@ -180,7 +176,7 @@ def delete_account(request):
         return redirect("/")
 
     if "provider_id" in request.session:
-        c=Provider.objects.get(id=request.session["provider_id"])
+        c = Provider.objects.get(id=request.session["provider_id"])
         c.delete()
         del request.session["provider_id"]
         del request.session["provider_name"]
@@ -189,11 +185,8 @@ def delete_account(request):
         return redirect("/")
 
 
-
-
 def contact(request):
     return render(request, "contact.html")
-
 
 
 def website_review(request):
@@ -206,9 +199,9 @@ def website_review(request):
     )
     return redirect("/contact")
 
-def check_email(request, email=''):
+
+def check_email(request, email=""):
     customer = Customer.objects.filter(email=email)
     if customer:
-        return JsonResponse({'exists': True})
-    return JsonResponse({'exists': False})
-
+        return JsonResponse({"exists": True})
+    return JsonResponse({"exists": False})
