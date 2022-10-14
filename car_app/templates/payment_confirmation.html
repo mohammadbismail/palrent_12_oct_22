@@ -8,12 +8,15 @@
         <div class="d-flex pb-2">
             <div>
                 <p>
-                    <b> Booking for BMW m305 <span class="text-success">$1500.00</span></b>
+                    <input type="hidden" name="car_id" value="{{car.id}}">
+                    <b> Booking for {{car.brand}} <span class="text-success">$1500.00</span></b>
                 </p>
             </div>
             <div class="ms-auto">
                 <p class="text-primary">
-                    <i class="fas fa-plus-circle text-primary pe-1"></i>Add payment card
+                    <i class="fas fa-plus-circle text-primary pe-1"></i>
+                    <input type="hidden" name="customer_id" value="{{customer.id}}">
+                    <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">Add payment card</a> 
                 </p>
             </div>
         </div>
@@ -26,7 +29,7 @@
         <p>
             Please keep an eye on your email inbox; You will receive and eamil wheather for confirmation or rejection.
         </p>
-        <form action="/confirm_book/" method="post" class="pb-3">
+        <form action="/my_dashboard/confirm_book/{{car_id}}/" method="post" class="pb-3">
             {% csrf_token %}
             <div class="d-flex flex-row pb-3">
                 <div class="d-flex align-items-center pe-2">

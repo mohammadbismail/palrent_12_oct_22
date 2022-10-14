@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from user_app.models import Provider, Customer, Customer_payment, Provider_payment
-from .models import Car
+from .models import Car, Booking
 import bcrypt
 
 
@@ -13,21 +13,36 @@ def my_dashboard(request):
 
     context = {
         "customer_id": customer_id,
-        # "all_providers": Provider.objects.all(),
+        "customer": Customer.objects.get(id=request.session["customer_id"]),
+        "all_providers": Provider.objects.all(),
     }
-    return render(request, "my_dashboard.html", context)
+    return render(request, "dashboard.html", context)
+
+# def my_dashboard(request):
+
+#     if "customer_id" not in request.session:
+#         return redirect("/")
+
+#     customer_id = request.session["customer_id"]
+
+#     context = {
+#         "customer_id": customer_id,
+#         "customer": Customer.objects.get(id=request.session["customer_id"]),
+#     }
+#     return render(request, "dashboard.html", context)
 
 
-def search(request):
 
-    # request.session["location"] = request.POST["location"]
-    # request.session["pick_up_date"] = request.POST["pick_up_date"]
-    # request.session["drop_off_date"] = request.POST["drop_off_date"]
+def customer_search(request):
+
+    request.session["location"] = request.POST["location"]
+    request.session["pick_up_date"] = request.POST["pick_up_date"]
+    request.session["drop_off_date"] = request.POST["drop_off_date"]
 
     return redirect("/my_dashboard/search_result")
 
 
-def search_result(request):
+def customer_search_result(request):
 
     context = {
         "searched_cars": Provider.objects.filter(location=request.POST["location"])
@@ -36,18 +51,18 @@ def search_result(request):
     return render(request, "search_result.html", context)
 
 
-def car_select(request, car_id):
+def customer_car_select(request, car_id):
     return redirect("/my_dashboard/car_details/" + car_id)
 
 
-def car_details(request, car_id):
+def customer_car_details(request, car_id):
     context = {
         "selected_car": Car.objects.get(id=car_id),
     }
     return render(request, "car_details.html", context)
 
 
-def car_book(request, car_id):
+def customer_car_book(request, car_id):
 
     return redirect("/my_dashboard/payment_confirmation/" + car_id)
 
@@ -62,8 +77,31 @@ def provider_dashboard(request):
     return render(request, "provider_dashboard.html", context)
 
 
-def car_book(request):
-    return redirect("/my_dashboard/payment_confirmation")
+def car_book(request, car_id):
+    return redirect("/my_dashboard/payment_confirmation/"+car_id)
+
+
+def payment_confirmation(request, car_id):
+
+    context = {
+        "car_id": car_id,
+        "customer_id": request.session["customer_id"],
+    }
+
+    return render(request, "payment_confirmation.html", context)
+
+
+def confirm_book(request, car_id):
+    print("this works here lalalalala")
+    Booking.objects.create(
+        pick_up_date=request.session.get("pick_up_date"),
+        drop_off_date=request.session.get("drop_off_date"),
+        status="Pending",
+        customer_book=Customer.objects.get(id=request.session["customer_id"]),
+        car_book=Car.objects.get(id=car_id),
+    )
+
+    return redirect("/my_dashboard")
 
 
 def customer_payment_method(request, customer_id):
@@ -85,15 +123,7 @@ def Provider_payment_method(request, provider_id):
     return render(request, "payment_method.html", context)
 
 
-def payment_confirmation(request, car_id):
 
-    context = {"car_id": car_id}
-
-    return render(request, "payment_confirmation.html", context)
-
-
-def confirm_book(request):
-    return redirect("/my_dashboard")
 
 
 def add_car(request):
@@ -112,6 +142,7 @@ def insert_car(request):
         production_year=request.POST["production_year"],
         plate_number=request.POST["plate_number"],
         price=request.POST["price"],
+        photo = request.FILES["photo"],
         provider=Provider.objects.get(id=request.session["provider_id"]),
     )
     return redirect("/my_dashboard/add_car")
@@ -138,6 +169,7 @@ def edit_my_car(request, car_id):
     c.production_year = request.POST["production_year"]
     c.plate_number = request.POST["plate_number"]
     c.price = request.POST["price"]
+    c.photo = request.FILES["photo"],
     c.save()
 
     return redirect("/my_dashboard/edit_car/" + car_id)
@@ -172,11 +204,12 @@ def provider_account_edit(request, provider_id):
     c.location = request.POST["location"]
     c.email = request.POST["email"]
     c.password = pw_hash
-    c.permit = request.POST["permit"]
+    c.permit = request.FILES["permit"]
+    c.logo = request.FILES["logo"]
     c.mobile = request.POST["mobile"]
     c.save()
 
-    return redirect("/my_dashboard/provider_account/" + provider_id)
+    return redirect("/my_dashboard/provider_account/"+provider_id)
 
 
 def provider_car_details(request, car_id):
@@ -196,9 +229,10 @@ def customer_account(request, customer_id):
     return render(request, "customer_account.html", context)
 
 
+
 def customer_account_edit(request, customer_id):
 
-    customer = Customer.objects.filter(name=request.session["customer_first_name"])
+    customer = Customer.objects.filter(first_name=request.session["customer_first_name"])
     if customer:
         logged_customer = customer[0]
         if bcrypt.checkpw(
@@ -210,12 +244,13 @@ def customer_account_edit(request, customer_id):
             ).decode()
 
     c = Customer.objects.get(id=customer_id)
+    c.profile = request.POST["profile"]
     c.first_name = request.POST["first_name"]
     c.last_name = request.POST["last_name"]
     c.email = request.POST["email"]
     c.password = pw_hash
-    c.national_id = request.POST["national_id"]
     c.mobile = request.POST["mobile"]
+    c.driving_license = request.FILES["driving_license"]
     c.save()
 
     return redirect("/my_dashboard/customer_account/" + customer_id)
