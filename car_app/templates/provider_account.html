@@ -15,6 +15,9 @@
         <a href="/delete/">
             <button class="btn btn-primary">Log Out</button>
         </a>
+        <a href="/delete_account/">
+            <button class="btn btn-primary">Delete account</button>
+        </a>
         <a href="/my_dashboard/provider_dashboard/">
             <button class="btn btn-primary">Home</button>
         </a>
@@ -26,19 +29,29 @@
                     <hr class="border border-2 border-primary">
                     <!-- TODO: start of registeration section -->
                     <!-- FIXME: add action -->
-                    <form action="/my_dashboard/provider_account_edit/{{provider_id}}/" class="needs-validation" novalidate method="post">
+                    <form action="/my_dashboard/provider_account_edit/{{provider_id}}/" class="needs-validation" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <!-- TODO: first name  & last name inputs  -->
-                        <div class="row g-3">
-                            <div class="col-sm-7">
+                        <div class="row">
+                            <div class="col">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="{{provider.name}}"
-                                    value="" required>
+                                <textarea name="name" class="form-control" id="name" cols="20" rows="1" required>{{provider.name}}</textarea>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col">
+                                <label for="email" class="form-label">Email</label>
+                                <textarea name="email" class="form-control" id="email" cols="20" rows="1" required>{{provider.email}}</textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TODO: end of name & location -->
+                        <!-- TODO: start of email-->
+                        <div class="row">
+                            <div class="col">
                                 <label for="location" class="form-label">Location</label>
                                 <select name="location" id="location" class="custom-select form-control">
                                     <option value="All">All</option>
@@ -48,17 +61,9 @@
                                     <option value="Bethlahm">Bethlahm</option>
                                 </select>
                             </div>
-                        </div>
-                        <!-- TODO: end of name & location -->
-                        <!-- TODO: start of email-->
-                        <div class="row">
-                            <div class="col-lg">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="{{provider.email}}">
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address
-                                </div>
+                            <div class="col">
+                                <label for="mobile" class="form-label">Mobile</label>
+                                <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1" required>{{provider.mobile}}</textarea>
                             </div>
                         </div>
                         <!-- TODO: end of email-->
@@ -82,10 +87,6 @@
                                     Valid password is required.
                                 </div>
                             </div>
-                        </div>
-                        <!-- TODO: end of password-->
-                        <!-- TODO: start of password-->
-                        <div class="row">
                             <div class="col">
                                 <label for="confp" class="form-label">Confirm PW</label>
                                 <input type="password" class="form-control" name="confp" id="confp" placeholder=""
@@ -95,16 +96,16 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- TODO: end of password-->
-                        <!-- TODO: start of permit-->
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col">
                                 <label for="permit" class="form-label">Permit</label>
-                                <input type="text" class="form-control" name="permit" id="permit" placeholder="{{provider.permit}}">
+                                <img src="{{provider.permit.url}}" alt="photo_test" width="100px" height="100px">
+                                <input type="file" class="form-control" name="permit" id="permit">
                             </div>
-                            <div class="col-lg-6">
-                                <label for="mobile" class="form-label">Mobile</label>
-                                <input type="tel" class="form-control" name="mobile" id="mobile" required placeholder="{{provider.mobile}}">
+                            <div class="col">
+                                <label for="logo" class="form-label">Company Logo</label>
+                                <img src="{{provider.logo.url}}" alt="photo_test" width="100px" height="100px">
+                                <input type="file" class="form-control" name="logo" id="logo">
                             </div>
                         </div>
                         <!-- TODO: End of age and national id -->

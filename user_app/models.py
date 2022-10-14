@@ -30,17 +30,17 @@ class CustomerManager(models.Manager):
         date_format = "%Y-%m-%d"
 
         EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
-        if len(data["firstName"]) < 3:
-            errors["firstname"] = "Name should be more than 8 characters"
-        if len(data["lastName"]) < 3:
-            errors["lastname"] = "Last name should be more than 8 characters"
+        if len(data["firstName"]) < 4:
+            errors["firstname"] = "Name should be more than 3 characters"
+        if len(data["lastName"]) < 4:
+            errors["lastname"] = "Last name should be more than 3 characters"
         if not EMAIL_REGEX.match(data["email"]):
             errors["email"] = "Invalid email address"
         if len(data["email"]) < 1:
             errors["email"] = "Email can't be empty"
         if data["password"] != data["confp"]:
             errors["password"] = "Password does not match!"
-        if len(data["password"]) < 8:
+        if len(data["password"]) < 9:
             errors["password"] = "Password has to be more 8 characters length"
         if datetime.strptime(data["birthday"], date_format) > past_date_before_24yrs:
             errors["birthday"] = "Age has to be 24+ years"
@@ -53,10 +53,10 @@ class CustomerManager(models.Manager):
         if data["email"] == "":
             errors["email_empty"] = "Email can't be empty!"
             return errors
-        customer = Customer.objects.filter(email=data["email"])
-        if not customer:
-            errors["wrong_email"] = "email is not found"
-            return errors
+        # customer = Customer.objects.filter(email=data["email"])
+        # if not customer:
+        #     errors["wrong_email"] = "email is not found"
+        #     return errors
         if not bcrypt.checkpw(data["password"].encode(), customer[0].password.encode()):
             errors["wrong_password"] = "Invalid password"
         return errors
@@ -85,10 +85,10 @@ class ProviderManager(models.Manager):
         if data["email"] == "":
             errors["email_empty"] = "Email can't be empty!"
             return errors
-        provider = Provider.objects.filter(email=data["email"])
-        if not provider:
-            errors["wrong_email_c"] = "email is not found"
-            return errors
+        # provider = Provider.objects.filter(email=data["email"])
+        # if not provider:
+        #     errors["wrong_email_c"] = "email is not found"
+        #     return errors
         if not bcrypt.checkpw(data["password"].encode(), provider[0].password.encode()):
             errors["wrong_password"] = "Invalid password"
         return errors
@@ -123,6 +123,7 @@ class Provider(models.Model):
 
 
 class Customer_payment(models.Model):
+    card_type = models.CharField(max_length=100)
     card_owner = models.CharField(max_length=100)
     card_number = models.IntegerField()
     expiration_mm = models.IntegerField()
@@ -136,6 +137,7 @@ class Customer_payment(models.Model):
 
 
 class Provider_payment(models.Model):
+    card_type = models.CharField(max_length=100)
     card_owner = models.CharField(max_length=100)
     card_number = models.IntegerField()
     expiration_mm = models.IntegerField()

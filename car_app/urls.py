@@ -4,11 +4,11 @@ from . import views
 
 urlpatterns = [
     path("", views.my_dashboard),
-    path("search/", views.search),
-    path("search_result/", views.search_result),
-    path("car_select/<car_id>/", views.car_select),
-    path("car_details/<car_id>/", views.car_details),
-    path("car_book/<car_id>/", views.car_book),
+    path("search/", views.customer_search),
+    path("search_result/", views.customer_search_result),
+    path("car_select/<car_id>/", views.customer_car_select),
+    path("car_details/<car_id>/", views.customer_car_details),
+    path("car_book/<car_id>/", views.customer_car_book),
     path("customer_payment_method/<customer_id>/", views.customer_payment_method),
     path("provider_payment_method/<provider_id>/", views.Provider_payment_method),
     path("customer_add_payment/<customer_id>/", views.customer_add_payment),

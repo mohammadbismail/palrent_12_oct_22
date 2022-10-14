@@ -40,11 +40,10 @@
                 </div>
             </div>
             <div class="col" id="body">
+                <input type="hidden" name="car_id" value="{{car.id}}">
                 <!-- TODO: make photo slide show for all the photos the provider uploeaded -->
                 <div class="col-12 p-5" id="photo">
-                    <img class="photo"
-                        src="https://www.freepnglogos.com/uploads/honda-car-png/honda-car-upcoming-new-honda-cars-india-new-honda-3.png"
-                        alt="">
+                    <img src="{{selected_car.photo.url}}" alt="photo_test" width="400px" height="400px">
                 </div>
                 <input type="hidden" name="car_id" value="{{car.id}}">
                 <div class="col-lg-5 p-0 ps-lg-4" id="pay_details">
