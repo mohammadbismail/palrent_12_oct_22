@@ -199,17 +199,15 @@ def provider_account_edit(request, provider_id):
 
 
 def provider_car_details(request, car_id):
-    print("thisworks here")
     context = {"selected_car": Car.objects.get(id=car_id)}
     return render(request, "provider_car_details.html", context)
 
 
 def customer_account(request, customer_id):
-    print("this works here")
     context = {
         "customer_id": customer_id,
         "customer": Customer.objects.get(id=customer_id),
-        "cards": Customer_payment.objects.filter(customer_payment=customer_id),
+        "customer_cards": Customer.objects.get(id=customer_id).customer_cards.all(),
     }
 
     return render(request, "customer_account.html", context)
