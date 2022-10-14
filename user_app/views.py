@@ -1,4 +1,6 @@
+from genericpath import exists
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .models import Customer, Provider
 from car_app.models import Car
 import bcrypt
@@ -126,7 +128,8 @@ def provider_register(request):
         return redirect("/register/")
 
     password_from_form = request.POST["password"]
-    pw_hash = bcrypt.hashpw(password_from_form.encode(), bcrypt.gensalt()).decode()
+    pw_hash = bcrypt.hashpw(password_from_form.encode(),
+                            bcrypt.gensalt()).decode()
 
     provider = Provider.objects.create(
         name=request.POST["name"],
@@ -163,3 +166,10 @@ def delete(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def check_email(request, email=''):
+    customer = Customer.objects.filter(email=email)
+    if customer:
+        return JsonResponse({'exists': True})
+    return JsonResponse({'exists': False})

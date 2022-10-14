@@ -15,5 +15,6 @@ urlpatterns = [
     path("provider_register/", views.provider_register),
     path("delete/", views.delete),
     path("contact/", views.contact),
-]
 
+    path('check_email/<email>', views.check_email),
+]

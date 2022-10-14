@@ -80,8 +80,11 @@
                             <div class="row">
                                 <div class="col-lg-7">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
+                                    <input onChange="emailHasChanged(event)" type="email" class="form-control" name="email" id="email"
                                         placeholder="you@example.com">
+                                    <div id="duplicate-email">
+                                        This email is already registered.
+                                    </div>
                                     <div class="invalid-feedback">
                                         Please enter a valid email address
                                     </div>

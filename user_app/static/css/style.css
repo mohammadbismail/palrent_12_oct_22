@@ -1,4 +1,8 @@
 /* Our team styling */
+#duplicate-email {
+  color: red;
+  display: none;
+}
 .popup {
   width: 40%;
   background: rgb(228, 227, 227);

@@ -1,4 +1,20 @@
 // here is our updates
+function emailHasChanged(e) {
+	var email = e.target.value;
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+	  var response = JSON.parse(this.responseText)
+	  if (response.exists){
+		document.getElementById("duplicate-email").style.display = "block"
+	  }
+	  else {
+		document.getElementById("duplicate-email").style.display = "none"
+	  }
+	  }
+	xhttp.open("GET", "http://127.0.0.1:8000/check_email/"+email, true);
+	xhttp.send();
+  }
+
 function displayPopup(){
 	let popup = document.getElementById("popup");
 	   popup.classList.add("open-popup")
