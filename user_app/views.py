@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Customer, Provider
+from .models import Customer, Provider, Website_review
 from car_app.models import Car
 import bcrypt
 from django.contrib import messages
@@ -190,3 +190,14 @@ def delete_account(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def website_review(request):
+
+    Website_review.objects.create(
+        first_name=request.POST["first_name"],
+        last_name=request.POST["last_name"],
+        email=request.POST["email"],
+        message=request.POST["message"],
+    )
+    return redirect("/contact")
