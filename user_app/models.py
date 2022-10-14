@@ -53,10 +53,10 @@ class CustomerManager(models.Manager):
         if data["email"] == "":
             errors["email_empty"] = "Email can't be empty!"
             return errors
-        # customer = Customer.objects.filter(email=data["email"])
-        # if not customer:
-        #     errors["wrong_email"] = "email is not found"
-        #     return errors
+        customer = Customer.objects.filter(email=data["email"])
+        if not customer:
+            errors["wrong_email"] = "email is not found"
+            return errors
         if not bcrypt.checkpw(data["password"].encode(), customer[0].password.encode()):
             errors["wrong_password"] = "Invalid password"
         return errors
@@ -85,10 +85,10 @@ class ProviderManager(models.Manager):
         if data["email"] == "":
             errors["email_empty"] = "Email can't be empty!"
             return errors
-        # provider = Provider.objects.filter(email=data["email"])
-        # if not provider:
-        #     errors["wrong_email_c"] = "email is not found"
-        #     return errors
+        provider = Provider.objects.filter(email=data["email"])
+        if not provider:
+            errors["wrong_email_c"] = "email is not found"
+            return errors
         if not bcrypt.checkpw(data["password"].encode(), provider[0].password.encode()):
             errors["wrong_password"] = "Invalid password"
         return errors

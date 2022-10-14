@@ -264,6 +264,7 @@ def customer_add_payment(request, customer_id):
     # cvv_hash = bcrypt.hashpw(cvv_from_form.encode(), bcrypt.gensalt()).decode()
 
     Customer_payment.objects.create(
+        card_type=request.POST["card_type"],
         card_owner=request.POST["card_owner"],
         card_number=request.POST["card_number"],
         expiration_mm=request.POST["expiration_mm"],

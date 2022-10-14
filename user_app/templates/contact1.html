@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
   {% load static%}
- 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -94,6 +94,13 @@
         <div class="row">
           <div class="col-lg-8 mb-5">
             <form action="/website_review/" method="post">
+              {% csrf_token %}
+              <div class="form-group row">
+                <div class="col-md-6 mb-4 mb-lg-0">
+                  <input type="text" class="form-control" placeholder="First name" name="first_name">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Last name" name="last_name">
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
                   <input required type="text" class="form-control" placeholder="First name">
@@ -104,12 +111,15 @@
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
+                  <input type="email" class="form-control" placeholder="Email address" name="email">
+
                   <input required type="text" class="form-control" placeholder="Email address">
+
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30"
+                  <textarea name="message" id="" class="form-control" placeholder="Write your message." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
@@ -131,7 +141,6 @@
                   <button type="submit" class="btn btn-primary" onclick="displayPopup()">Send your message</button>
                 </div>
               </div>
-            </form>
           </div>
           <div class="col-lg-4 ml-auto">
             <div class="bg-white p-3 p-md-5">

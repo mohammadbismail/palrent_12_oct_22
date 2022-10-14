@@ -1,4 +1,3 @@
-from genericpath import exists
 from django.shortcuts import render, redirect
 from .models import Customer, Provider, Website_review
 from django.http import JsonResponse
