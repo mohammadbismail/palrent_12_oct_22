@@ -1,9 +1,85 @@
 /* Our team styling */
+.avtar {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 50%;
+  background-color: cornflowerblue;
+  text-align: center;
+  font-size: 80px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:cover;
+  line-height: 130px;
+}
+.search_result {
+  background: rgba(255,255,255,.6);
+  padding: 15px;
+  backdrop-filter: blur(40px);
+  box-shadow: 1px 2px 20px 2px #ffffff33;
+}
+.upload-margin {
+  margin-top: 40px;
+}
+i {
+  margin-right: 10px;
+
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  width: 191px;
+  background-color: #bfbfbf;
+  height: 46px;
+  padding-top: 10px;
+
+}
+.input-upload {
+  outline: 0;
+  background: none;
+}
+.lead {
+  color: white;
+}
+footer {
+  background-color: white;
+}
+.reg-form-toggle {
+  width: 60%;
+  margin: 0 auto;
+}
+.reg-forms.hide {
+  width: 0px;
+  padding: 0px;
+}
+.reg-forms {
+  margin: 0 auto;
+  padding: 0 10%;
+  float:left;
+  width: 50%;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.registeration-form{
+  background: rgba(255,255,255,.6);
+  padding: 15px;
+  backdrop-filter: blur(40px);
+  box-shadow: 1px 2px 20px 2px #ffffff33;
+  border-radius: 10px;
+
+}
 h1 {
   margin-top: 100px;
 }
 .palrent-logo {
-  width: 60%;
+  width: 70%;
   height: 40%;
 }
 .dropdown-toggle::after {
@@ -357,6 +433,9 @@ body {
   font-weight: 300;
   font-size: 1rem;
   background: #fff;
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 ::-moz-selection {

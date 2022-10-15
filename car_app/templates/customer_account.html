@@ -12,7 +12,7 @@
 <div class="container my-5 p-5">
     <div class="row my-4 col-11" >
         <div class="row">
-            <div class="col-6 my-3">
+            <div class="col-md-12 ">
                 <h2 class="text-center">Edit Customer Account</h2>
             </div>
             <hr class="border border-2 border-primary">
@@ -22,10 +22,12 @@
                 <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" method="post"
                     enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="row-lg-4">
-                        <img src="{{customer.profile.url}}" alt="photo_test" width="100px" height="100px">
-                        <input type="file" name="profile" id="profile" class="row-lg-2">
-                    </div>
+                    {% if customer.profile %}
+                  <div class="avtar" style="background-image:url('{{customer.profile.url}}')"></div>
+                  {% endif %}
+                  {% if not customer.profile %}
+                  <div class="avtar">{{request.session.customer_first_name.0}}</div>
+                  {% endif %}
                     <div class="row g-0">
                         <div class="col-lg-6">
                             <label for="first_name" class="form-label ">First name</label>

@@ -1,5 +1,17 @@
 // here is our updates
-
+function toggleRegForm(e) {
+	e.preventDefault();
+	let form = document.getElementById("customer-reg-form");
+	if (form.className.includes("hide")) {
+		document.getElementById("toggle-label").innerHTML = "Are you a car provider?"
+		
+		form.classList.remove("hide")
+	} else {
+		document.getElementById("toggle-label").innerHTML = "Are you interested in renting a car?"
+		form.classList.add("hide")
+	}
+	
+}
 function emailHasChanged(e) {
 	var email = e.target.value;
 	const xhttp = new XMLHttpRequest();
