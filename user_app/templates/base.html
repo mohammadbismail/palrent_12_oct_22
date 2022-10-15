@@ -163,6 +163,7 @@
                 {% if "customer_id" in request.session %}
                 <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
                 {% else %}
+                <li><a href="/my_dashboard/add_car/" class="nav-link">Add/Edit Cars</a></li>
                 <li class="active"><a href="/my_dashboard/provider_dashboard/" class="nav-link">Home</a></li>
                 {% endif %}
                 <li><a href="/contact/" class="nav-link">Contact</a></li>

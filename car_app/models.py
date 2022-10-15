@@ -23,6 +23,7 @@ class Booking(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+
 class Customer_Feedback(models.Model):
     rating  = models.TextField(null=True)
     comment  = models.TextField(null=True)

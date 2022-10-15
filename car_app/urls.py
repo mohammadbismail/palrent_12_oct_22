@@ -29,4 +29,6 @@ urlpatterns = [
     path("provider_car_details/<car_id>/", views.provider_car_details),
     path("contact/", views.contact),
     path("delete_car/<car_id>/", views.delete_car),
+    path("accept/<car_id>/", views.accept),
+    path("rejected/<Status_changer_id>/", views.rejected),
 ]

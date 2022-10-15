@@ -30,9 +30,9 @@ class CustomerManager(models.Manager):
         date_format = "%Y-%m-%d"
 
         EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
-        if len(data["firstName"]) < 4:
+        if len(data["firstName"]) < 3:
             errors["firstname"] = "Name should be more than 3 characters"
-        if len(data["lastName"]) < 4:
+        if len(data["lastName"]) < 3:
             errors["lastname"] = "Last name should be more than 3 characters"
         if not EMAIL_REGEX.match(data["email"]):
             errors["email"] = "Invalid email address"
