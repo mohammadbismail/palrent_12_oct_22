@@ -23,7 +23,7 @@
                     enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row-lg-4">
-                        <img src="{{customer.profile.url}}" alt="photo_test" width="100px" height="100px">
+                        <img src="{{customer.profile.url}}" alt="photo_test" width="100px" height="100px" class="rounded-circle">
                         <input type="file" name="profile" id="profile" class="row-lg-2">
                     </div>
                     <div class="row g-0">
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-lg-6">
                             <label for="driving_license" class="form-label">Driving License</label>
-                            <img src="{{customer.driving_license.url}}" alt="photo_test" width="50px" height="50px">
+                            <img src="{{customer.driving_license.url}}" alt="photo_test" width="50px" height="50px" class="rounded-circle">
                             <input type="file" name="driving_license" id="driving_license">
                         </div>
                     </div>
@@ -83,43 +83,77 @@
                 </form>
             </div>
             <div class="col col-8 border border-2 rounded">
-                <div class="col-4 my-2">
-                    <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">
-                        <button type="submit" class="btn btn-primary">Add payment</button>
-                    </a>
-                </div>
-                <div class="col-6 my-2">
-                    <h5>Existing Customer cards</h5>
-                </div>
                 <div>
-                    <table class="table">
-                        <thead class="position">
-                            <tr>
-                                <th scope="col">Card Type</th>
-                                <th scope="col">Card owner</th>
-                                <th scope="col">Card number</th>
-                                <th scope="col">Expiration Date</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for card in customer_cards %}
-                            <tr class="display">
-                                <td scope="row" name="card_id"><span>{{card.card_type}}</span></td>
-                                <td scope="row" name="card_id"><span>{{card.card_owner}}</span></td>
-                                <td scope="row" name="card_id"><span>{{card.card_number}}</span></td>
-                                <td scope="row" name="card_id">
-                                    <span>{{card.expiration_mm}}-{{card.expiration_yyyy}}</span>
-                                </td>
-                                <td>
-                                    <input type="hidden" name="card_id" value="{{card.id}}">
-                                    <a href="/my_dashboard/customer_delete_card/{{customer_id}}/{{card.id}}/">Delete</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div>
+                        <div id="cars_request" class="row-2">
+                            <div class="col d-flex">
+                                <h5 class="font-weight-bold">Your Bookings</h5>
+                                <p>You have 5 requests</p>
+                            </div>
+                            <div class="car_list border-2">
+                                <div>
+                                    <!-- TODO: for loop for filtered cars -->
+                                    {% for customer in customer.customers_booked.all %}
+                                    <div class="car_box row border">
+                                        <div class="col-4">
+                                            <h6 style="color: orange;">{{customer.status}}</h6>
+                                            <h6>{{customer.car_book.brand}}</h6>
+                                            <img src="{{customer.car_book.photo.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+                                        </div>
+                                        <div class="car_details col-4">
+                                            <h6>Production Year: {{customer.car_book.production_year}}</h6>
+                                            <h6>Color: {{customer.car_book.color}}</h6>
+                                            <h6>Provider: {{customer.car_book.provider.name}}</h6>
+                                        </div>
+                                        <div class="dates col">
+                                            <h6>picked up date: 10/10/2022</h6>
+                                            <h6>droped off date: 20/10/2022</h6>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 my-2 mt-5">
+                        <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">
+                            <button type="submit" class="btn btn-primary">Add payment</button>
+                        </a>
+                    </div>
+                    <div class="col-6 my-2">
+                        <h5>Existing Customer cards</h5>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <thead class="position">
+                                <tr>
+                                    <th scope="col">Card Type</th>
+                                    <th scope="col">Card owner</th>
+                                    <th scope="col">Card number</th>
+                                    <th scope="col">Expiration Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for card in customer_cards %}
+                                <tr class="display">
+                                    <td scope="row" name="card_id"><span>{{card.card_type}}</span></td>
+                                    <td scope="row" name="card_id"><span>{{card.card_owner}}</span></td>
+                                    <td scope="row" name="card_id"><span>{{card.card_number}}</span></td>
+                                    <td scope="row" name="card_id">
+                                        <span>{{card.expiration_mm}}-{{card.expiration_yyyy}}</span>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="card_id" value="{{card.id}}">
+                                        <a href="/my_dashboard/customer_delete_card/{{customer_id}}/{{card.id}}/">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

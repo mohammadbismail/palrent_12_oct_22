@@ -129,17 +129,12 @@
                 {% endif %}
                 {% if "customer_id" in request.session %}
                 <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                {% elif "provider_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/provider_dashboard/" class="nav-link">Home</a></li>
                 {% else %}
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
                 {% endif %}
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
-                {% if "provider_id" in request.session %}
-                <li>
-                  <a href="my_dashboard/provider_dashboard/">
-                    <button class="btn btn-primary">My Dashboard</button>
-                  </a>
-                </li>
-                {% endif %}
                 {% if "sign_out" not in request.session %}
                 <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
                 {% else %}
@@ -148,11 +143,6 @@
                 {% endif %}
               </ul>
               <div class="row justify-content-center">
-                <div class="col-9">
-                    {% if "provider_id" in request.session %}
-                    <h2>Welcome {{request.session.provider_name}}</h2>
-                    {% endif %}
-                  </div>
                 </div>
               </div>
             </nav>

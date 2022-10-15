@@ -186,16 +186,19 @@
                 </div>
 
                 <div class="search_result col-lg-8 border rounded">
+                    <div>
+                        <h5>{{request.session.pick_up_date}}</h5>
+                        <h5>{{request.session.drop_off_date}}</h5>
+                    </div>
                     <div class="sorting col-12 justify-content-evenly">
                         <!-- TODO: jinja for period number -->
                         <p>You are searching for 10 days period</p>
                         <div class="sm-10">
-                            <select name="sorting" class="btn btn-primary dropdown-toggle btn-sm " id="" >
+                            <select name="sorting" class="btn btn-primary dropdown-toggle btn-sm" id="" >
                                 <option value="cheapest">cheapest</option>
                                 <option value="best_rating">best rating</option>
                             </select>
                         </div>
-
                         <!-- TODO: jenja for cars numbers -->
                         <p>you have 20 cars to select</p>
                     </div>
