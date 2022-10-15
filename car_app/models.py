@@ -1,5 +1,5 @@
 from django.db import models
-from user_app.models import Customer, Provider
+from user_app.models import Customer, Provider, Provider_payment, Customer_payment
 
 class Car(models.Model):
     brand = models.CharField(max_length=45)
@@ -19,8 +19,13 @@ class Booking(models.Model):
     status = models.CharField(max_length=45)
     customer_book = models.ForeignKey(Customer, related_name="customers_booked", on_delete=models.CASCADE)
     car_book = models.ForeignKey(Car, related_name="cars_booked", on_delete=models.CASCADE)
+    car_provider= models.ForeignKey(Provider, related_name="cars_providers", on_delete=models.CASCADE)
+    payment_receiver= models.ForeignKey(Provider_payment, related_name="receivers", on_delete=models.CASCADE)
+    payment_payer= models.ForeignKey(Customer_payment, related_name="payers", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # Booking.car_book.provider
 
 
 

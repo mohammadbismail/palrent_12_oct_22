@@ -1,3 +1,5 @@
+from genericpath import exists
+import json
 from django.shortcuts import render, redirect
 from .models import Customer, Provider, Website_review
 from django.http import JsonResponse
@@ -66,7 +68,8 @@ def login(request):
 
         logged_customer = customer[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_customer.password.encode()
+            request.POST["password"].encode(
+            ), logged_customer.password.encode()
         ):
             request.session["customer_id"] = logged_customer.id
             request.session["customer_first_name"] = logged_customer.first_name
@@ -83,7 +86,8 @@ def login(request):
 
         logged_provider = provider[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_provider.password.encode()
+            request.POST["password"].encode(
+            ), logged_provider.password.encode()
         ):
             request.session["provider_id"] = logged_provider.id
             request.session["provider_name"] = logged_provider.name
@@ -132,7 +136,8 @@ def provider_register(request):
         return redirect("/register/")
 
     password_from_form = request.POST["password"]
-    pw_hash = bcrypt.hashpw(password_from_form.encode(), bcrypt.gensalt()).decode()
+    pw_hash = bcrypt.hashpw(password_from_form.encode(),
+                            bcrypt.gensalt()).decode()
 
     provider = Provider.objects.create(
         name=request.POST["name"],
@@ -194,14 +199,15 @@ def contact(request):
 
 
 def website_review(request):
-
-    Website_review.objects.create(
+    review = Website_review.objects.create(
         first_name=request.POST["first_name"],
         last_name=request.POST["last_name"],
         email=request.POST["email"],
         message=request.POST["message"],
     )
-    return redirect("/contact")
+    if review.id:
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 
 def check_email(request, email=""):

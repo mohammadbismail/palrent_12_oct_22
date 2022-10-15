@@ -53,7 +53,7 @@ def customer_car_book(request, car_id):
     return redirect("/my_dashboard/payment_confirmation/" + car_id)
 
 
-def provider_dashboard(request):
+def provider_dashboard(request, customer_id):
 
     # Booking.objects.filter(status=)
 
@@ -62,7 +62,8 @@ def provider_dashboard(request):
             id=request.session["provider_id"]
         ).cars.all(),
         "provider": Provider.objects.get(id=request.session["provider_id"]),
-        # "Status_changer": Booking.objects.get(customer_book_id=customer_id),
+        "Status_changer": Booking.objects.get(customer_book_id=customer_id),
+
 
     }
     return render(request, "provider_dashboard.html", context)
@@ -95,10 +96,16 @@ def confirm_book(request, car_id):
         status="Pending",
         customer_book=Customer.objects.get(id=customer_id),
         car_book=Car.objects.get(id=car_id),
+        car_provider=Provider.objects.get(cars=car_id),
+        payment_receiver=Provider_payment.objects.get(id=1),
+        payment_payer=Customer_payment.objects.get(id=card_id),
     )
 
     return redirect("/my_dashboard")
 
+
+
+    # Booking.car_book.provider
 
 
 

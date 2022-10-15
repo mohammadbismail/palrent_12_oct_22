@@ -36,6 +36,32 @@
     <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<title>PalRent</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/aos.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="/static/js/main.js"></script>
+>>>>>>> da574e219873dc580437955759807bb83d6f1c84
+>>>>>>> 979f17eccc20c94ccbea111f89d72a5f24e56af3
 </head>
 
 <body>
@@ -150,6 +176,7 @@
                                             {% if book.status == "Pending" %}
                                             <h6 style="color: orange;">{{book.status}}</h6>
                                             {%endif%}
+                                            <h6 style="color: orange;">{{book.status}}</h6>
                                             <h6>{{book.customer_book.first_name}} {{book.customer_book.last_name}}</h6>
                                             <img src="{{book.customer_book.profile.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
                                         </div>
@@ -169,6 +196,10 @@
                                                 <button class="btn btn-success">Accept</button>
                                             </a>
                                             <a href="/my_dashboard/rejected/{{Status_changer.id}}">
+                                            <a href="/my_dashboard/provider_car_details/{{car.id}}/">
+                                                <button class="btn btn-success">Accept</button>
+                                            </a>
+                                            <a href="/my_dashboard/provider_car_details/{{car.id}}/">
                                                 <button class="btn btn-danger">Reject</button>
                                             </a>
                                         </div>
@@ -186,6 +217,12 @@
                                     <option value="rental_car">Rental Cars</option>
                                     <option value="in_shop">In Shop</option>
                                 </select> -->
+                                <h5 class="font-weight-bold">My Cars satus:</h5>
+                                <select name="shop_sorting" class="btn btn-primary dropdown-toggle btn-sm" id="">
+                                    <option value="all">All</option>
+                                    <option value="rental_car">Rental Cars</option>
+                                    <option value="in_shop">In Shop</option>
+                                </select>
                                 <!-- TODO: both sort tybe and number should be jenja -->
                                 <p>number of rented cars 24</p>
                             </div>
@@ -205,6 +242,7 @@
                                         {% if book.status == "IN Garage" %}
                                         <h6 style="color: Blue;">{{book.status}}</h6>
                                         {%endif%}
+                                    <div class="car_box">
                                         <img src="{{car.photo.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
                                         <div class="car_details col-1">
                                             <h6>{{car.brand}}</h6>
@@ -219,6 +257,13 @@
                                             <h6>picked up date: 10/10/2022</h6>
                                             <h6>droped off date: 20/10/2022</h6>
                                         </div>
+                                        <div class="dates col-3">
+                                            <h6>picked up date: 10/10/2022</h6>
+                                            <h6>droped off date: 20/10/2022</h6>
+                                            <h6>days: 10</h6>
+                                        </div>
+                                        <a href="/my_dashboard/provider_car_details/{{car.id}}/">
+                                            <button class="btn btn-primary row">View Car</button>
                                     </div>
                                     {% endfor %}
                                     {% endfor %}
@@ -234,35 +279,42 @@
 
 
                 <footer class="site-footer">
-                    <div class="container-lg">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <h2 class="footer-heading mb-4">About Us</h2>
-                                <p>PalRent is number one car renting website in Palestine </p>
-                                <ul class="list-unstyled social">
-                                    <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2504/2504903.png"
-                                                alt="fb" height="40px"></span></a>
-                                    </li>
-                                    <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-                                                alt="inst" height="40px"></a></li>
-                                    <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png"
-                                                alt="tw" height="40px"></a></li>
-                                    <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png"
-                                                alt="in" height="40px"></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-2">
-                                <h2 class="footer-heading mb-4">Quick Links</h2>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Terms of Service</a></li>
-                                    <li><a href="#">Privacy</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                </ul>
-                            </div>
+                    <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3">
+                        <h2 class="footer-heading mb-4">About Us</h2>
+                            p>PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent makes it easier for you!</p>
+                        <ul class="list-unstyled social">
+                            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2504/2504903.png" alt="fb"
+                                height="40px"></span></a>
+                            </li>
+                            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="inst"
+                                height="40px"></a></li>
+                            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png" alt="tw"
+                                height="40px"></a></li>
+                            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="in"
+                                height="40px"></a></li>
+                        </ul>
+                        </div>
+                        <div class="col-lg-3">
+                        <h2 class="footer-heading mb-4">Quick Links</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                        </div>
+                        <div class="sponsors">
+                        <h5>Our sponsors:</h5>
+                        <img src="/static/images/sponsers.png" alt="sponsers">
                         </div>
                     </div>
+                    </div>
                 </footer>
+
+                </footer>
+            </div>
 </body>
 
 </html>
