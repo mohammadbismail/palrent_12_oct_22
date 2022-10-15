@@ -43,7 +43,7 @@
 
           <div class="col-3">
             <div class="site-logo">
-              <a href="/"><img class="palrent-logo" src="/static/images/logo.png" alt="PalRent logo"></a>
+              <a href="/"><img class="palrent-logo" src="/static/images/logo-1.png" alt="PalRent logo"></a>
             </div>
           </div>
 
@@ -124,25 +124,26 @@
                 <li>
                   <button class="btn btn-dark btn-sm"><span><a href="/delete/"
                     style="color: white;">Sign Out</a></span></button>
-                </li>
+                  </li>
                 {% endif %}
               </ul>
+
+
               <div class="row justify-content-center">
                 <div class="col-9">
                   {% if "customer_id" in request.session %}
                   <div class="row">
                     <div class="col-11">
                       <input type="hidden" name="customer_id" value="{{customer.id}}">
-                      <h2>Welcome {{request.session.customer_first_name}}</h2>
+                      <!-- <h2>Welcome {{request.session.customer_first_name}}</h2> -->
                     </div>
                     <div class="col-1">
-                      <img src="{{customer.profile.url}}" class="rounded" alt="profile_photo" width="60px"
-                        height="80px">
+
                     </div>
                   </div>
                   {% endif %}
                   {% if "provider_id" in request.session %}
-                  <h2>Welcome {{request.session.provider_name}}</h2>
+                  <!-- <h2>Welcome {{request.session.provider_name}}</h2> -->
                   {% endif %}
                 </div>
               </div>

@@ -7,10 +7,10 @@
             <!-- row containing register page -->
             <div class="col-10">
                 <div class="py-5 text-center">
-                    <h2>Registration & Login</h2>
-                    <p class="lead">Kindly fill below information for completion of registration
-                        process
-                    </p>
+                    <h2 >Registration</h2>
+                </div>
+                <div class="text-center registeration-form reg-form-toggle">
+                    <h5><span id="toggle-label">Are you a car provider?</span>  <a href="" onclick="toggleRegForm(event)"><u>Register here!</u></a></h5>
                 </div>
                 <!-- TODO: start of regiseration-login container column  -->
                 <div class="row">
@@ -24,9 +24,13 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row justify-content-start">
+                <div style="width:100%;overflow:hidden">
                     <!-- TODO: start of login section -->
-                    <div class="col-md-6">
+                <div style="width:100%;overflow:hidden">
+                    <div style="width:200%">
+
+                    <div id="customer-reg-form" class="customer-reg reg-forms">
+                        <div class="registeration-form">
                         <h2 class="text-center">Customer Registration</h2>
                         <hr class="border border-2 border-primary">
                         <!-- FIXME:FIXME: form -->
@@ -96,31 +100,34 @@
                             </div>
                             <!-- TODO: end of email & Mobile-->
                             <!-- TODO: start of age & national id-->
-                            <div class="row">
+                            <div class="row files-row">
                                 <div class="col-lg-4">
                                     <label for="birthday" class="form-label">Birthday</label>
                                     <input type="date" class="form-control" name="birthday" id="birthday">
                                 </div>
-                                <div class="col-lg-8">
-                                    <label for="driving_license" class="form-label">Driving License</label>
-                                    <input type="file" class="form-control" name="driving_license" id="driving_license"
-                                        required>
-                                </div>
-                            </div>
+                                
+                                <div class="col-lg-4 upload-margin">
+                                    <label for="driving_license" class="custom-file-upload btn"><i class="bi bi-cloud-arrow-up-fill"></i>Driving License</label>
+                                    <input class="input-upload form-control form-control-lg" name="driving_license" id="driving_license" type="file" required>
+                                  </div>
+                            
                             <!-- TODO: End of age and national id -->
                             <!-- TODO: end of registration section -->
-                            <div class="col-lg-16">
-                                <label for="profile" class="form-label">Profile Picture</label>
-                                <input type="file" class="form-control" name="profile" id="profile"
+                            <div class="col-lg-4 upload-margin">
+                                <label for="profile" class="custom-file-upload btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i>Profile Picture</label>
+                                <input type="file" class="input-upload form-control form-control-lg" name="profile" id="profile"
                                     required>
                             </div>
+                        </div>
                             <div class="my-5 text-center">
                                 <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Register</button>
                             </div>
                         </form>
                     </div>
+                    </div>
                     <!-- TODO: end of login section -->
-                    <div class="col-md-6">
+                    <div class="provider-reg reg-forms">
+                        <div class="registeration-form">
                         <h2 class="text-center">Provider Register</h2>
                         <hr class="border border-2 border-primary">
                         <!-- TODO: start of registeration section -->
@@ -182,8 +189,8 @@
                             <!-- TODO: start of permit-->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <label for="permit" class="form-label">Permit</label>
-                                    <input type="file" class="form-control" name="permit" id="permit">
+                                    <label for="permit" class="custom-file-upload"><i class="bi bi-cloud-arrow-up-fill"></i> Permit</label>
+                                    <input type="file" class="input-upload form-control form-control-lg" name="permit" id="permit">
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="mobile" class="form-label">Mobile</label>
@@ -192,8 +199,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg">
-                                    <label for="logo" class="form-label">Logo</label>
-                                    <input type="file" class="form-control" name="logo" id="logo"
+                                    <label for="logo" class="custom-file-upload"><i class="bi bi-cloud-arrow-up-fill"></i>Logo</label>
+                                    <input type="file" class="input-upload form-control form-control-lg" name="logo" id="logo"
                                         placeholder="you@example.com">
                                     <div class="invalid-feedback">
                                         Please enter a valid email address
@@ -207,6 +214,10 @@
                             </div>
                         </form>
                     </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                </div>
                     <!-- TODO: end of registration section  -->
                 </div>
             </div>

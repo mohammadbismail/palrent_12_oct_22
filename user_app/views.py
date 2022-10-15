@@ -90,6 +90,8 @@ def login(request):
             request.session["sign_out"] = "Sign Out"
 
         return redirect("/my_dashboard/provider_dashboard")
+    return redirect("/")
+
 
 
 def register(request):
