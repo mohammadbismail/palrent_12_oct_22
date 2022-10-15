@@ -1,4 +1,5 @@
 // here is our updates
+
 function emailHasChanged(e) {
 	var email = e.target.value;
 	const xhttp = new XMLHttpRequest();
@@ -14,6 +15,21 @@ function emailHasChanged(e) {
 	xhttp.open("GET", "http://127.0.0.1:8000/check_email/"+email, true);
 	xhttp.send();
   }
+function submitContactUsform(e){
+	e.preventDefault() //dont go to the action let me handle it first
+		var data = $('#contact-post-form').serialize();
+		$.ajax({
+			type:'POST',
+			url:'/website_review/',
+			data:data,
+			success:function(json){
+				displayPopup()
+			},
+			error : function(xhr,errmsg,err) {
+			console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+		}
+	});
+}
 
 function displayPopup(){
 	let popup = document.getElementById("popup");
@@ -23,7 +39,9 @@ function displayPopup(){
 	function closePopup(){
 	let popup = document.getElementById("popup");
 	  popup.classList.remove("open-popup")
+	  window.location.href = "/"
 	}
+
 function toggleLoginForm() {
 	console.log("11111111111111111111111")
 	var formContainer = document.getElementById("login-form")
