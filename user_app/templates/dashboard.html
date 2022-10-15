@@ -56,15 +56,16 @@
                 <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My
                     account</a></li>
                 {% endif %}
+<<<<<<< HEAD
+                {% if "customer_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                {% elif "provider_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/provider_dashboard/" class="nav-link">Home</a></li>
+                {% else %}
+=======
+>>>>>>> da574e219873dc580437955759807bb83d6f1c84
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
-                {% if "provider_id" in request.session %}
-                <li>
-                  <a href="my_dashboard/provider_dashboard/">
-                    <button class="btn btn-primary">My Dashboard</button>
-                  </a>
-                </li>
-                {% endif %}
                 {% if "sign_out" not in request.session %}
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -128,6 +129,10 @@
                 {% endif %}
               </ul>
               <div class="row justify-content-center">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
                 <div class="col-9">
                   {% if "customer_id" in request.session %}
                   <div class="row">
@@ -144,6 +149,8 @@
                   {% if "provider_id" in request.session %}
                   <h2>Welcome {{request.session.provider_name}}</h2>
                   {% endif %}
+>>>>>>> da574e219873dc580437955759807bb83d6f1c84
+>>>>>>> 979f17eccc20c94ccbea111f89d72a5f24e56af3
                 </div>
               </div>
             </nav>

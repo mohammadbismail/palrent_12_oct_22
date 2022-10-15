@@ -18,6 +18,10 @@ def dashboard(request):
 
 def search(request):
 
+
+    request.session['pick_up_date'] = request.POST['pick_up_date']
+    request.session['drop_off_date'] = request.POST['drop_off_date']
+    print("this is the datee      sjakbas", request.POST['drop_off_date'])
     if "customer_id" in request.session:
         return redirect("/my_dashboard/search_result")
 
@@ -120,7 +124,7 @@ def customer_register(request):
     request.session["customer_id"] = customer.id
     request.session["customer_first_name"] = customer.first_name
     request.session["sign_out"] = "Sign Out"
-    return redirect("/")
+    return redirect("/my_dashboard")
 
 
 def provider_register(request):

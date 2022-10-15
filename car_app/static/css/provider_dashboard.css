@@ -1,16 +1,20 @@
 * {
     margin: 0 auto;
+    /* padding: 0; */
+    
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     /* border: 1px solid black; */
 }
 
 .dashboard {
+    width: 95%;
     border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px;
+    display: flex;
+    /* border-radius: 5px; */
+    /* padding: 10px; */
 }
 
 .car_list {
@@ -28,9 +32,9 @@
     height: 80px;
 }
 
-.search_result {
+/* .search_result {
     width: 80%;
-}
+} */
 
 .sorting {
     display: flex;
@@ -41,6 +45,7 @@
 
 .car_box {
     display: flex;
+    color: azure;
     text-align: center;
     align-items: center;
     justify-content: space-around;
@@ -48,7 +53,10 @@
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
+    background-color: rgb(78, 78, 78);
 }
+
+
 
 .btn {
     height: 50px;

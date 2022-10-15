@@ -1,7 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/provider_dashboard.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}" defer></script>
+    <script src="{% static 'js/popper.min.js' %}" defer></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" defer></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}" defer></script>
+    <script src="{% static 'js/jquery.sticky.js' %}" defer></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}" defer></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}" defer></script>
+    <script src="{% static 'js/jquery.fancybox.min.js' %}" defer></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}" defer></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}" defer></script>
+    <script src="{% static 'js/aos.js' %}" defer></script>
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
 <title>PalRent</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,12 +44,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-  integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-  integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 {% load static%}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
@@ -25,197 +60,260 @@
 <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <script src="/static/js/main.js"></script>
+>>>>>>> da574e219873dc580437955759807bb83d6f1c84
+>>>>>>> 979f17eccc20c94ccbea111f89d72a5f24e56af3
 </head>
 
 <body>
-<div class="site-wrap" id="home-section">
-    <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-        <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-    </div>
-    <div id="login-form" class="login-form">
-    <form action="/login/" method="post">
-        {% csrf_token %}
-        <!-- Email inpute -->
-        {% for error in messages%}
-        <ul>
-        <li>
-            {{error}}
-        </li>
-        </ul>
-        {% endfor %}
-        <div class="form-outline mb-4">
-        <label class="form-label" for="email">Email address</label>
-        <input type="email" id="email" name="email" class="form-control" />
-        </div>
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-        <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" />
-        </div>
-
-        <!-- 2 column grid layout for inline styling -->
-        <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox" />
-            <label class="form-check-label" for="checkbox"> Remember me </label>
-            </div>
-        </div>
-
-        <div class="col">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
-        </div>
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-    </form>
-    <!-- Register buttons -->
-    <div class="text-center">
-        <p>Not a member? <a href="/register/">Register</a></p>
-    </div>
-    </div>
-
-
-
-    <header class="site-navbar site-navbar-target" role="banner">
-
-    <div class="container">
-        <div class="row align-items-center position-relative">
-
-        <div class="col">
-            <div class="site-logo">
-            <a href="index.html"><strong>PalRent</strong></a>
-            <p class="slogan-header">Car rental in Palestine</p>
-            </div>
-        </div>
-        <div class="col-sm-11 d-flex align-items-center justify-content-center position-absolute">
-            {% if "provider_id" in request.session %}
-            <div class="row">
-            <div class="row-1 text-align-center">
-                <input type="hidden" name="customer_id" value="{{customer.id}}">
-                <h2>Welcome, {{request.session.provider_name}}</h2>
-            </div>
-            <div class="col">
-                <img src="{{provider.profile.url}}" class="rounded" alt="profile_photo" width="80px"
-                height="80px">
-            </div>
-            </div>
-            {% endif %}
-        </div>
-        <div class="col  text-right">
-            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
-                class="icon-menu h3 text-black"></span></a></span>
-            <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-            <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                {% if "provider_id" in request.session %}
-                <li><a href="/my_dashboard/provider_account/{{request.session.provider_id}}/" class="nav-link">My
-                    account</a></li>
-                {% endif %}
-                <li><a href="/contact/" class="nav-link">Contact</a></li>
-                {% if "sign_out" not in request.session %}
-                <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
-                {% else %}
-                <button class="btn btn-primary" onclick="toggleLoginForm()"><span><a href="/delete/"
-                    style="color: white;">Sign Out</a></span></button>
-                {% endif %}
-            </ul>
-            </div>
-            </nav>
-        </div>
-
-
-        </div>
-    </div>
-
-    </header>
+    <div style="background-image: url(' /static/images/hero_1_a.jpg') ;">
+    <!-- FIXME: -->
+    <div class="container-fluid m-3 p-2">
+        <div class="row my-5">
+            <div class="site-wrap" id="home-section">
+                <div id="login-form" class="login-form">
+                    <form action="/login/" method="post">
+                        {% csrf_token %}
+                        <!-- Email inpute -->
+                        {% for error in messages%}
+                        <ul>
+                            <li>
+                                {{error}}
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email address</label>
+                            <input type="email" id="email" name="email" class="form-control" />
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" />
+                        </div>
+                        <!-- 2 column grid layout for inline styling -->
+                        <div class="row mb-4">
+                            <div class="col d-flex justify-content-center">
+                                <!-- Checkbox -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkbox" />
+                                    <label class="form-check-label" for="checkbox"> Remember me </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Simple link -->
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                        </div>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    </form>
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not a member? <a href="/register/">Register</a></p>
+                    </div>
+                </div>
+                <header class="site-navbar site-navbar-target" role="banner">
+                    <div class="row col-11 align-items-center">
+                        <div class="col-4">
+                            <div class="site-logo">
+                                <a href="index.html"><strong>PalRent</strong></a>
+                                <p class="slogan-header">Car rental in Palestine</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-11 d-flex align-items-center justify-content-center position-absolute">
+                            {% if "provider_id" in request.session %}
+                            <div class="row mt-4">
+                            <div class="col-1 text-align-center">
+                                <input type="hidden" name="customer_id" value="{{customer.id}}">
+                                <h2>Welcome, {{request.session.provider_name}}</h2>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{provider.logo.url}}" class="rounded" alt="profile_photo" width="80px"
+                                height="80px" class="rounded-circle">
+                            </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col  text-right">
+                            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
+                                class="icon-menu h3 text-black"></span></a></span>
+                            <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                                <li><a href="/my_dashboard/add_car/" class="nav-link">Add/Edit Cars</a></li>
+                                {% if "provider_id" in request.session %}
+                                <li><a href="/my_dashboard/provider_account/{{request.session.provider_id}}/" class="nav-link">My
+                                    account</a></li>
+                                {% endif %}
+                                <li><a href="/contact/" class="nav-link">Contact</a></li>
+                                {% if "sign_out" not in request.session %}
+                                <button class="btn btn-primary" onclick="toggleLoginForm()">Sign in</button>
+                                {% else %}
+                                <button class="btn btn-primary" onclick="toggleLoginForm()"><span><a href="/delete/"
+                                    style="color: white;">Sign Out</a></span></button>
+                                {% endif %}
+                            </ul>
+                        </div>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
                 <!-- FIXME: <input type="hidden" name="provider_id" value="{{provider.id}}"> -->
-            <div  style="background-image: url(' /static/images/hero_1_a.jpg') ;">
-                <div class="container-fluid m-5 p-4">
+                <div class="container-fluid m-3 p-2">
                     <h2>Your Shop</h2>
                     <div class="dashboard">
-                        <div class="nav_bar">
-                            <h5>My Cars satus:</h5>
-                            <select name="shop_sorting" id="">
-                                <option value="all">All</option>
-                                <option value="rental_car">Rental Cars</option>
-                                <option value="in_shop">In Shop</option>
-                            </select>
-                            <!-- TODO: both sort tybe and number should be jenja -->
-                            <p>number of rented cars 24</p>
-                        </div>
-                        <div class="car_list">
-                            <div class="search_result">
-                                <!-- TODO: for loop for filtered cars -->
-                                {% for car in provider_cars %}
-                                <div class="car_box">
-                                    <img src="{{car.photo.url}}" alt="photo_test" width="80px" height="80px">
-                                    <div class="car_details">
-                                        <h6>{{car.brand}}</h6>
-                                        <h6>{{car.production_year}}</h6>
-                                        <h6>{{car.color}}</h6>
+                        <div id="cars_request" class="row-2">
+                            <div class="col d-flex">
+                                <h5 class="font-weight-bold">Cars requests</h5>
+                                <p>You have 5 requests</p>
+                            </div>
+                            <div class="car_list">
+                                <div>
+                                    <!-- TODO: for loop for filtered cars -->
+                                    {% for car in provider.cars.all %}
+                                    {% for book in car.cars_booked.all %}
+                                    <div class="car_box">
+                                        <div class="col-4">
+                                            {% if book.status == "Pending" %}
+                                            <h6 style="color: orange;">{{book.status}}</h6>
+                                            {%endif%}
+                                            <h6 style="color: orange;">{{book.status}}</h6>
+                                            <h6>{{book.customer_book.first_name}} {{book.customer_book.last_name}}</h6>
+                                            <img src="{{book.customer_book.profile.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+                                        </div>
+                                        <div class="car_details">
+                                            <h6>{{car.production_year}}</h6>
+                                            <h6>{{car.color}}</h6>
+                                        </div>
+                                        <div class="dates">
+                                            <h6>picked up date: 10/10/2022</h6>
+                                            <h6>droped off date: 20/10/2022</h6>
+                                        </div>
+                                        <div class="col">
+                                            <input type="hidden" name="Status_changer_id" value="{{Status_changer.id}}">
+                                            <input type="hidden" name="customer_id" value="{{customer.id}}">
+                                            <input type="hidden" name="car_id" value="{{car.id}}">
+                                            <a href="/my_dashboard/accept/{{car.id}}/">
+                                                <button class="btn btn-success">Accept</button>
+                                            </a>
+                                            <a href="/my_dashboard/rejected/{{Status_changer.id}}">
+                                            <a href="/my_dashboard/provider_car_details/{{car.id}}/">
+                                                <button class="btn btn-success">Accept</button>
+                                            </a>
+                                            <a href="/my_dashboard/provider_car_details/{{car.id}}/">
+                                                <button class="btn btn-danger">Reject</button>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="payment_details">
-                                        <h6>Tenant: {{request.session.provider_name}}</h6>
-                                        <h6>Price: {{car.price}}</h6>
-                                    </div>
-                                    <div class="dates">
-                                        <h6>picked up date: 10/10/2022</h6>
-                                        <h6>droped off date: 20/10/2022</h6>
-                                        <h6>days: 10</h6>
-                                    </div>
-                                    <a href="/my_dashboard/provider_car_details/{{car.id}}/">
-                                        <button class="btn btn-primary">View Car</button>
-                                    </a>
+                                    {% endfor %}
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="nav_bar">
+                                <h5 class="font-weight-bold">My Garage:</h5>
+                                <!-- <select name="shop_sorting" class="btn btn-primary dropdown-toggle btn-sm" id="">
+                                    <option value="all">All</option>
+                                    <option value="rental_car">Rental Cars</option>
+                                    <option value="in_shop">In Shop</option>
+                                </select> -->
+                                <h5 class="font-weight-bold">My Cars satus:</h5>
+                                <select name="shop_sorting" class="btn btn-primary dropdown-toggle btn-sm" id="">
+                                    <option value="all">All</option>
+                                    <option value="rental_car">Rental Cars</option>
+                                    <option value="in_shop">In Shop</option>
+                                </select>
+                                <!-- TODO: both sort tybe and number should be jenja -->
+                                <p>number of rented cars 24</p>
+                            </div>
+                            <div class="car_list col-12">
+                                <div class="search_result">
+                                    <!-- TODO: for loop for filtered cars -->
+                                    {% for car in provider.cars.all %}
+                                    {% for book in car.cars_booked.all %}
+                                    <form action="" method="post"></form>
+                                    <div class="car_box">
+                                        {% if book.status == "RENTed" %}
+                                        <h6 style="color: green;">{{book.status}}</h6>
+                                        {%endif%}
+                                        {% if book.status == "Rejected" %}
+                                        <h6 style="color: red;">{{book.status}}</h6>
+                                        {%endif%}
+                                        {% if book.status == "IN Garage" %}
+                                        <h6 style="color: Blue;">{{book.status}}</h6>
+                                        {%endif%}
+                                    <div class="car_box">
+                                        <img src="{{car.photo.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+                                        <div class="car_details col-1">
+                                            <h6>{{car.brand}}</h6>
+                                            <h6>{{car.production_year}}</h6>
+                                            <h6>{{car.color}}</h6>
+                                        </div>
+                                        <div class="payment_details col-2">
+                                            <h6>Tenant: <h6>{{book.customer_book.first_name}} {{book.customer_book.last_name}}</h6></h6>
+                                            <h6>Price: {{car.price}}</h6>
+                                        </div>
+                                        <div class="dates col-4">
+                                            <h6>picked up date: 10/10/2022</h6>
+                                            <h6>droped off date: 20/10/2022</h6>
+                                        </div>
+                                        <div class="dates col-3">
+                                            <h6>picked up date: 10/10/2022</h6>
+                                            <h6>droped off date: 20/10/2022</h6>
+                                            <h6>days: 10</h6>
+                                        </div>
+                                        <a href="/my_dashboard/provider_car_details/{{car.id}}/">
+                                            <button class="btn btn-primary row">View Car</button>
+                                    </div>
+                                    {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
                 <footer class="site-footer">
                     <div class="container">
-                      <div class="row justify-content-center">
+                    <div class="row justify-content-center">
                         <div class="col-lg-3">
-                          <h2 class="footer-heading mb-4">About Us</h2>
-                          <p>PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent makes it easier for you!</p>
-                          <ul class="list-unstyled social">
+                        <h2 class="footer-heading mb-4">About Us</h2>
+                            p>PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent makes it easier for you!</p>
+                        <ul class="list-unstyled social">
                             <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2504/2504903.png" alt="fb"
-                                  height="40px"></span></a>
+                                height="40px"></span></a>
                             </li>
                             <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="inst"
-                                  height="40px"></a></li>
+                                height="40px"></a></li>
                             <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png" alt="tw"
-                                  height="40px"></a></li>
+                                height="40px"></a></li>
                             <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="in"
-                                  height="40px"></a></li>
-                          </ul>
+                                height="40px"></a></li>
+                        </ul>
                         </div>
                         <div class="col-lg-3">
-                          <h2 class="footer-heading mb-4">Quick Links</h2>
-                          <ul class="list-unstyled">
+                        <h2 class="footer-heading mb-4">Quick Links</h2>
+                        <ul class="list-unstyled">
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Terms of Service</a></li>
                             <li><a href="#">Privacy</a></li>
                             <li><a href="#">Contact Us</a></li>
-                          </ul>
+                        </ul>
                         </div>
                         <div class="sponsors">
-                          <h5>Our sponsors:</h5>
-                          <img src="/static/images/sponsers.png" alt="sponsers">
+                        <h5>Our sponsors:</h5>
+                        <img src="/static/images/sponsers.png" alt="sponsers">
                         </div>
-                      </div>
                     </div>
-                  </footer>
+                    </div>
+                </footer>
+
+                </footer>
             </div>
 </body>
 

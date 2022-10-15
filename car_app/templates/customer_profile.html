@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>Tenant Profile</h3>
+        <div>
+            {% for customer in customers %}
+            <img src="{{customer.profile.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+            <h5>{{customer.first_name}}</h5>
+            <h5>{{customer.last_name}}</h5>
+            <h5>{{customer.email}}</h5>
+            <h5>{{customer.moblie}}</h5>
+            <img src="{{customer.driving_license.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+            <h5>{{customer.first_name}}</h5>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

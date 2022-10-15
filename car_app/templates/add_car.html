@@ -63,7 +63,7 @@
                         </div>
                         <div class="row">
                             <label for="photo" class="form-label">Car Photo</label>
-                            <input type="file" class="form-control" name="photo" id="photo">
+                            <input type="file" class="form-control" name="photo" id="photo" accept="image/*">
                         </div>
                     </div>
                     <div class="col-12 text-center">
@@ -88,7 +88,7 @@
                     <tbody>
                         {% for car in provider.cars.all %}
                         <tr class="display">
-                            <td scope="row" name="photo"><img src="{{car.photo.url}}" alt="photo_test" width="20px" height="20px"></td>
+                            <td scope="row" name="photo"><img src="{{car.photo.url}}" alt="photo_test" width="20px" height="20px" class="rounded-circle"></td>
                             <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
                             <td>
                                 <input type="hidden" name="car_id" value="{{ car.id }}">

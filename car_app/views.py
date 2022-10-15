@@ -49,16 +49,22 @@ def customer_car_details(request, car_id):
 
 
 def customer_car_book(request, car_id):
-
+ 
     return redirect("/my_dashboard/payment_confirmation/" + car_id)
 
 
-def provider_dashboard(request):
+def provider_dashboard(request, customer_id):
+
+    # Booking.objects.filter(status=)
 
     context = {
         "provider_cars": Provider.objects.get(
             id=request.session["provider_id"]
         ).cars.all(),
+        "provider": Provider.objects.get(id=request.session["provider_id"]),
+        "Status_changer": Booking.objects.get(customer_book_id=customer_id),
+
+
     }
     return render(request, "provider_dashboard.html", context)
 
@@ -76,21 +82,31 @@ def payment_confirmation(request, car_id):
         "customer_cards": Customer.objects.get(id=customer_id)
         .customer_cards.all(),
     }
-    # print(selected_car.price)
     return render(request, "payment_confirmation.html", context)
 
 
 def confirm_book(request, car_id):
+
+    card_id = request.POST['card_id']
     print("this works here lalalalala")
+    customer_id = request.session["customer_id"]
     Booking.objects.create(
-        pick_up_date=request.session.get("pick_up_date"),
-        drop_off_date=request.session.get("drop_off_date"),
+        pick_up_date=request.session["pick_up_date"],
+        drop_off_date=request.session["drop_off_date"],
         status="Pending",
-        customer_book=Customer.objects.get(id=request.session["customer_id"]),
+        customer_book=Customer.objects.get(id=customer_id),
         car_book=Car.objects.get(id=car_id),
+        car_provider=Provider.objects.get(cars=car_id),
+        payment_receiver=Provider_payment.objects.get(id=1),
+        payment_payer=Customer_payment.objects.get(id=card_id),
     )
 
     return redirect("/my_dashboard")
+
+
+
+    # Booking.car_book.provider
+
 
 
 def customer_payment_method(request, customer_id):
@@ -137,7 +153,7 @@ def insert_car(request):
 def edit_car(request, car_id):
 
     context = {
-        "garage": Car.objects.filter(provider=request.session["provider_id"]),
+        "provider": Provider.objects.get(id=request.session["provider_id"]),
         "car_id": car_id,
         "car": Car.objects.get(id=car_id),
     }
@@ -208,6 +224,7 @@ def customer_account(request, customer_id):
         "customer_id": customer_id,
         "customer": Customer.objects.get(id=customer_id),
         "customer_cards": Customer.objects.get(id=customer_id).customer_cards.all(),
+        "booking_request": Booking.objects.get(customer_book_id=customer_id)
     }
 
     return render(request, "customer_account.html", context)
@@ -307,3 +324,26 @@ def provider_delete_card(request, card_id, provider_id):
     c.delete()
 
     return redirect("/my_dashboard/provider_account/" + provider_id)
+
+
+
+def accept(request, car_id):
+
+    c = Booking.objects.get(car_book_id=car_id)
+    c.status = "RENTed"
+    c.save()
+
+
+
+    return redirect('/my_dashboard/provider_dashboard')
+
+
+def rejected(request, Status_changer_id):
+    print("this works here")
+    c = Booking.objects.get(id=Status_changer_id)
+    c.status = "Rejected"
+    c.save()
+
+
+
+    return redirect('/my_dashboard/provider_dashboard')
