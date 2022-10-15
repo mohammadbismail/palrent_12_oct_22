@@ -1,4 +1,8 @@
 /* Our team styling */
+.btn-width {
+  width: 150px;
+}
+
 .avtar {
   margin: 0 auto;
   width: 150px;

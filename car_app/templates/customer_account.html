@@ -18,7 +18,7 @@
             <hr class="border border-2 border-primary">
         </div>
         <div class="body">
-            <div class="col-sm-6 border border-2 rounded" id="right_side">
+            <div class="col-sm-6 border border-2 rounded search_result mr-3" id="right_side">
                 <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" method="post"
                     enctype="multipart/form-data">
                     {% csrf_token %}
@@ -28,6 +28,12 @@
                   {% if not customer.profile %}
                   <div class="avtar">{{request.session.customer_first_name.0}}</div>
                   {% endif %}
+                  <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <label for="profile" class="form-label mr-3 btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i> Profile picture</label> 
+                        <input type="file" name="profile" id="profile">
+                    </div>
+                  </div>
                     <div class="row g-0">
                         <div class="col-lg-6">
                             <label for="first_name" class="form-label ">First name</label>
@@ -67,24 +73,42 @@
                                 required>
                         </div>
                     </div>
-                    <div class="row g-0">
+                    <div class="row g-0 mb-3">
                         <div class="col-lg-6">
                             <label for="mobile" class="form-label">Mobile</label>
                             <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1"
                                 required>{{customer.mobile}}</textarea>
                         </div>
-                        <div class="col-lg-6">
-                            <label for="driving_license" class="form-label">Driving License</label>
-                            <img src="{{customer.driving_license.url}}" alt="photo_test" width="50px" height="50px">
+                        <div class="col-lg-6 pt-4">
+                            <label for="driving_license" class="form-label mr-3 btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i> Driving License</label> 
                             <input type="file" name="driving_license" id="driving_license">
                         </div>
                     </div>
-                    <div class="text-center">
-                        <button class="w-20 btn btn-outline-dark btn-lg" type="submit">Update</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="{{customer.driving_license.url}}" alt="photo_test" style="width:100%">
+                        </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <button class="w-20 btn btn-success btn-width mb-3" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <a href="/delete_account/">
+                    <button class="btn btn-danger btn-width">Delete account</button>
+                </a>
             </div>
-            <div class="col col-8 border border-2 rounded">
+        </div>
+    </div>
+            </div>
+            <div class="col col-8 border border-2 rounded search_result">
                 <div class="col-4 my-2">
                     <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">
                         <button type="submit" class="btn btn-primary">Add payment</button>
@@ -125,10 +149,6 @@
             </div>
         </div>
     </div>
-    <div class="col-2">
-        <a href="/delete_account/">
-            <button class="btn btn-secondary">Delete account</button>
-        </a>
-    </div>
+    
 </div>
     {% endblock %}
