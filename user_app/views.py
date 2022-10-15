@@ -213,3 +213,9 @@ def check_email(request, email=""):
     if customer:
         return JsonResponse({"exists": True})
     return JsonResponse({"exists": False})
+
+def check_email_provider(request, email=""):
+    provider = Provider.objects.filter(email=email)
+    if provider:
+        return JsonResponse({"exists": True})
+    return JsonResponse({"exists": False})

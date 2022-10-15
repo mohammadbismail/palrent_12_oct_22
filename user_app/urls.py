@@ -18,5 +18,5 @@ urlpatterns = [
     path("contact/", views.contact),
     path("website_review/", views.website_review),
     path('check_email/<email>', views.check_email),
+    path('check_email_provider/<email>', views.check_email_provider),
 ]
-

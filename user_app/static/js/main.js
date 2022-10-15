@@ -12,19 +12,23 @@ function toggleRegForm(e) {
 	}
 	
 }
-function emailHasChanged(e) {
+function emailHasChanged(e, type=1) {
 	var email = e.target.value;
+	console.log(email)
+	var url = (type === 2) ? "/check_email_provider/"+email : "/check_email/"+email
+	var msgId = (type === 2) ? "duplicate-email-provider" : "duplicate-email" 
+	
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 	  var response = JSON.parse(this.responseText)
 	  if (response.exists){
-		document.getElementById("duplicate-email").style.display = "block"
+		document.getElementById(msgId).style.display = "block"
 	  }
 	  else {
-		document.getElementById("duplicate-email").style.display = "none"
+		document.getElementById(msgId).style.display = "none"
 	  }
 	  }
-	xhttp.open("GET", "http://127.0.0.1:8000/check_email/"+email, true);
+	xhttp.open("GET", url , true);
 	xhttp.send();
   }
 function submitContactUsform(e){
