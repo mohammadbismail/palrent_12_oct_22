@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<div class="container">
-    <div class="row">
-        <a href="/provider_dashboard/">
-            <button type="submit" class="btn-outline">My garage</button>
-        </a>
-    </div>
-    <div class="row gy-5 m-5 ">
-        <h4 class="text-center">Welcome, {{request.session.provider_name}}</h4>
-        <h5>Please fill below form to add your car</h5>
-        <div class="col car_form">
-            <div class="row car_details">
+<div class="container add-car-body mb-4">
+    <h3 class="">Welcome, {{request.session.provider_name}} !</h3>
+    <h5 class="mb-4">Please fill below form to add your car.</h5>
+    <div class="row gy-5">
+        <div class="col-md-5 car_form mr-5">
+            <div class="row car_details search_result">
                 <form action="/my_dashboard/insert_car/" method="post">
                     {% csrf_token %}
                     <div class="row">
@@ -19,7 +14,7 @@
                             <label for="brand" class="form-label">Brand</label>
                             <input type="text" class="form-control" name="brand" id="brand" required>
                             <div class="invalid-feedback">
-                                Model is required.
+                                Brand is required.
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -61,20 +56,21 @@
                                 Production Year is required.
                             </div>
                         </div>
-                        <div class="row">
-                            <label for="car_photo" class="form-label">Car Photo</label>
-                            <input type="file" class="form-control" name="car_photo" id="car_photo">
+                        <div class="col-lg-4 upload-margin">
+                            <label for="car_photo" class="custom-file-upload btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i>Add car photo</label>
+                            <input type="file" class="input-upload form-control form-control-lg" name="car_photo" id="car_photo">
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button class="btn btn-secondary my-4 p-3" type="submit">Add Car</button>
+                        <button class="w-20 btn btn-outline-secondary mt-3" type="submit">Add Car</button>
                     </div>
+                    
                 </form>
             </div>
         </div>
 
 
-        <div class="row gy-4">
+        <div class="col-md-6 gy-4 search_result">
             <div class="all_cars">
                 <h5>All my cars</h5>
                 <table class="table">
@@ -100,4 +96,5 @@
             </div>
         </div>
     </div>
+</div>
     {% endblock %}

@@ -4,7 +4,6 @@
 <main>
     <div class="container-xl my-5">
         <div class="row justify-content-center">
-            <!-- row containing register page -->
             <div class="col-10">
                 <div class="py-5 text-center">
                     <h2 >Registration</h2>
@@ -12,7 +11,6 @@
                 <div class="text-center registeration-form reg-form-toggle mb-3">
                     <h5><span id="toggle-label">Are you a car provider?</span>  <a href="" onclick="toggleRegForm(event)"><u>Register here!</u></a></h5>
                 </div>
-                <!-- TODO: start of regiseration-login container column  -->
                 <div class="errors">
                 <div class="row mb-2">
                     <div class="col-md-12">
@@ -27,7 +25,6 @@
                 </div>
             </div>
                 <div style="width:100%;overflow:hidden">
-                    <!-- TODO: start of login section -->
                 <div style="width:100%;overflow:hidden">
                     <div style="width:200%">
 
@@ -35,10 +32,8 @@
                         <div class="registeration-form">
                         <h2 class="text-center">Customer Registration</h2>
                         <hr class="border border-2 border-primary">
-                        <!-- FIXME:FIXME: form -->
                         <form action="/customer_register/" method="post" class="needs-validation" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <!-- TODO: first name  & last name inputs  -->
                             <div class="row g-3">
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">First name</label>
@@ -57,8 +52,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of first_name & last name -->
-                            <!-- TODO: start of password-->
                             <div class="row">
                                 <div class="col">
                                     <label for="password" class="form-label">Password</label>
@@ -69,8 +62,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of password-->
-                            <!-- TODO: start of password-->
                             <div class="row">
                                 <div class="col">
                                     <label for="confp" class="form-label">Confirm PW</label>
@@ -81,8 +72,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of password-->
-                            <!-- TODO: start of email & Mobile-->
                             <div class="row">
                                 <div class="col-lg-7">
                                     <label for="email" class="form-label">Email</label>
@@ -100,21 +89,15 @@
                                     <input type="tel" class="form-control" name="mobile" id="mobile" required>
                                 </div>
                             </div>
-                            <!-- TODO: end of email & Mobile-->
-                            <!-- TODO: start of age & national id-->
                             <div class="row files-row">
                                 <div class="col-lg-4">
                                     <label for="birthday" class="form-label">Birthday</label>
                                     <input type="date" class="form-control" name="birthday" id="birthday">
                                 </div>
-                                
                                 <div class="col-lg-4 upload-margin">
                                     <label for="driving_license" class="custom-file-upload btn"><i class="bi bi-cloud-arrow-up-fill"></i>Driving License</label>
                                     <input class="input-upload form-control form-control-lg" name="driving_license" id="driving_license" type="file" required>
                                   </div>
-                            
-                            <!-- TODO: End of age and national id -->
-                            <!-- TODO: end of registration section -->
                             <div class="col-lg-4 upload-margin">
                                 <label for="profile" class="custom-file-upload btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i>Profile Picture</label>
                                 <input type="file" class="input-upload form-control form-control-lg" name="profile" id="profile"s>
@@ -126,16 +109,12 @@
                         </form>
                     </div>
                     </div>
-                    <!-- TODO: end of login section -->
                     <div class="provider-reg reg-forms">
                         <div class="registeration-form">
                         <h2 class="text-center">Provider Register</h2>
                         <hr class="border border-2 border-primary">
-                        <!-- TODO: start of registeration section -->
-                        <!-- FIXME: add action -->
                         <form action="/provider_register/" class="needs-validation" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <!-- TODO: first name  & last name inputs  -->
                             <div class="row g-3">
                                 <div class="col-sm-7">
                                     <label for="name" class="form-label">Name</label>
@@ -150,8 +129,6 @@
                                     <input type="text" class="form-control" name="location" id="location">
                                 </div>
                             </div>
-                            <!-- TODO: end of name & location -->
-                            <!-- TODO: start of email-->
                             <div class="row">
                                 <div class="col-lg">
                                     <label for="email" class="form-label">Email</label>
@@ -165,8 +142,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of email-->
-                            <!-- TODO: start of password-->
                             <div class="row">
                                 <div class="col">
                                     <label for="password" class="form-label">Password</label>
@@ -177,8 +152,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of password-->
-                            <!-- TODO: start of password-->
                             <div class="row">
                                 <div class="col">
                                     <label for="confp" class="form-label">Confirm PW</label>
@@ -189,8 +162,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: end of password-->
-                            <!-- TODO: start of permit-->
                             <div class="row">
                                 <div class="col-lg-4">
                                     <label for="mobile" class="form-label">Mobile</label>
@@ -209,8 +180,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: End of age and national id -->
-                            <!-- TODO: end of registration section -->
                             <div class="my-5 text-center">
                                 <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Register</button>
                             </div>
@@ -220,7 +189,6 @@
                     <div style="clear:both"></div>
                 </div>
                 </div>
-                    <!-- TODO: end of registration section  -->
                 </div>
             </div>
         </div>

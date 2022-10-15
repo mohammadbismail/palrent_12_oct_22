@@ -15,6 +15,7 @@ def my_dashboard(request):
         "customer_id": customer_id,
         "customer": Customer.objects.get(id=request.session["customer_id"]),
         "all_providers": Provider.objects.all(),
+        'page_title': 'PalRent',
     }
     return render(request, "dashboard.html", context)
 
@@ -24,16 +25,15 @@ def customer_search(request):
     request.session["location"] = request.POST["location"]
     request.session["pick_up_date"] = request.POST["pick_up_date"]
     request.session["drop_off_date"] = request.POST["drop_off_date"]
-
     return redirect("/my_dashboard/search_result")
 
 
 def customer_search_result(request):
 
     context = {
-        "searched_cars": Provider.objects.filter(location=request.POST["location"])
+        "searched_cars": Provider.objects.filter(location=request.POST["location"]),
+        'page_title': 'PalRent',
     }
-
     return render(request, "search_result.html", context)
 
 
@@ -44,6 +44,7 @@ def customer_car_select(request, car_id):
 def customer_car_details(request, car_id):
     context = {
         "selected_car": Car.objects.get(id=car_id),
+        'page_title': 'PalRent',
     }
     return render(request, "car_details.html", context)
 
@@ -59,7 +60,7 @@ def provider_dashboard(request):
         "provider_cars": Provider.objects.get(
             id=request.session["provider_id"]
         ).cars.all(),
-        'page_title': 'PalRent'
+        'page_title': 'PalRent',
     }
     return render(request, "provider_dashboard.html", context)
 
@@ -76,6 +77,8 @@ def payment_confirmation(request, car_id):
         "customer_id": customer_id,
         "customer_cards": Customer.objects.get(id=customer_id)
         .customer_cards.all(),
+        'page_title': 'PalRent',
+
     }
     # print(selected_car.price)
     return render(request, "payment_confirmation.html", context)
@@ -99,6 +102,7 @@ def customer_payment_method(request, customer_id):
     context = {
         "customer": Customer.objects.get(id=customer_id),
         "link": "/my_dashboard/customer_add_payment/" + customer_id + "/",
+        'page_title': 'PalRent',
     }
     return render(request, "payment_method.html", context)
 
@@ -108,6 +112,7 @@ def Provider_payment_method(request, provider_id):
     context = {
         "provider": Provider.objects.get(id=provider_id),
         "link": "/my_dashboard/provider_add_payment/" + provider_id + "/",
+        'page_title': 'PalRent',
     }
 
     return render(request, "payment_method.html", context)
@@ -142,6 +147,7 @@ def edit_car(request, car_id):
         "garage": Car.objects.filter(provider=request.session["provider_id"]),
         "car_id": car_id,
         "car": Car.objects.get(id=car_id),
+        'page_title': 'PalRent',
     }
     return render(request, "edit_car.html", context)
 
@@ -169,6 +175,7 @@ def provider_account(request, provider_id):
         "provider_id": provider_id,
         "provider": Provider.objects.get(id=provider_id),
         "cards": Provider_payment.objects.filter(provider_payment=provider_id),
+        'page_title': 'PalRent',
     }
 
     return render(request, "provider_account.html", context)
@@ -201,7 +208,10 @@ def provider_account_edit(request, provider_id):
 
 
 def provider_car_details(request, car_id):
-    context = {"selected_car": Car.objects.get(id=car_id)}
+    context = {
+        "selected_car": Car.objects.get(id=car_id),
+        'page_title': 'PalRent',
+    }
     return render(request, "provider_car_details.html", context)
 
 
@@ -210,6 +220,8 @@ def customer_account(request, customer_id):
         "customer_id": customer_id,
         "customer": Customer.objects.get(id=customer_id),
         "customer_cards": Customer.objects.get(id=customer_id).customer_cards.all(),
+        'page_title': 'PalRent',
+
     }
 
     return render(request, "customer_account.html", context)
