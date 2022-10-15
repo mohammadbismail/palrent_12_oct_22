@@ -68,11 +68,8 @@
                   class="icon-menu h3 text-black"></span></a></span>
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                {% if "customer_id" in request.session %}
+
                 <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
-                {% else %}
-                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
-                {% endif %}
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
                 {% if "customer_id" not in request.session and "provider_id" not in request.session %}
                 <div class="btn-group">
@@ -127,7 +124,14 @@
                       </div>
                 </div>
                 </div>
+                
                 {% else %}
+                {% if "provider_id" in request.session %}
+                <li>
+                  <button class="btn btn-info btn-sm"><span><a href="/my_dashboard/add_car/"
+                    style="color: white;">Add Car</a></span></button>  
+                  </li>
+                {% endif %}
                 <button class="btn btn-dark btn-sm"><span><a href="/delete/"
                   style="color: white;">Sign Out</a></span></button>
                 {% endif %}

@@ -1,4 +1,18 @@
 /* Our team styling */
+.car_list {
+  min-height: 40vh;
+}
+.nav_bar {
+  width: 40%;
+  margin-bottom: 5%;
+}
+.cars-container {
+  padding: 5%;
+}
+.errors {
+  width: 50%;
+  margin: 0 auto;
+}
 .btn-width {
   width: 150px;
 }
@@ -89,7 +103,7 @@ h1 {
 .dropdown-toggle::after {
   content: none;
 }
-#duplicate-email {
+#duplicate-email, #duplicate-email-provider {
   color: red;
   display: none;
 }

@@ -9,21 +9,23 @@
                 <div class="py-5 text-center">
                     <h2 >Registration</h2>
                 </div>
-                <div class="text-center registeration-form reg-form-toggle">
+                <div class="text-center registeration-form reg-form-toggle mb-3">
                     <h5><span id="toggle-label">Are you a car provider?</span>  <a href="" onclick="toggleRegForm(event)"><u>Register here!</u></a></h5>
                 </div>
                 <!-- TODO: start of regiseration-login container column  -->
-                <div class="row">
-                    <div class="col">
-                        <ul>
+                <div class="errors">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div >
                             {% for error in messages %}
-                            <li style="color: red;">
+                            <div class="alert alert-danger" role="alert" style="color: red;">
                                 {{error}}
-                            </li>
+                            </div>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
                 <div style="width:100%;overflow:hidden">
                     <!-- TODO: start of login section -->
                 <div style="width:100%;overflow:hidden">
@@ -115,8 +117,7 @@
                             <!-- TODO: end of registration section -->
                             <div class="col-lg-4 upload-margin">
                                 <label for="profile" class="custom-file-upload btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i>Profile Picture</label>
-                                <input type="file" class="input-upload form-control form-control-lg" name="profile" id="profile"
-                                    required>
+                                <input type="file" class="input-upload form-control form-control-lg" name="profile" id="profile"s>
                             </div>
                         </div>
                             <div class="my-5 text-center">
@@ -154,8 +155,11 @@
                             <div class="row">
                                 <div class="col-lg">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
+                                    <input type="email" onchange="emailHasChanged(event,2)" class="form-control" name="email" id="email"
                                         placeholder="you@example.com">
+                                        <div id="duplicate-email-provider">
+                                            This email is already registered.
+                                        </div>
                                     <div class="invalid-feedback">
                                         Please enter a valid email address
                                     </div>
@@ -188,17 +192,15 @@
                             <!-- TODO: end of password-->
                             <!-- TODO: start of permit-->
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="permit" class="custom-file-upload"><i class="bi bi-cloud-arrow-up-fill"></i> Permit</label>
-                                    <input type="file" class="input-upload form-control form-control-lg" name="permit" id="permit">
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <label for="mobile" class="form-label">Mobile</label>
                                     <input type="tel" class="form-control" name="mobile" id="mobile" required>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg">
+                                <div class="col-lg-4 upload-margin">
+                                    <label for="permit" class="custom-file-upload "><i class="bi bi-cloud-arrow-up-fill"></i> Permit</label>
+                                    <input type="file" class="input-upload form-control form-control-lg" name="permit" id="permit">
+                                </div>                   
+                                <div class="col-lg-4 upload-margin">
                                     <label for="logo" class="custom-file-upload"><i class="bi bi-cloud-arrow-up-fill"></i>Logo</label>
                                     <input type="file" class="input-upload form-control form-control-lg" name="logo" id="logo"
                                         placeholder="you@example.com">

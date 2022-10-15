@@ -59,6 +59,7 @@ def provider_dashboard(request):
         "provider_cars": Provider.objects.get(
             id=request.session["provider_id"]
         ).cars.all(),
+        'page_title': 'PalRent'
     }
     return render(request, "provider_dashboard.html", context)
 
@@ -115,6 +116,7 @@ def Provider_payment_method(request, provider_id):
 def add_car(request):
     context = {
         "provider": Provider.objects.get(id=request.session["provider_id"]),
+        'page_title': 'PalRent',
     }
     return render(request, "add_car.html", context)
 
