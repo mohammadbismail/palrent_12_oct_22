@@ -31,11 +31,12 @@
   <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+
+
 </head>
 
 <body>
   <div class="site-wrap" id="home-section">
-
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -97,14 +98,27 @@
       <div class="container">
         <div class="row align-items-center position-relative">
 
-          <div class="col-3">
+          <div class="col">
             <div class="site-logo">
               <a href="index.html"><strong>PalRent</strong></a>
               <p class="slogan-header">Car rental in Palestine</p>
             </div>
           </div>
-
-          <div class="col-9  text-right">
+          <div class="col-sm-11 d-flex align-items-center justify-content-center position-absolute">
+            {% if "customer_id" in request.session %}
+            <div class="row">
+              <div class="row-1 text-align-center">
+                <input type="hidden" name="customer_id" value="{{customer.id}}">
+                <h2>Welcome, {{request.session.customer_first_name}}</h2>
+              </div>
+              <div class="col">
+                <img src="{{customer.profile.url}}" class="rounded" alt="profile_photo" width="80px"
+                  height="80px">
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col  text-right">
             <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span
                   class="icon-menu h3 text-black"></span></a></span>
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
@@ -113,7 +127,11 @@
                 <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My
                     account</a></li>
                 {% endif %}
+                {% if "customer_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                {% else %}
                 <li class="active"><a href="/" class="nav-link">Home</a></li>
+                {% endif %}
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
                 {% if "provider_id" in request.session %}
                 <li>
@@ -131,21 +149,10 @@
               </ul>
               <div class="row justify-content-center">
                 <div class="col-9">
-                  {% if "customer_id" in request.session %}
-                  <div class="row">
-                    <div class="col-11">
-                      <input type="hidden" name="customer_id" value="{{customer.id}}">
-                      <h2>Welcome {{request.session.customer_first_name}}</h2>
-                    </div>
-                    <div class="col-1">
-                      <img src="{{customer.profile.url}}" class="rounded" alt="profile_photo" width="60px"
-                        height="80px">
-                    </div>
+                    {% if "provider_id" in request.session %}
+                    <h2>Welcome {{request.session.provider_name}}</h2>
+                    {% endif %}
                   </div>
-                  {% endif %}
-                  {% if "provider_id" in request.session %}
-                  <h2>Welcome {{request.session.provider_name}}</h2>
-                  {% endif %}
                 </div>
               </div>
             </nav>
@@ -173,7 +180,7 @@
               {% csrf_token %}
               <div class="row align-items-center">
 
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                   <label for="location" class="form-label">Location</label>
                   <!-- FIXME: send a id as jinja -->
                   <select name="location" class="custom-select form-control">
@@ -182,24 +189,24 @@
                     {% endfor %}
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                   <div class="form-control-wrap">
-                    <label for="cf-3" class="form-label">Pick-up Date</label>
+                    <label for="pick_up_date" class="form-label">Pick-up Date</label>
                     <input type="date" id="cf-3" placeholder="Pick up" name="pick_up_date"
                       class="form-control datepicker px-4">
                     <span class="icon icon-date_range"></span>
 
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                   <div class="form-control-wrap">
-                    <label for="cf-4" class="form-label">Drop-off Date</label>
+                    <label for="drop_off_date" class="form-label">Drop-off Date</label>
                     <input type="date" id="cf-4" placeholder="Drop off" name="drop_off_date"
                       class="form-control datepicker px-4">
                     <span class="icon icon-date_range"></span>
                   </div>
                 </div>
-                <div class="col-md-3 py-1">
+                <div class="col-md-3  mt-4">
                   <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3 my-3">
                 </div>
               </div>

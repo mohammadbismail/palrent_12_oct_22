@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <a href="/delete/">
+            <button class="btn btn-primary">Log Out</button>
+        </a>
+        <a href="/delete_account/">
+            <button class="btn btn-primary">Delete account</button>
+        </a>
+        <a href="/my_dashboard/provider_dashboard/">
+            <button class="btn btn-primary">Home</button>
+        </a>
+        <div class="container">
+            <div class="col" id="form_body">
+                <h4>Edit account</h4>
+                <div class="col-md-6">
+                    <h2 class="text-center">Provider Account</h2>
+                    <hr class="border border-2 border-primary">
+                    <!-- TODO: start of registeration section -->
+                    <!-- FIXME: add action -->
+                    <form action="/my_dashboard/provider_account_edit/{{provider_id}}/" class="needs-validation" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- TODO: first name  & last name inputs  -->
+                        <div class="row">
+                            <div class="col">
+                                <label for="name" class="form-label">Name</label>
+                                <textarea name="name" class="form-control" id="name" cols="20" rows="1" required>{{provider.name}}</textarea>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="email" class="form-label">Email</label>
+                                <textarea name="email" class="form-control" id="email" cols="20" rows="1" required>{{provider.email}}</textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TODO: end of name & location -->
+                        <!-- TODO: start of email-->
+                        <div class="row">
+                            <div class="col">
+                                <label for="location" class="form-label">Location</label>
+                                <select name="location" id="location" class="custom-select form-control">
+                                    <option value="All">All</option>
+                                    <option value="Ramallah">Ramallah</option>
+                                    <option value="Nablus">Nablus</option>
+                                    <option value="Jenin">Jenin</option>
+                                    <option value="Bethlahm">Bethlahm</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="mobile" class="form-label">Mobile</label>
+                                <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1" required>{{provider.mobile}}</textarea>
+                            </div>
+                        </div>
+                        <!-- TODO: end of email-->
+                        <!-- TODO: start of password-->
+                        <div class="row">
+                            <div class="col">
+                                <label for="password" class="form-label">Old Password</label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                    placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid password is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="new_password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" name="new_password" id="password"
+                                    placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid password is required.
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="confp" class="form-label">Confirm PW</label>
+                                <input type="password" class="form-control" name="confp" id="confp" placeholder=""
+                                    value="" required>
+                                <div class="invalid-feedback">
+                                    Valid password is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="permit" class="form-label">Permit</label>
+                                <img src="{{provider.permit.url}}" alt="photo_test" width="100px" height="100px">
+                                <input type="file" class="form-control" name="permit" id="permit">
+                            </div>
+                            <div class="col">
+                                <label for="logo" class="form-label">Company Logo</label>
+                                <img src="{{provider.logo.url}}" alt="photo_test" width="100px" height="100px">
+                                <input type="file" class="form-control" name="logo" id="logo">
+                            </div>
+                        </div>
+                        <!-- TODO: End of age and national id -->
+                        <!-- TODO: end of registration section -->
+                        <div class="my-5 text-center">
+                            <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="payments">
+                    <a href="/my_dashboard/provider_payment_method/{{provider_id}}/">
+                        <button type="submit" class="btn btn-primary">Add payment</button>
+                    </a>
+                    <div>
+                        <h5>existed cards</h5>
+                        <table class="table">
+                            <thead class="position">
+                                <tr>
+                                    <th scope="col">card owner</th>
+                                    <th scope="col">card number</th>
+                                    <th scope="col">Expiration Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for card in cards %}
+                                <tr class="display">
+                                    <td scope="row" name="card_id"><span>{{card.card_owner}}</span></td>
+                                    <td scope="row" name="card_id"><span>{{card.card_number}}</span></td>
+                                    <td scope="row" name="card_id"><span>{{card.expiration_mm}}-{{card.expiration_yyyy}}</span></td>
+                                    <td>
+                                        <input type="hidden" name="card_id" value="{{card.id}}">
+                                        <a href="/my_dashboard/provider_dashboard/provider_delete_card/{{provider_id}}/{{card.id}}/">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    </div>
+
+</body>
+</html>

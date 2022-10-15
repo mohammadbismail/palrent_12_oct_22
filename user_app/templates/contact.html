@@ -62,7 +62,13 @@
                   class="icon-menu h3 text-black"></span></a></span>
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                {% if "customer_id" in request.session %}
                 <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                {% elif "provider_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/provider_dashboard/" class="nav-link">Home</a></li>
+                {% else %}
+                <li class="active"><a href="/" class="nav-link">Home</a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -102,20 +108,20 @@
               {% csrf_token %}
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input required type="text" class="form-control" placeholder="First name">
+                  <input required type="text" class="form-control" placeholder="First name" name="first_name">
                 </div>
                 <div class="col-md-6">
-                  <input required type="text" class="form-control" placeholder="Last name">
+                  <input required type="text" class="form-control" placeholder="Last name" name="last_name">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input required type="text" class="form-control" placeholder="Email address">
+                  <input required type="email" class="form-control" placeholder="Email address" name="email">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30"
+                  <textarea name="message" id="" class="form-control" placeholder="Write your message." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
