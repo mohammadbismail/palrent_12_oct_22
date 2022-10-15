@@ -1,133 +1,132 @@
 {% extends 'base.html' %}
 {% block content%}
+<style>
+    #right_side {
+        border: 1px solid black;
+    }
+    .body {
+        display: flex;
+    }
+</style>
+
 <div class="container my-5 p-5">
-    <div class="row my-4 col-11">
+    <div class="row my-4 col-11" >
         <div class="row">
-            <div class="col-2 mx-0"><a href="/my_dashboard/">
-                    <button type="submit" class="btn btn-secondary">My Dashboard</button>
-                </a></div>
-            <div class="col-2">
-                <a href="/delete_account/">
-                    <button class="btn btn-secondary">Delete account</button>
-                </a>
-            </div>
             <div class="col-6 my-3">
                 <h2 class="text-center">Edit Customer Account</h2>
             </div>
             <hr class="border border-2 border-primary">
         </div>
-        <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" method="post"
-            enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <label for="first_name" class="form-label">First name</label>
-                    <textarea name="first_name" class="form-control" id="first_name" cols="20" rows="1"
-                        required>{{customer.first_name}}</textarea>
-                    <div class="invalid-feedback">
-                        Valid first name is required.
+        <div class="body">
+            <div class="col-sm-6 border border-2 rounded" id="right_side">
+                <form action="/my_dashboard/customer_account_edit/{{customer_id}}/" class="needs-validation" method="post"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row-lg-4">
+                        <img src="{{customer.profile.url}}" alt="photo_test" width="100px" height="100px">
+                        <input type="file" name="profile" id="profile" class="row-lg-2">
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="last_name" class="form-label">Last name</label>
-                    <textarea name="last_name" class="form-control" id="last_name" cols="20" rows="1"
-                        required>{{customer.last_name}}</textarea>
-                    <div class="invalid-feedback">
-                        Valid first name is required.
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <label for="first_name" class="form-label ">First name</label>
+                            <textarea name="first_name" class="form-control" id="first_name" cols="20" rows="1"
+                                required>{{customer.first_name}}</textarea>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="last_name" class="form-label">Last name</label>
+                            <textarea name="last_name" class="form-control" id="last_name" cols="20" rows="1"
+                                required>{{customer.last_name}}</textarea>
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
                     </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <label for="email" class="form-label">Email</label>
+                            <textarea name="email" class="form-control" id="email" cols="20" rows="1"
+                                required>{{customer.email}}</textarea>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="password" class="form-label">Old Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="" value=""
+                                required>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <label for="new_password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" name="new_password" id="password" placeholder=""
+                                value="" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="confp" class="form-label">Confirm PW</label>
+                            <input type="password" class="form-control" name="confp" id="confp" placeholder="" value=""
+                                required>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <label for="mobile" class="form-label">Mobile</label>
+                            <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1"
+                                required>{{customer.mobile}}</textarea>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="driving_license" class="form-label">Driving License</label>
+                            <img src="{{customer.driving_license.url}}" alt="photo_test" width="50px" height="50px">
+                            <input type="file" name="driving_license" id="driving_license">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="w-20 btn btn-outline-dark btn-lg" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col col-8 border border-2 rounded">
+                <div class="col-4 my-2">
+                    <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">
+                        <button type="submit" class="btn btn-primary">Add payment</button>
+                    </a>
                 </div>
-                <div class="col-lg-4">
-                    <label for="profile" class="form-label">Profile Picture</label>
-                    <img src="{{customer.profile.url}}" alt="photo_test" width="100px" height="100px">
-                    <input type="file" name="profile" id="profile">
+                <div class="col-6 my-2">
+                    <h5>Existing Customer cards</h5>
+                </div>
+                <div>
+                    <table class="table">
+                        <thead class="position">
+                            <tr>
+                                <th scope="col">Card Type</th>
+                                <th scope="col">Card owner</th>
+                                <th scope="col">Card number</th>
+                                <th scope="col">Expiration Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for card in customer_cards %}
+                            <tr class="display">
+                                <td scope="row" name="card_id"><span>{{card.card_type}}</span></td>
+                                <td scope="row" name="card_id"><span>{{card.card_owner}}</span></td>
+                                <td scope="row" name="card_id"><span>{{card.card_number}}</span></td>
+                                <td scope="row" name="card_id">
+                                    <span>{{card.expiration_mm}}-{{card.expiration_yyyy}}</span>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="card_id" value="{{card.id}}">
+                                    <a href="/my_dashboard/customer_delete_card/{{customer_id}}/{{card.id}}/">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="row my-2">
-                <div class="col-lg-4">
-                    <label for="email" class="form-label">Email</label>
-                    <textarea name="email" class="form-control" id="email" cols="20" rows="1"
-                        required>{{customer.email}}</textarea>
-                    <div class="invalid-feedback">
-                        Please enter a valid email address
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="password" class="form-label">Old Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="" value=""
-                        required>
-                    <div class="invalid-feedback">
-                        Valid password is required.
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="driving_license" class="form-label">Driving License</label>
-                    <img src="{{customer.driving_license.url}}" alt="photo_test" width="50px" height="50px">
-                    <input type="file" name="driving_license" id="driving_license">
-                </div>
-            </div>
-            <div class="row my-2">
-                <div class="col-lg-4">
-                    <label for="new_password" class="form-label">New Password</label>
-                    <input type="password" class="form-control" name="new_password" id="password" placeholder=""
-                        value="" required>
-                    <div class="invalid-feedback">
-                        Valid password is required.
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="confp" class="form-label">Confirm PW</label>
-                    <input type="password" class="form-control" name="confp" id="confp" placeholder="" value=""
-                        required>
-                    <div class="invalid-feedback">
-                        Valid password is required.
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label for="mobile" class="form-label">Mobile</label>
-                    <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1"
-                        required>{{customer.mobile}}</textarea>
-                </div>
-            </div>
-            <div class="text-center">
-                <button class="w-20 btn btn-outline-secondary btn-lg" type="submit">Update</button>
-            </div>
-        </form>
-    </div>
-    <div class="row col-11 border border-2 rounded">
-        <div class="col-4 my-2">
-            <a href="/my_dashboard/customer_payment_method/{{customer_id}}/">
-                <button type="submit" class="btn btn-primary">Add payment</button>
-            </a>
-        </div>
-        <div class="col-6 my-2">
-            <h5>Existing Customer cards</h5>
-        </div>
-        <div>
-            <table class="table">
-                <thead class="position">
-                    <tr>
-                        <th scope="col">Card owner</th>
-                        <th scope="col">Card number</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for card in customer_cards %}
-                    <tr class="display">
-                        <td scope="row" name="card_id"><span>{{card.card_owner}}</span></td>
-                        <td scope="row" name="card_id"><span>{{card.card_number}}</span></td>
-                        <td scope="row" name="card_id">
-                            <span>{{card.expiration_mm}}-{{card.expiration_yyyy}}</span>
-                        </td>
-                        <td>
-                            <input type="hidden" name="card_id" value="{{card.id}}">
-                            <a href="/my_dashboard/customer_delete_card/{{customer_id}}/{{card.id}}/">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
         </div>
     </div>
+    <div class="col-2">
+        <a href="/delete_account/">
+            <button class="btn btn-secondary">Delete account</button>
+        </a>
+    </div>
+</div>
     {% endblock %}
