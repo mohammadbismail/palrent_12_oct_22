@@ -87,6 +87,3 @@
 
 <h2 align="center">Provider Dashboard</h2>
 <img src="https://i.imgur.com/27HMvAM.png" alt="dashboard">
-
-<h2 align="center">Provider Dashboard</h2>
-<img src="https://i.imgur.com/27HMvAM.png" alt="dashboard">
