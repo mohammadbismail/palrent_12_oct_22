@@ -1,4 +1,4 @@
-<h1 align="center">Hello 👋 Welcome to PalRen</h1>
+<h1 align="center">Hello 👋 Welcome to PalRent</h1>
 <h2 align="center">Our Idea:</h2>
 <ul>
     <li>
