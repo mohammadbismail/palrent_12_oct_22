@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% block content%}
-<a href="/delete/">
-    <button class="btn btn-primary">Log Out</button>
-</a>
-
+<br><br>
 <div class="container py-5">
     <div class="pt-2">
         <div class="d-flex pb-2">
             <div>
                 <p>
-                    <b> Booking for <span class="text-primary">{{car_to_book.brand}} </span><span
-                        class="text-success">10 days</span></b>
+                    <h3> Booking for <span class="text-primary">{{car_to_book.brand}} </span><span
+                        class="text-success">10 days</span></h3>
                 </p>
             </div>
             <div class="ms-auto">
@@ -71,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 shadow p-3 mb-5 bg-white rounded">
+            <div class="col-lg-7 shadow p-3 mb-5 bg-white rounded">
                 <form action="/my_dashboard/confirm_book/{{car_to_book.id}}/" method="post" class="pb-3">
                     {% csrf_token %}
                     {% if customer_cards.count > 0 %}
@@ -81,8 +78,8 @@
                             <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value=""
                                 aria-label="..." checked />
                             <h6 class="col">{{card.card_type}}</h6>
-                            <h6 class="col">{{card.owner}}</h6>
-                            <h6 class="col">{{card_number}}</h6>
+                            <h6 class="col">{{card.card_owner}}</h6>
+                            <h6 class="col">{{card.card_number}}</h6>
                             <h6 class="col">{{card.expiration_mm}}</h6>
                             <h6 class="col">{{card.expiration_yyyy}}</h6>
                         </div>

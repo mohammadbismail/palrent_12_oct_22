@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% block content%}
 <style>
-    #right_side {
+    #left_side {
         border: 1px solid black;
+        background-color: rgb(155, 155, 155);
+        /* margin-left: 10px; */
     }
     .body {
         display: flex;
     }
+    #right_side {
+        margin-right: 10px;
+        background-color: rgb(155, 155, 155);
+    }
 </style>
-
 <div class="container my-5 p-5">
     <div class="row my-4 col-11" >
         <div class="row">
@@ -18,7 +23,7 @@
             <hr class="border border-2 border-primary">
         </div>
         <div class="body">
-            <div class="col-sm-6 border border-2 rounded" id="right_side">
+            <div class="col-sm-6 border border-2 rounded" id="left_side">
                 <form action="/my_dashboard/provider_account_edit/{{provider_id}}/" class="needs-validation" method="post"
                     enctype="multipart/form-data">
                     {% csrf_token %}
@@ -30,12 +35,15 @@
                         </div>
                         <div class="col-lg-6">
                             <label for="location" class="form-label">Location</label>
-                            <select name="location" id="location" class="custom-select form-control">
-                                <option value="All">All</option>
+                            <select class="selectpicker form-control" aria-label="Default select example" name="location">
                                 <option value="Ramallah">Ramallah</option>
                                 <option value="Nablus">Nablus</option>
+                                <option value="Hebron">Hebron</option>
+                                <option value="Tulkarem">Tulkarem</option>
+                                <option value="Qalqilya">Qalqilya</option>
                                 <option value="Jenin">Jenin</option>
-                                <option value="Bethlahm">Bethlahm</option>
+                                <option value="Salfit">Salfit</option>
+                                <option value="Bethlehem">Bethlehem</option>
                             </select>
                         </div>
                     </div>
@@ -67,27 +75,25 @@
                         <div class="col-lg-6">
                             <label for="mobile" class="form-label">Mobile</label>
                             <textarea name="mobile" class="form-control" id="mobile" cols="20" rows="1"
-                                required>{{customer.mobile}}</textarea>
+                                required>{{provider.mobile}}</textarea>
                         </div>
                     </div>
-                    <div class="row g-0">
-                        <div class="col-lg-6">
-                            <label for="permit" class="form-label">Permit</label>
-                            <img src="{{provider.permit.url}}" alt="photo_test" width="100px" height="100px">
-                            <input type="file" class="form-control" name="permit" id="permit">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="logo" class="form-label">Company Logo</label>
-                            <img src="{{provider.logo.url}}" alt="photo_test" width="100px" height="100px">
-                            <input type="file" class="form-control" name="logo" id="logo">
-                        </div>
+                    <div class="row-10">
+                        <label for="permit" class="form-label">Permit</label>
+                        <img src="{{provider.permit.url}}" alt="photo_test" width="100px" height="100px">
+                        <input type="file" class="form-control" name="permit" id="permit">
+                    </div>
+                    <div class="row-9">
+                        <label for="logo" class="form-label">Company Logo</label>
+                        <img src="{{provider.logo.url}}" alt="photo_test" width="100px" height="100px">
+                        <input type="file" class="form-control" name="logo" id="logo">
                     </div>
                     <div class="text-center">
-                        <button class="w-20 btn btn-outline-dark btn-lg" type="submit">Update</button>
+                        <button class="w-20 btn btn-success btn-lg" type="submit">Update</button>
                     </div>
                 </form>
             </div>
-            <div class="col col-8 border border-2 rounded">
+            <div class="col col-8 border border-2 rounded" id="right_side">
                 <div class="col-4 my-2">
                     <a href="/my_dashboard/provider_payment_method/{{provider_id}}/">
                         <button type="submit" class="btn btn-primary">Add payment</button>
@@ -118,7 +124,7 @@
                                 </td>
                                 <td>
                                     <input type="hidden" name="card_id" value="{{card.id}}">
-                                    <a href="/my_dashboard/provider_delete_card/{{provider_id}}/{{card.id}}/">Delete</a>
+                                    <a href="/my_dashboard/provider_delete_card/{{provider_id}}/{{card.id}}/" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -130,42 +136,8 @@
     </div>
     <div class="col-2">
         <a href="/delete_account/">
-            <button class="btn btn-secondary">Delete account</button>
+            <button class="btn btn-danger">Delete account</button>
         </a>
     </div>
 </div>
-<footer class="site-footer">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-3">
-          <h2 class="footer-heading mb-4">About Us</h2>
-          <p>PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent makes it easier for you!</p>
-          <ul class="list-unstyled social">
-            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2504/2504903.png" alt="fb"
-                  height="40px"></span></a>
-            </li>
-            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="inst"
-                  height="40px"></a></li>
-            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3256/3256013.png" alt="tw"
-                  height="40px"></a></li>
-            <li><a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="in"
-                  height="40px"></a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3">
-          <h2 class="footer-heading mb-4">Quick Links</h2>
-          <ul class="list-unstyled">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="sponsors">
-          <h5>Our sponsors:</h5>
-          <img src="/static/images/sponsers.png" alt="sponsers">
-        </div>
-      </div>
-    </div>
-  </footer>
     {% endblock %}

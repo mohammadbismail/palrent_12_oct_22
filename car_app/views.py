@@ -22,9 +22,12 @@ def my_dashboard(request):
 
 def customer_search(request):
 
-    request.session["location"] = request.POST["location"]
-    request.session["pick_up_date"] = request.POST["pick_up_date"]
-    request.session["drop_off_date"] = request.POST["drop_off_date"]
+    pick_up_date = request.POST["pick_up_date"]
+    drop_off_date = request.POST["drop_off_date"]
+    request.session["pick_up_date"] = pick_up_date
+    request.session["drop_off_date"] = drop_off_date
+    print("tyhis works here", pick_up_date)
+
     return redirect("/my_dashboard/search_result")
 
 
@@ -60,6 +63,7 @@ def provider_dashboard(request):
         "provider_cars": Provider.objects.get(
             id=request.session["provider_id"]
         ).cars.all(),
+        "provider": Provider.objects.get(id=request.session["provider_id"]),
         'page_title': 'PalRent',
     }
     return render(request, "provider_dashboard.html", context)
@@ -135,7 +139,7 @@ def insert_car(request):
         production_year=request.POST["production_year"],
         plate_number=request.POST["plate_number"],
         price=request.POST["price"],
-        car_photo=request.POST["car_photo"],
+        photo=request.FILES["photo"],
         provider=Provider.objects.get(id=request.session["provider_id"]),
     )
     return redirect("my_dashboard/provider_dashboard/")
@@ -144,7 +148,7 @@ def insert_car(request):
 def edit_car(request, car_id):
 
     context = {
-        "garage": Car.objects.filter(provider=request.session["provider_id"]),
+        "provider": Provider.objects.get(id=request.session["provider_id"]),
         "car_id": car_id,
         "car": Car.objects.get(id=car_id),
         'page_title': 'PalRent',
@@ -324,3 +328,26 @@ def provider_delete_card(request, card_id, provider_id):
     c.delete()
 
     return redirect("/my_dashboard/provider_account/" + provider_id)
+
+
+def accept(request, car_id):
+    print("this works here")
+    
+
+    c = Booking.objects.get(car_book= car_id)
+    c.status= "RENDTed"
+    c.save()
+
+    return redirect("/my_dashboard/provider_dashboard")
+
+
+
+def reject(request, car_id):
+    print("this works here")
+    
+
+    c = Booking.objects.get(car_book= car_id)
+    c.status= "Rejected"
+    c.save()
+
+    return redirect("/my_dashboard/provider_dashboard")

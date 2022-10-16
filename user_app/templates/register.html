@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content%}
-
 <main>
     <div class="container-xl my-5">
         <div class="row justify-content-center">
@@ -27,7 +26,6 @@
                 <div style="width:100%;overflow:hidden">
                 <div style="width:100%;overflow:hidden">
                     <div style="width:200%">
-
                     <div id="customer-reg-form" class="customer-reg reg-forms">
                         <div class="registeration-form">
                         <h2 class="text-center">Customer Registration</h2>
@@ -53,26 +51,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                        placeholder="" value="" required>
-                                    <div class="invalid-feedback">
-                                        Valid password is required.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="confp" class="form-label">Confirm PW</label>
-                                    <input type="password" class="form-control" name="confp" id="confp" placeholder=""
-                                        value="" required>
-                                    <div class="invalid-feedback">
-                                        Valid password is required.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-7">
                                     <label for="email" class="form-label">Email</label>
                                     <input onChange="emailHasChanged(event)" type="email" class="form-control" name="email" id="email"
@@ -84,20 +62,40 @@
                                         Please enter a valid email address
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <label for="mobile" class="form-label">Mobile</label>
-                                    <input type="tel" class="form-control" name="mobile" id="mobile" required>
-                                </div>
-                            </div>
-                            <div class="row files-row">
                                 <div class="col-lg-4">
                                     <label for="birthday" class="form-label">Birthday</label>
                                     <input type="date" class="form-control" name="birthday" id="birthday">
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid password is required.
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="confp" class="form-label">Confirm PW</label>
+                                    <input type="password" class="form-control" name="confp" id="confp" placeholder=""
+                                        value="" required>
+                                    <div class="invalid-feedback">
+                                        Valid password is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            </div>
+                            <div class="row files-row">
+                                <div class="col-lg-5">
+                                    <label for="mobile" class="form-label">Mobile</label>
+                                    <input type="tel" class="form-control" name="mobile" id="mobile" required>
+                                </div>
                                 <div class="col-lg-4 upload-margin">
                                     <label for="driving_license" class="custom-file-upload btn"><i class="bi bi-cloud-arrow-up-fill"></i>Driving License</label>
                                     <input class="input-upload form-control form-control-lg" name="driving_license" id="driving_license" type="file" required>
-                                  </div>
+                                </div>
                             <div class="col-lg-4 upload-margin">
                                 <label for="profile" class="custom-file-upload btn btn-outline"><i class="bi bi-cloud-arrow-up-fill"></i>Profile Picture</label>
                                 <input type="file" class="input-upload form-control form-control-lg" name="profile" id="profile"s>
@@ -126,7 +124,16 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <label for="location" class="form-label">Location</label>
-                                    <input type="text" class="form-control" name="location" id="location">
+                                    <select class="selectpicker form-control" aria-label="Default select example" name="location">
+                                        <option value="Ramallah">Ramallah</option>
+                                        <option value="Nablus">Nablus</option>
+                                        <option value="Hebron">Hebron</option>
+                                        <option value="Tulkarem">Tulkarem</option>
+                                        <option value="Qalqilya">Qalqilya</option>
+                                        <option value="Jenin">Jenin</option>
+                                        <option value="Salfit">Salfit</option>
+                                        <option value="Bethlehem">Bethlehem</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -151,8 +158,6 @@
                                         Valid password is required.
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col">
                                     <label for="confp" class="form-label">Confirm PW</label>
                                     <input type="password" class="form-control" name="confp" id="confp" placeholder=""
@@ -175,9 +180,6 @@
                                     <label for="logo" class="custom-file-upload"><i class="bi bi-cloud-arrow-up-fill"></i>Logo</label>
                                     <input type="file" class="input-upload form-control form-control-lg" name="logo" id="logo"
                                         placeholder="you@example.com">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address
-                                    </div>
                                 </div>
                             </div>
                             <div class="my-5 text-center">

@@ -58,7 +58,7 @@
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto ">
                 {% if "customer_id" not in request.session and "provider_id" not in request.session %}
-                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                <li class="active"><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/contact/" class="nav-link">Contact</a></li>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -85,7 +85,6 @@
                             <label class="form-label" for="password">Password</label>
                             <input type="password" id="password" name="password" class="form-control" />
                           </div>
-                  
                           <!-- 2 column grid layout for inline styling -->
                           <div class="row mb-4">
                             <div class="col d-flex justify-content-center">
@@ -95,14 +94,11 @@
                                 <label class="form-check-label" for="checkbox"> Remember me </label>
                               </div>
                             </div>
-                  
                             <div class="col">
                               <!-- Simple link -->
                               <a href="#!">Forgot password?</a>
                             </div>
                           </div>
-                  
-                          <!-- Submit button -->
                           <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
                         </form>
                         <!-- Register buttons -->
@@ -112,16 +108,25 @@
                       </div>
                 </div>
                 </div>
-                
-                {% else %}
-                {% if "provider_id" in request.session %}
-                  <li>
-                  <a href="/my_dashboard/add_car/"><u>Add car</u></a>
-                  </li>
-                  <li>
-                    <a href="/my_dashboard/provider_dashboard/"><u>My garage</u></a>
-                  </li>
                 {% endif %}
+                {% if "provider_id" in request.session %}
+                <li>
+                  <a href="/my_dashboard/provider_dashboard/"><u>Home</u></a>
+                </li>
+                  <li>
+                  <a href="/my_dashboard/add_car/"><u>My garage</u></a>
+                  </li>
+                  <li><a href="/my_dashboard/provider_account/{{request.session.provider_id}}/" class="nav-link">My
+                    account</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                  <button class="btn btn-dark btn-sm"><span><a href="/delete/"
+                    style="color: white;">Sign Out</a></span></button>
+                {% endif %}
+                {% if "customer_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My
+                  account</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
                 <button class="btn btn-dark btn-sm"><span><a href="/delete/"
                   style="color: white;">Sign Out</a></span></button>
                 {% endif %}
@@ -134,7 +139,7 @@
     {% block content%}
 
     {% endblock %}
-    <footer class="site-footer">
+    <footer class="site-footer mt-4">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-3">
