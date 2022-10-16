@@ -18,10 +18,10 @@
     <h3>Baraa Abu-Asal</h3>
     </li>
      <li>
-    <h3>Mohammad Ismail</h3>
+    <h3>Hasan Sadaqa</h3>
     </li>
      <li>
-    <h3>Hasan Sadaqa</h3>
+    <h3>Mohammad Ismail</h3>
     </li>
  </ol>
 
@@ -36,15 +36,15 @@
   alt="Alt text"
   title="Bara Abu-Asal"
   style="display: inline-block; margin: 0; height: 300px">
- <img
-  src="https://i.imgur.com/6HFOmxU.jpeg"
-  alt="Alt text"
-  title="Mohammad Ismail"
-  style="display: inline-block; margin: 0; height: 300px">
   <img
   src="https://i.imgur.com/soGxWOV.jpeg"
   alt="Alt text"
   title="Hasan Sadaqa"
+  style="display: inline-block; margin: 0; height: 300px">
+ <img
+  src="https://i.imgur.com/6HFOmxU.jpeg"
+  alt="Alt text"
+  title="Mohammad Ismail"
   style="display: inline-block; margin: 0; height: 300px">
   </div>
 
