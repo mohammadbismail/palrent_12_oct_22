@@ -1,4 +1,11 @@
 /* Our team styling */
+
+* {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.add-car-body{
+  padding-top: 100px;
+}
 .car_list {
   min-height: 40vh;
 }
