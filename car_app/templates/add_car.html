@@ -68,32 +68,6 @@
                 </form>
             </div>
         </div>
-
-
-        <div class="col-md-6 gy-4 search_result">
-            <div class="all_cars">
-                <h5>All my cars</h5>
-                <table class="table">
-                    <thead class="position">
-                        <tr>
-                            <th scope="col">Car</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for car in provider.cars.all %}
-                        <tr class="display">
-                            <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
-                            <td>
-                                <input type="hidden" name="car_id" value="{{ car.id }}">
-                                
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 </div>
     {% endblock %}

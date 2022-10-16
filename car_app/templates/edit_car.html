@@ -42,14 +42,14 @@
                     </div>
                     <div class="mb-3 col-md-12">
                         <label for="price" class="form-label">Price</label>
-                        <textarea name="price" class="form-control" id="price" rows="1" required>NIS {{car.price}}</textarea>
+                        <textarea name="price" class="form-control" id="price" rows="1" required>{{car.price}}</textarea>
                         <div class="invalid-feedback">
                             Production Year is required.
                         </div>
                     </div>
                     <div class="mb-3 col-md-12">
                         <label for="car_photo" class="form-label">Enter a new photo's url</label>
-                        <textarea type="text" class="input-upload form-control form-control-lg mb-3" name="car_photo" id="car_photo"></textarea>
+                        <textarea type="text" class="input-upload form-control form-control-lg mb-3" name="car_photo" id="car_photo">{{car.car_photo}}</textarea>
                         <div class="edit-photo">
                             <img src="{{car.car_photo}}" class="mb-4" alt="photo_test" width="60%">
                             <button class="btn btn-info" style="width: 150px;">Update car</button>

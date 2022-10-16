@@ -163,10 +163,10 @@ def edit_my_car(request, car_id):
     c.production_year = request.POST["production_year"]
     c.plate_number = request.POST["plate_number"]
     c.price = request.POST["price"]
-    c.car_photo = (request.FILES["car_photo"],)
+    c.car_photo = (request.POST["car_photo"])
     c.save()
 
-    return redirect("/my_dashboard/edit_car/" + car_id)
+    return redirect("/my_dashboard/provider_dashboard")
 
 
 def provider_account(request, provider_id):
