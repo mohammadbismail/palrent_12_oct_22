@@ -1,103 +1,63 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<div class="container">
-    <a href="/my_dashboard/provider_dashboard/">
-        <button type="submit" class="btn-outline">My garage</button>
-    </a>
-    <a href="/delete/">
-        <button class="btn btn-primary">Log Out</button>
-    </a>
-    <div class="col" id="form_body">
-        <h4>Add New car to list</h4>
-        <div class="col car_form">
-            <div class="row car_details">
-                <input type="hidden" name="car_id" value="{{car.id}}">
-                <form action="/my_dashboard/edit_my_car/{{car.id}}/" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="mb-3 mb-md-0 col-md-3">
-                        <label for="brand" class="form-label">Select Brand: {{car.brand}}</label>
-                        <select name="brand" id="brand" class="custom-select form-control" aria-placeholder="now">
-                            <option value="null">Select Brand</option>
-                            <option value="Ferrari">Ferrari</option>
-                            <option value="Toyota">Toyota</option>
-                            <option value="Ford">Ford</option>
-                            <option value="Lamborghini">Lamborghini</option>
-                            <option value="BMW">BMW</option>
-                            <option value="Obel">Obel</option>
-                            <option value="Mazda">Mazda</option>
-                        </select>
+<div class="container add-car-body edit-form-width ">
+    <h4 class="text-center mb-3">Update your car info</h4>
+    <div class="car_form search_result mb-4">
+        <input type="hidden" name="car_id" value="{{car.id}}">
+            <form action="/my_dashboard/edit_my_car/{{car.id}}/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row car_details">
+                    <div class="mb-3 col-md-12">
+                        <label for="brand" class="form-label">Brand</label>
+                        <textarea type="text" class="form-control" name="brand" rows="1" id="brand" required> {{car.brand}}</textarea>
                     </div>
-                    <div class="row-sm-6">
+                    <div class="mb-3 col-md-12">
                         <label for="model" class="form-label">Model</label>
-                        <textarea name="model" class="form-control" id="model" cols="20" rows="1" required>{{car.model}}</textarea>
+                        <textarea name="model" class="form-control" id="model" rows="1" required>{{car.model}}</textarea>
                         <div class="invalid-feedback">
                             Model is required.
                         </div>
                     </div>
-                    <div class="row-sm-6">
+                    <div class="mb-3 col-md-12">
                         <label for="color" class="form-label">Color</label>
-                        <textarea name="color" class="form-control" id="color" cols="20" rows="1" required>{{car.color}}</textarea>
+                        <textarea name="color" class="form-control" id="color"rows="1" required>{{car.color}}</textarea>
                         <div class="invalid-feedback">
                             Color is required.
                         </div>
                     </div>
-                    <div class="row-6">
+                    <div class="mb-3 col-md-12">
                         <label for="production_year" class="form-label">Production year</label>
-                        <textarea name="production_year" class="form-control" id="production_year" cols="20" rows="1" required>{{car.production_year}}</textarea>
+                        <textarea name="production_year" class="form-control" id="production_year" rows="1" required>{{car.production_year}}</textarea>
                         <div class="invalid-feedback">
                             Production Year is required.
                         </div>
                     </div>
-                    <div class="row-6">
+                    <div class="mb-3 col-md-12">
                         <label for="plate_number" class="form-label">Plate Number</label>
-                        <textarea name="plate_number" class="form-control" id="production_year" cols="20" rows="1" required>{{car.plate_number}}</textarea>
+                        <textarea name="plate_number" class="form-control" id="production_year" rows="1" required>{{car.plate_number}}</textarea>
                         <div class="invalid-feedback">
                             Plate Number is required.
                         </div>
                     </div>
-                    <div class="row-6">
+                    <div class="mb-3 col-md-12">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control" name="price" id="production_year" placeholder="{{car.price}} NIS" required>
+                        <textarea name="price" class="form-control" id="price" rows="1" required>NIS {{car.price}}</textarea>
                         <div class="invalid-feedback">
                             Production Year is required.
                         </div>
                     </div>
-                    <div class="row-6">
-                        <label for="car_photo" class="form-label">Car Photo</label>
-                        <img src="{{car.car_photo}}" alt="photo_test" width="100px" height="100px">
-                        <input type="file" class="form-control" name="car_photo" id="car_photo">
+                    <div class="mb-3 col-md-12">
+                        <label for="car_photo" class="form-label">Enter a new photo's url</label>
+                        <textarea type="text" class="input-upload form-control form-control-lg mb-3" name="car_photo" id="car_photo"></textarea>
+                        <div class="edit-photo">
+                            <img src="{{car.car_photo}}" class="mb-4" alt="photo_test" width="60%">
+                            <button class="btn btn-info" style="width: 150px;">Update car</button>
+                        </div>
                     </div>
-                    <button class="btn btn-dark" type="submit">Edit Car</button>
-                </form>
             </div>
-            </article>
-        
-    </div>
-    <div class="all_cars">
-        <h5>All my cars</h5>
-        <table class="table">
-            <thead class="position">
-                <tr>
-                    <th scope="col">photo</th>
-                    <th scope="col">Car</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for car in garage %}
-                <tr class="display">
-                    <!-- <td scope="row" name="car_photo"><img src="" alt="photo_test" width="20px" height="20px"></td> -->
-                    <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
-                    <td>
-                        <input type="hidden" name="car_id" value="{{ car.id }}">
-                        <a href="/my_dashboard/edit_car/{{car.id}}/">Edit</a>
-                        <a href="/my_dashboard/delete_car/{{car.id}}/">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        </form>
     </div>
 </div>
+
 {% endblock %}

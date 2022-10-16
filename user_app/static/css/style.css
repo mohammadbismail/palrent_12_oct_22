@@ -3,12 +3,26 @@
 * {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.car_box {
-  border-radius: 10px;
-
+.edit-photo {
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ align-items: center;
 }
 
-.add-car-body{
+.edit-form-width {
+  width: 50%;
+}
+.car_details ol, .payment_details ol, .dates ol {
+  list-style-type: disc;
+}
+.car_box {
+  border-radius: 10px;
+}
+.car_box img {
+  border-radius: 5%;
+}
+.add-car-body { 
   padding-top: 100px;
 }
 .car_list {
