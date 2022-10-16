@@ -1,47 +1,65 @@
 {% extends 'base.html' %}
 {% block content%}
+<style>
+    .dashboard {
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
 
-    <div class=" container cars-container">
-        <div class="row">
-        <h2 class="clo-md-12 mb-4">Your Shop</h2>
-        </div>
-        <div class="row">
-            <div class="dashboard col-md-12">
-                <div class="car_list p-4">
-                        {% for car in provider_cars %}
-                            <div class="search_result car_box mb-3 p-4 row">
-                                <div class="col-md-5 mr-2">
-                                    <div class="car_details">
-                                        <ol>
-                                            <li>Brand: {{car.brand}}</li>
-                                            <li>Production year: {{car.production_year}}</li>
-                                            <li>Color: {{car.color}}</li>
-                                        </ol>
-                                    </div>
-                                    <div class="payment_details">
-                                        <ol>
-                                            <li>Tenant: {{request.session.provider_name}}</li>
-                                            <li>Price: {{car.price}}</li>
-                                        </ol>
-                                    </div>
-                                    <div class="dates">
-                                        <ol>
-                                            <li>Pick up date: {{car.cars_booked.pick_up_date}}</li>
-                                            <li>Drop off date: {{car.cars_booked.drop_off_date}}</li>
-                                            <li>Period: {{period}}</li>
-                                        </ol>
-                                    </div>
-                                    <div class="text-center">
-                                    <a href="/my_dashboard/edit_car/{{car.id}}/"><button class="btn btn-outline-info">Edit</button></a>
-                                    <a href="/my_dashboard/delete_car/{{car.id}}/"><button class="btn btn-outline-danger">Delete</button></a>
-                                </div>
-                                </div>
-                                <img class="col-md-6" src="{{car.car_photo}}" alt="photo_test">
-                            </div>
-                        {% endfor %}
+        justify-content: center;
+    }
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .request_list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+</style>
+<div class=" container cars-container">
+    <div class="row">
+        <h2 class="clo-md-12 mb-4">Car request</h2>
+    </div>
+    <div class="col-12">
+        <div class="dashboard col-md-12">
+            <div class="">
+                <div class="request_list">
+                    {% for car in provider.cars.all %}
+                    {% for book in car.cars_booked.all %}
+                    {% if book.status == "Pending" %}
+                    <div class="row">
+                        <div class="col-4">
+                            <h6 style="color: orange;">{{book.status}}</h6>
+                            <h6>{{book.customer_book.first_name}} {{book.customer_book.last_name}}</h6>
+                            <img src="{{book.customer_book.profile.url}}" alt="photo_test" width="80px" height="80px" class="rounded-circle">
+                        </div>
+                        <div class="col">
+                            <h6>{{car.production_year}}</h6>
+                            <h6>{{car.color}}</h6>
+                        </div>
+                        <div class="col">
+                            <h6>picked up date: 10/10/2022</h6>
+                            <h6>droped off date: 20/10/2022</h6>
+                        </div>
+                        <div class="col" id="buttons">
+                            <input type="hidden" name="car_id" value="{{car.id}}">
+                            <a href="/my_dashboard/accept/{{car.id}}/">
+                                <button class="btn btn-success">Accept</button>
+                            </a>
+                            <a href="/my_dashboard/reject/{{car.id}}/">
+                                <button class="btn btn-danger">Reject</button>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 {%endblock%}

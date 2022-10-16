@@ -1,5 +1,4 @@
-from genericpath import exists
-import json
+
 from django.shortcuts import render, redirect
 from .models import Customer, Provider, Website_review
 from django.http import JsonResponse
@@ -20,6 +19,12 @@ def search(request):
 
     if "customer_id" in request.session:
         return redirect("/my_dashboard/search_result")
+
+    pick_up_date = request.POST["pick_up_date"]
+    drop_off_date = request.POST["drop_off_date"]
+    request.session["pick_up_date"] = pick_up_date
+    request.session["drop_off_date"] = drop_off_date
+    print("tyhis works here", pick_up_date)
 
     return redirect("/search_result")
 
@@ -56,11 +61,11 @@ def login(request):
 
     customer = Customer.objects.filter(email=request.POST["email"])
     if customer:
-        # errors = Customer.objects.customer_login_validator(request.POST)
-        # if len(errors) > 0:
-        #     for key, val in errors.items():
-        #         messages.error(request, val)
-        #     return redirect("/")
+        errors = Customer.objects.customer_login_validator(request.POST)
+        if len(errors) > 0:
+            for key, val in errors.items():
+                messages.error(request, val)
+            return redirect("/")
 
         logged_customer = customer[0]
         if bcrypt.checkpw(
@@ -74,11 +79,11 @@ def login(request):
 
     provider = Provider.objects.filter(email=request.POST["email"])
     if provider:
-        # errors = Provider.objects.provider_login_validator(request.POST)
-        # if len(errors) > 0:
-        #     for key, val in errors.items():
-        #         messages.error(request, val)
-        #     return redirect("/")
+        errors = Provider.objects.provider_login_validator(request.POST)
+        if len(errors) > 0:
+            for key, val in errors.items():
+                messages.error(request, val)
+            return redirect("/")
 
         logged_provider = provider[0]
         if bcrypt.checkpw(
@@ -135,7 +140,7 @@ def provider_register(request):
 
     password_from_form = request.POST["password"]
     pw_hash = bcrypt.hashpw(password_from_form.encode(),
-                            bcrypt.gensalt()).decode()
+        bcrypt.gensalt()).decode()
 
     provider = Provider.objects.create(
         name=request.POST["name"],
