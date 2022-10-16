@@ -1,5 +1,5 @@
 <h1 align="center">Hello 👋 Welcome</h1>
-<h2 align="center">Our Idea: PalRent</h2>
+<h2 align="start">Our Idea: PalRent</h2>
 <ul>
     <li>
         <h3>Whether you are a driver or a car provider, our job is to make renting a car easier,cheaper & faster!</h3>
