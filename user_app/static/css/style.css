@@ -3,6 +3,11 @@
 * {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.car_box {
+  border-radius: 10px;
+
+}
+
 .add-car-body{
   padding-top: 100px;
 }
@@ -10,11 +15,13 @@
   min-height: 40vh;
 }
 .nav_bar {
-  width: 40%;
+  width: 50%;
   margin-bottom: 5%;
 }
 .cars-container {
+  margin-top: 5%;
   padding: 5%;
+
 }
 .errors {
   width: 50%;

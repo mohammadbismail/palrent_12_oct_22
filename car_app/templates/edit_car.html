@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<style>
-    .container {
-        display: flex;
-    }
-</style>
 <div class="container">
     <a href="/my_dashboard/provider_dashboard/">
         <button type="submit" class="btn-outline">My garage</button>
@@ -69,64 +64,13 @@
                         </div>
                     </div>
                     <div class="row-6">
-                        <label for="photo" class="form-label">Car Photo</label>
-                        <img src="{{car.photo.url}}" alt="photo_test" width="100px" height="100px">
-                        <input type="file" class="form-control" name="photo" id="photo">
+                        <label for="car_photo" class="form-label">Car Photo</label>
+                        <img src="{{car.car_photo}}" alt="photo_test" width="100px" height="100px">
+                        <input type="file" class="form-control" name="car_photo" id="car_photo">
                     </div>
                     <button class="btn btn-dark" type="submit">Edit Car</button>
                 </form>
             </div>
-                <!-- <div class="row-6">
-                    <label for="" class="form-label">Car insurance</label>
-                    <input type="file" class="form-control" id="car_insurance" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Car insurance Year is required.
-                    </div>
-                </div>
-                <div class="row-6">
-                    <label for="" class="form-label">Car Permit</label>
-                    <input type="file" class="form-control" id="car_permit" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Car Permit Year is required.
-                    </div>
-                </div>
-            </div>
-            <article class="card-group-item car_utilities">
-                <header class="card-header">
-                    <h6 class="title">Car Utilities</h6>
-                </header>
-                <form>
-                    <label class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <span class="form-check-label">
-                        Full option
-                        </span>
-                    </label> 
-                    <label class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <span class="form-check-label">
-                        loud speakers
-                        </span>
-                    </label>
-                    <label class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <span class="form-check-label">
-                        Automatic
-                        </span>
-                    </label> 
-                    <label class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <span class="form-check-label">
-                        Leather seats 
-                        </span>
-                    </label>
-                    <label class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <span class="form-check-label">
-                        Brand new
-                        </span>
-                    </label>  form-check.//
-                </form> -->
             </article>
         
     </div>
@@ -143,7 +87,7 @@
             <tbody>
                 {% for car in garage %}
                 <tr class="display">
-                    <td scope="row" name="photo"><img src="{{car.photo.url}}" alt="photo_test" width="20px" height="20px"></td>
+                    <!-- <td scope="row" name="car_photo"><img src="" alt="photo_test" width="20px" height="20px"></td> -->
                     <td scope="row" name="car_id"><span>{{car.brand}}</span></td>
                     <td>
                         <input type="hidden" name="car_id" value="{{ car.id }}">
