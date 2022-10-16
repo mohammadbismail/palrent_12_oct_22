@@ -2306,7 +2306,7 @@ h5,
 }
 .hero.inner-page,
 .hero.inner-page > .container > .row {
-  height: 40vh !important;
+  height: 60vh !important;
   min-height: 200px;
 }
 
@@ -2341,8 +2341,9 @@ h5,
 
 .trip-form {
   border-radius: 7px;
-  padding: 40px;
+  padding: 20px;
   background: #fff;
+  opacity: 0.86;
   position: relative;
   z-index: 3;
   -webkit-box-shadow: 0 15px 30px 0px rgba(0, 0, 0, 0.1);
