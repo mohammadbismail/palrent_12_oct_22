@@ -138,7 +138,7 @@ def insert_car(request):
         car_photo=request.POST["car_photo"],
         provider=Provider.objects.get(id=request.session["provider_id"]),
     )
-    return redirect("/my_dashboard/add_car")
+    return redirect("my_dashboard/provider_dashboard/")
 
 
 def edit_car(request, car_id):
