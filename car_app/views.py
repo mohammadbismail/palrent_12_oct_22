@@ -135,7 +135,7 @@ def insert_car(request):
         production_year=request.POST["production_year"],
         plate_number=request.POST["plate_number"],
         price=request.POST["price"],
-        photo=request.FILES["photo"],
+        car_photo=request.POST["car_photo"],
         provider=Provider.objects.get(id=request.session["provider_id"]),
     )
     return redirect("/my_dashboard/add_car")
@@ -163,10 +163,10 @@ def edit_my_car(request, car_id):
     c.production_year = request.POST["production_year"]
     c.plate_number = request.POST["plate_number"]
     c.price = request.POST["price"]
-    c.photo = (request.FILES["photo"],)
+    c.car_photo = (request.POST["car_photo"])
     c.save()
 
-    return redirect("/my_dashboard/edit_car/" + car_id)
+    return redirect("/my_dashboard/provider_dashboard")
 
 
 def provider_account(request, provider_id):
@@ -187,7 +187,8 @@ def provider_account_edit(request, provider_id):
     if provider:
         logged_provider = provider[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_provider.password.encode()
+            request.POST["password"].encode(
+            ), logged_provider.password.encode()
         ):
             password_from_form = request.POST["new_password"]
             pw_hash = bcrypt.hashpw(
@@ -235,7 +236,8 @@ def customer_account_edit(request, customer_id):
     if customer:
         logged_customer = customer[0]
         if bcrypt.checkpw(
-            request.POST["password"].encode(), logged_customer.password.encode()
+            request.POST["password"].encode(
+            ), logged_customer.password.encode()
         ):
             password_from_form = request.POST["new_password"]
             pw_hash = bcrypt.hashpw(
@@ -301,7 +303,8 @@ def provider_add_payment(request, provider_id):
         expiration_mm=request.POST["expiration_mm"],
         expiration_yyyy=request.POST["expiration_yyyy"],
         cvv=request.POST["cvv"],
-        provider_payment=Provider.objects.get(id=request.session["provider_id"]),
+        provider_payment=Provider.objects.get(
+            id=request.session["provider_id"]),
     )
 
     return redirect("/my_dashboard/provider_account/" + provider_id)

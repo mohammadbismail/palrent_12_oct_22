@@ -1,47 +1,47 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<div class="site-wrap" id="home-section">
-    <div class="container-fluid cars-container m-5">
+    <div class=" container cars-container">
         <div class="row">
         <h2 class="clo-md-12 mb-4">Your Shop</h2>
         </div>
         <div class="row">
-        <div class="dashboard col-md-12">
-            <div class="nav_bar row">
-                <h5 class="col-md-4">My Cars status:</h5>
-                <select class="col-md-8" name="shop_sorting" id="">
-                    <option value="all">All</option>
-                    <option value="rental_car">Rental Cars</option>
-                    <option value="in_shop">In Shop</option>
-                </select>
-            </div>
-                    <div class="search_result car_list">
+            <div class="dashboard col-md-12">
+                <div class="car_list p-4">
                         {% for car in provider_cars %}
-                            <div class="car_box">
-                            <img src="{{car.photo.url}}" alt="photo_test" width="80px" height="80px">
-                            <div class="car_details">
-                                <h6>{{car.brand}}</h6>
-                                <h6>{{car.production_year}}</h6>
-                                <h6>{{car.color}}</h6>
+                            <div class="search_result car_box mb-3 p-4 row">
+                                <div class="col-md-5 mr-2">
+                                    <div class="car_details">
+                                        <ol>
+                                            <li>Brand: {{car.brand}}</li>
+                                            <li>Production year: {{car.production_year}}</li>
+                                            <li>Color: {{car.color}}</li>
+                                        </ol>
+                                    </div>
+                                    <div class="payment_details">
+                                        <ol>
+                                            <li>Tenant: {{request.session.provider_name}}</li>
+                                            <li>Price: {{car.price}}</li>
+                                        </ol>
+                                    </div>
+                                    <div class="dates">
+                                        <ol>
+                                            <li>Pick up date: {{car.cars_booked.pick_up_date}}</li>
+                                            <li>Drop off date: {{car.cars_booked.drop_off_date}}</li>
+                                            <li>Period: {{period}}</li>
+                                        </ol>
+                                    </div>
+                                    <div class="text-center">
+                                    <a href="/my_dashboard/edit_car/{{car.id}}/"><button class="btn btn-outline-info">Edit</button></a>
+                                    <a href="/my_dashboard/delete_car/{{car.id}}/"><button class="btn btn-outline-danger">Delete</button></a>
+                                </div>
+                                </div>
+                                <img class="col-md-6" src="{{car.car_photo}}" alt="photo_test">
                             </div>
-                            <div class="payment_details">
-                                <h6>Tenant: {{request.session.provider_name}}</h6>
-                                <h6>Price: {{car.price}}</h6>
-                            </div>
-                            <div class="dates">
-                                <h6>picked up date: 10/10/2022</h6>
-                                <h6>droped off date: 20/10/2022</h6>
-                                <h6>days: 10</h6>
-                            </div>
-                            <a href="/my_dashboard/provider_car_details/{{car.id}}/">
-                                <button class="btn btn-primary">View Car</button>
-                            </a>
-                            </div>
-                                    {% endfor %}
-                        </div>
+                        {% endfor %}
                 </div>
+            </div>
         </div>
     </div>
-</div>
+
 {%endblock%}
