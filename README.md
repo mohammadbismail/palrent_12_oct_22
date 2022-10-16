@@ -6,7 +6,7 @@
         
    </li>
     <li>
-    <h3 align="start">PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent                                                      makes it easier for you!</h3>
+    <h3 align="start">PalRent is the first of it's kind in Palestine for renting cars. Whether you are a driver or a car provider, PalRent                                                      makes life easier for you!</h3>
     </li>
 </ul>
 <h2>All Credit for giving this idea the chance to shine goes to:</h2>
