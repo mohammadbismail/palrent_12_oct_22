@@ -37,7 +37,7 @@
   title="Bara Abu-Asal"
   style="display: inline-block; margin: 0; height: 300px">
   <img
-  src="https://i.imgur.com/soGxWOV.jpeg"
+  src="https://i.imgur.com/7nFNyLC.jpeg"
   alt="Alt text"
   title="Hasan Sadaqa"
   style="display: inline-block; margin: 0; height: 300px">
